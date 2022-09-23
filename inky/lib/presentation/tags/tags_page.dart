@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
-import 'package:inky/presentation/inklings/inklings_page.dart';
 import 'package:inky/router.dart';
 import 'package:inky/styles/styles.dart';
+
+import '../inklings/widgets/tag_chip.dart';
 
 class TagsPage extends StatelessWidget {
   const TagsPage({super.key});

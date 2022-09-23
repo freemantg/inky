@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:inky/presentation/add_inkling/add_inkling_page.dart';
 import 'package:inky/presentation/inklings/inklings_page.dart';
+import 'package:inky/presentation/onboarding/onboarding_page.dart';
 import 'package:inky/presentation/settings/manage_tags_page.dart';
 import 'package:inky/presentation/settings/settings_page.dart';
 import 'package:inky/presentation/tags/tags_page.dart';
+
+/// InklingType for navigating the add Inkling process. 
+enum InklingType { post, image, link }
 
 /// Shared Paths
 class ScreenPaths {
@@ -14,6 +18,7 @@ class ScreenPaths {
   static String settings = '/settings';
   static String manageTags = '/manageTags';
   static String tags = '/tags';
+  static String onboarding = '/onboarding';
   static String addInkling(InklingType type) => '/addInkling/${type.name}';
 }
 
@@ -43,6 +48,10 @@ final appRouter = GoRouter(
     AppRoute(
       path: ScreenPaths.manageTags,
       builder: ((_) => const ManageTagsPage()),
+    ),
+    AppRoute(
+      path: ScreenPaths.onboarding,
+      builder: (_) => const OnboardingPage(),
     ),
     AppRoute(
       path: '/addInkling/:type',
