@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../../styles/styles.dart';
-import '../../shared/styled_appbar_action.dart';
-import '../../shared/styled_appbar_leading_back_button.dart';
-import '../../shared/styled_appbar_title.dart';
+import '../../shared/widgets.dart';
 import '../../tags/tags_page.dart';
+
 
 class StyledModalBottomSheet extends StatelessWidget {
   const StyledModalBottomSheet({

@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:inky/presentation/add_inkling/widgets/link_text_field.dart';
-import 'package:inky/presentation/shared/styled_appbar_leading_back_button.dart';
-import 'package:inky/presentation/shared/styled_appbar_title.dart';
 
 import '../../router.dart';
 import '../../styles/styles.dart';
-import '../shared/styled_elevated_button.dart';
-import 'widgets/add_tag_button.dart';
-import 'widgets/inkling_image.dart';
-import 'widgets/memo_text_field.dart';
-import 'widgets/note_textform_field.dart';
-import 'widgets/styled_subtitle.dart';
+import '../shared/widgets.dart';
+import 'widgets/widgets.dart';
+
 
 class AddInklingPage extends StatelessWidget {
   const AddInklingPage(this.inklingType, {super.key});

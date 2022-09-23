@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 import '../../../styles/styles.dart';
-import 'tag_chip.dart';
+import 'widgets.dart';
 
 class InklingCard extends StatelessWidget {
   const InklingCard({

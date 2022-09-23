@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:inky/router.dart';
 import 'package:inky/styles/styles.dart';
 
-import '../inklings/widgets/tag_chip.dart';
+import '../inklings/widgets/widgets.dart';
+
 
 class TagsPage extends StatelessWidget {
   const TagsPage({super.key});

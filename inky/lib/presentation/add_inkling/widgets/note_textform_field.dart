@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:inky/presentation/shared/text_field_input_decoration.dart';
 
 import '../../../styles/styles.dart';
+import '../../shared/widgets.dart';
 
 class NoteTextFormField extends StatelessWidget {
   const NoteTextFormField({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../styles/styles.dart';
-import '../../shared/text_field_input_decoration.dart';
+import '../../shared/widgets.dart';
 
 class LinkTextField extends StatelessWidget {
   const LinkTextField({super.key});

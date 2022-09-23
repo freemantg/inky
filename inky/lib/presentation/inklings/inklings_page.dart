@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:inky/router.dart';
-import 'package:inky/styles/styles.dart';
 
-import 'widgets/inkling_card.dart';
-import 'widgets/styled_animated_fab.dart';
+import '../../router.dart';
+import '../../styles/styles.dart';
+import 'widgets/widgets.dart';
 
 class InklingsPage extends StatelessWidget {
   const InklingsPage({super.key});
@@ -24,8 +23,8 @@ class InklingsPage extends StatelessWidget {
           )
         ],
       ),
-      floatingActionButton: const StyledAnimatedFAB(),
       body: _buildInklingCardGridView(),
+      floatingActionButton: const StyledAnimatedFAB(),
     );
   }
 

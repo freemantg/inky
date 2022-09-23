@@ -5,7 +5,6 @@ import 'dart:math' as math;
 
 import '../../../router.dart';
 import '../../../styles/styles.dart';
-import '../../add_inkling/add_inkling_page.dart';
 
 class StyledAnimatedFAB extends HookWidget {
   const StyledAnimatedFAB({
