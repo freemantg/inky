@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
+import 'package:inky/presentation/add_inkling/add_inkling_page.dart';
 import 'package:inky/router.dart';
 import 'package:inky/styles/styles.dart';
 import 'dart:math' as math;
@@ -12,18 +13,13 @@ class InklingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actionsIconTheme: IconThemeData(
-          color: $styles.colors.grey04,
-        ),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
         actions: [
           IconButton(
             onPressed: () => context.go(ScreenPaths.tags),
             icon: const Icon(Icons.filter_list_alt),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () => context.go(ScreenPaths.settings),
             icon: const Icon(Icons.settings),
           )
         ],
@@ -150,19 +146,22 @@ class StyledAnimatedFAB extends HookWidget {
                               MenuAction(
                                 title: 'Note',
                                 iconData: Icons.edit,
-                                onTap: () => context.go(ScreenPaths.addInkling),
+                                onTap: () => context.go(
+                                    ScreenPaths.addInkling(InklingType.post)),
                               ),
                               Divider(color: $styles.colors.grey02),
                               MenuAction(
                                 title: 'Image',
                                 iconData: Icons.photo,
-                                onTap: () {},
+                                onTap: () => context.go(
+                                    ScreenPaths.addInkling(InklingType.image)),
                               ),
                               Divider(color: $styles.colors.grey02),
                               MenuAction(
                                 title: 'Link',
                                 iconData: Icons.link,
-                                onTap: () {},
+                                onTap: () => context.go(
+                                    ScreenPaths.addInkling(InklingType.link)),
                               ),
                             ],
                           ),

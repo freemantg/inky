@@ -12,10 +12,6 @@ class TagsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: $styles.colors.grey05),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
         leading: IconButton(
           onPressed: () => context.go(ScreenPaths.home),
           icon: const Icon(Icons.arrow_back_ios_new, size: 14.0),
@@ -45,7 +41,7 @@ class TagsPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const _TagFilterTextField(),
+            const TagFilterTextField(),
             HSpace(size: $styles.insets.lg),
             Text('Your Tags', style: $styles.text.bodySmallBold),
             HSpace(size: $styles.insets.xs),
@@ -69,8 +65,8 @@ class TagsPage extends StatelessWidget {
   }
 }
 
-class _TagFilterTextField extends HookWidget {
-  const _TagFilterTextField({
+class TagFilterTextField extends HookWidget {
+  const TagFilterTextField({
     Key? key,
   }) : super(key: key);
 

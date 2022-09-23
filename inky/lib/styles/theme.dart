@@ -45,6 +45,13 @@ class AppColors {
     );
 
     ///Return the themeData which MaterialApp can now use
-    return theme;
+    return theme.copyWith(
+      appBarTheme: AppBarTheme(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        actionsIconTheme: IconThemeData(color: grey04),
+        iconTheme: IconThemeData(color: grey04),
+      ),
+    );
   }
 }

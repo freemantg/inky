@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:inky/presentation/add_inkling/add_inkling_page.dart';
 import 'package:inky/presentation/inklings/inklings_page.dart';
+import 'package:inky/presentation/settings/manage_tags_page.dart';
+import 'package:inky/presentation/settings/settings_page.dart';
 import 'package:inky/presentation/tags/tags_page.dart';
 
 /// Shared Paths
@@ -10,8 +12,9 @@ class ScreenPaths {
   static String splash = '/';
   static String home = '/home';
   static String settings = '/settings';
+  static String manageTags = '/manageTags';
   static String tags = '/tags';
-  static String addInkling = '/addInkling';
+  static String addInkling(InklingType type) => '/addInkling/${type.name}';
 }
 
 // Routing table, matches string paths to UI Screens
@@ -30,8 +33,20 @@ final appRouter = GoRouter(
       builder: ((_) => const TagsPage()),
     ),
     AppRoute(
-      path: ScreenPaths.addInkling,
-      builder: (_) => const AddInklingPage(),
+      path: ScreenPaths.settings,
+      builder: ((_) => const SettingsPage()),
+    ),
+    AppRoute(
+      path: ScreenPaths.settings,
+      builder: ((_) => const SettingsPage()),
+    ),
+    AppRoute(
+      path: ScreenPaths.manageTags,
+      builder: ((_) => const ManageTagsPage()),
+    ),
+    AppRoute(
+      path: '/addInkling/:type',
+      builder: (_) => AddInklingPage(_tryParseInklingType(_.params['type']!)!),
     )
   ],
 );
@@ -70,3 +85,6 @@ class AppRoute extends GoRoute {
 
   final bool fadeTransition;
 }
+
+InklingType? _tryParseInklingType(String value) =>
+    InklingType.values.asNameMap()[value];
