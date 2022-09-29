@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../styles/styles.dart';
 import '../../shared/widgets.dart';
-import '../../tags/tags_page.dart';
-
+import '../../tags/tag_filter_text_field.dart';
 
 class StyledModalBottomSheet extends StatelessWidget {
   const StyledModalBottomSheet({

@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:inky/providers.dart';
 
 import '../../router.dart';
 import '../../styles/styles.dart';
 import '../shared/widgets.dart';
 import 'widgets/widgets.dart';
 
-
-class AddInklingPage extends StatelessWidget {
+class AddInklingPage extends ConsumerWidget {
   const AddInklingPage(this.inklingType, {super.key});
 
   final InklingType inklingType;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(
+      inklingFormNotifierProvider,
+      (previous, next) {
+        if (previous?.isSaving != next.isSaving) {
+          context.go(ScreenPaths.home);
+        }
+      },
+    );
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -22,7 +32,7 @@ class AddInklingPage extends StatelessWidget {
         ),
       ),
       body: _buildScaffoldBody(context),
-      bottomNavigationBar: _buildBottomNavigationBar(),
+      bottomNavigationBar: _buildBottomNavigationBar(ref),
     );
   }
 
@@ -64,12 +74,12 @@ class AddInklingPage extends StatelessWidget {
     }
   }
 
-  Widget _buildBottomNavigationBar() {
+  Widget _buildBottomNavigationBar(WidgetRef ref) {
     return Padding(
       padding: EdgeInsets.all($styles.insets.sm),
       child: StyledElevatedButton(
         title: 'Ink It!',
-        onPressed: () {},
+        onPressed: () => ref.read(inklingFormNotifierProvider.notifier).saved(),
       ),
     );
   }

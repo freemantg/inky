@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:inky/providers.dart';
 
 import '../../router.dart';
 import '../../styles/styles.dart';
 import 'widgets/widgets.dart';
 
-class InklingsPage extends StatelessWidget {
+class InklingsPage extends ConsumerStatefulWidget {
   const InklingsPage({super.key});
+
+  @override
+  ConsumerState<InklingsPage> createState() => _InklingsPageState();
+}
+
+class _InklingsPageState extends ConsumerState<InklingsPage> {
+  @override
+  void initState() {
+    super.initState();
+    final notifier = ref.read(inklingsNotifierProvider.notifier);
+
+    notifier.registerService().then((_) => notifier.fetchInklings());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +44,23 @@ class InklingsPage extends StatelessWidget {
   }
 
   Widget _buildInklingCardGridView() {
-    return Padding(
-      padding: EdgeInsets.all($styles.insets.sm),
-      child: GridView.count(
-        crossAxisCount: 2,
-        crossAxisSpacing: $styles.insets.xs,
-        mainAxisSpacing: $styles.insets.xs,
-        children: const [
-          InklingCard(),
-          InklingCard(),
-          InklingCard(),
-          InklingCard(),
-        ],
-      ),
-    );
+    return ref.watch(inklingsNotifierProvider).maybeMap(
+          initial: (_) => const Text('Initial'),
+          loadInProgress: (_) => const CircularProgressIndicator(),
+          loadFailure: (_) => const Text('Failed'),
+          loadSuccess: (state) {
+            return Padding(
+              padding: EdgeInsets.all($styles.insets.sm),
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: $styles.insets.xs,
+                mainAxisSpacing: $styles.insets.xs,
+                children:
+                    state.inklings.map((e) => InklingCard(inkling: e)).toList(),
+              ),
+            );
+          },
+          orElse: () => const SizedBox.shrink(),
+        );
   }
 }
