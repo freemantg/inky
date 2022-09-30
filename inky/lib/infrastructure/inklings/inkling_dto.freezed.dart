@@ -21,8 +21,10 @@ mixin _$InklingDto {
   @HiveField(1)
   String get link => throw _privateConstructorUsedError;
   @HiveField(2)
-  List<TagDto> get tags => throw _privateConstructorUsedError;
+  String get imagePath => throw _privateConstructorUsedError;
   @HiveField(3)
+  List<TagDto> get tags => throw _privateConstructorUsedError;
+  @HiveField(4)
   String get memo => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -38,8 +40,9 @@ abstract class $InklingDtoCopyWith<$Res> {
   $Res call(
       {@HiveField(0) String note,
       @HiveField(1) String link,
-      @HiveField(2) List<TagDto> tags,
-      @HiveField(3) String memo});
+      @HiveField(2) String imagePath,
+      @HiveField(3) List<TagDto> tags,
+      @HiveField(4) String memo});
 }
 
 /// @nodoc
@@ -54,6 +57,7 @@ class _$InklingDtoCopyWithImpl<$Res> implements $InklingDtoCopyWith<$Res> {
   $Res call({
     Object? note = freezed,
     Object? link = freezed,
+    Object? imagePath = freezed,
     Object? tags = freezed,
     Object? memo = freezed,
   }) {
@@ -65,6 +69,10 @@ class _$InklingDtoCopyWithImpl<$Res> implements $InklingDtoCopyWith<$Res> {
       link: link == freezed
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagePath: imagePath == freezed
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
       tags: tags == freezed
           ? _value.tags
@@ -88,8 +96,9 @@ abstract class _$$_InklingDtoCopyWith<$Res>
   $Res call(
       {@HiveField(0) String note,
       @HiveField(1) String link,
-      @HiveField(2) List<TagDto> tags,
-      @HiveField(3) String memo});
+      @HiveField(2) String imagePath,
+      @HiveField(3) List<TagDto> tags,
+      @HiveField(4) String memo});
 }
 
 /// @nodoc
@@ -106,6 +115,7 @@ class __$$_InklingDtoCopyWithImpl<$Res> extends _$InklingDtoCopyWithImpl<$Res>
   $Res call({
     Object? note = freezed,
     Object? link = freezed,
+    Object? imagePath = freezed,
     Object? tags = freezed,
     Object? memo = freezed,
   }) {
@@ -117,6 +127,10 @@ class __$$_InklingDtoCopyWithImpl<$Res> extends _$InklingDtoCopyWithImpl<$Res>
       link: link == freezed
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
+              as String,
+      imagePath: imagePath == freezed
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
       tags: tags == freezed
           ? _value._tags
@@ -137,8 +151,9 @@ class _$_InklingDto extends _InklingDto {
   _$_InklingDto(
       {@HiveField(0) required this.note,
       @HiveField(1) required this.link,
-      @HiveField(2) required final List<TagDto> tags,
-      @HiveField(3) required this.memo})
+      @HiveField(2) required this.imagePath,
+      @HiveField(3) required final List<TagDto> tags,
+      @HiveField(4) required this.memo})
       : _tags = tags,
         super._();
 
@@ -148,21 +163,24 @@ class _$_InklingDto extends _InklingDto {
   @override
   @HiveField(1)
   final String link;
-  final List<TagDto> _tags;
   @override
   @HiveField(2)
+  final String imagePath;
+  final List<TagDto> _tags;
+  @override
+  @HiveField(3)
   List<TagDto> get tags {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
 
   @override
-  @HiveField(3)
+  @HiveField(4)
   final String memo;
 
   @override
   String toString() {
-    return 'InklingDto(note: $note, link: $link, tags: $tags, memo: $memo)';
+    return 'InklingDto(note: $note, link: $link, imagePath: $imagePath, tags: $tags, memo: $memo)';
   }
 
   @override
@@ -172,6 +190,7 @@ class _$_InklingDto extends _InklingDto {
             other is _$_InklingDto &&
             const DeepCollectionEquality().equals(other.note, note) &&
             const DeepCollectionEquality().equals(other.link, link) &&
+            const DeepCollectionEquality().equals(other.imagePath, imagePath) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other.memo, memo));
   }
@@ -181,6 +200,7 @@ class _$_InklingDto extends _InklingDto {
       runtimeType,
       const DeepCollectionEquality().hash(note),
       const DeepCollectionEquality().hash(link),
+      const DeepCollectionEquality().hash(imagePath),
       const DeepCollectionEquality().hash(_tags),
       const DeepCollectionEquality().hash(memo));
 
@@ -194,8 +214,9 @@ abstract class _InklingDto extends InklingDto {
   factory _InklingDto(
       {@HiveField(0) required final String note,
       @HiveField(1) required final String link,
-      @HiveField(2) required final List<TagDto> tags,
-      @HiveField(3) required final String memo}) = _$_InklingDto;
+      @HiveField(2) required final String imagePath,
+      @HiveField(3) required final List<TagDto> tags,
+      @HiveField(4) required final String memo}) = _$_InklingDto;
   _InklingDto._() : super._();
 
   @override
@@ -206,9 +227,12 @@ abstract class _InklingDto extends InklingDto {
   String get link;
   @override
   @HiveField(2)
-  List<TagDto> get tags;
+  String get imagePath;
   @override
   @HiveField(3)
+  List<TagDto> get tags;
+  @override
+  @HiveField(4)
   String get memo;
   @override
   @JsonKey(ignore: true)

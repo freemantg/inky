@@ -1,12 +1,18 @@
+import 'package:http/http.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:inky/application/inklings/inklings_notifier.dart';
 import 'package:inky/application/tags/tags_notifier.dart';
 import 'package:inky/infrastructure/inklings/inklings_local_service.dart';
+import 'package:inky/infrastructure/inklings/inklings_remote_service.dart';
 import 'package:inky/infrastructure/tags/tags_local_service.dart';
 import 'package:inky/infrastructure/tags/tags_repository.dart';
 import 'package:riverpod/riverpod.dart';
 
 import 'application/inklings/form/inkling_form_notifier.dart';
+import 'application/inklings/form/inkling_link_notifier.dart';
+import 'infrastructure/inklings/inkling_image_repository.dart';
 import 'infrastructure/inklings/inklings_repository.dart';
+import 'infrastructure/inklings/meta_data_parser_repository.dart';
 
 //TAGS PROVIDERS
 final tagsLocalServiceProvider = Provider((ref) => TagsLocalService());
@@ -19,13 +25,29 @@ final tagsNotifierProvider =
 //INKLING PROVIDERS
 final inklingLocalServiceProvider = Provider((ref) => InklingLocalServices());
 final inklingRepositoryProvider = Provider(
-  (ref) => InklingsRepository(ref.watch(inklingLocalServiceProvider)),
+  (ref) => InklingsRepository(
+    localServices: ref.watch(inklingLocalServiceProvider),
+    remoteServices: ref.watch(inklingRemoteService),
+  ),
 );
+
+final imagePickerProvider = Provider((ref) => ImagePicker());
+final inklingImageRepositoryProvider = Provider((ref) =>
+    InklingImageRepository(imagePicker: ref.watch(imagePickerProvider)));
+
 final inklingFormNotifierProvider =
-    StateNotifierProvider<InklingFormNotifier, InklingFormState>(
-  (ref) => InklingFormNotifier(ref.watch(inklingRepositoryProvider)),
-);
+    StateNotifierProvider.autoDispose<InklingFormNotifier, InklingFormState>(
+        (ref) => InklingFormNotifier(ref.watch(inklingRepositoryProvider),
+            ref.watch(inklingImageRepositoryProvider)));
 
 final inklingsNotifierProvider =
     StateNotifierProvider<InklingsNotifier, InklingsState>(
         (ref) => InklingsNotifier(ref.watch(inklingRepositoryProvider)));
+
+final httpProvider = Provider((ref) => Client());
+final inklingRemoteService =
+    Provider((ref) => InklingRemoteService(ref.watch(httpProvider)));
+
+final inklingLinkNotifier = StateNotifierProvider.autoDispose<
+        InklingLinkNotifier, AsyncValue<MetaData>>(
+    (ref) => InklingLinkNotifier(ref.watch(inklingRemoteService)));

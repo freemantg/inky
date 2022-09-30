@@ -20,10 +20,13 @@ class InklingsState with _$InklingsState {
 class InklingsNotifier extends StateNotifier<InklingsState> {
   final InklingsRepository _repository;
 
-  InklingsNotifier(this._repository) : super(const InklingsState.initial());
+  InklingsNotifier(
+    this._repository,
+  ) : super(const InklingsState.initial());
 
   Future<void> fetchInklings() async {
     final successOrFailure = await _repository.fetchInklings();
+
     state = successOrFailure.fold(
       (failure) => InklingsState.loadFailure(failure: failure),
       (inklings) => InklingsState.loadSuccess(inklings: inklings),

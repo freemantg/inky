@@ -18,8 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Inkling {
   String get note => throw _privateConstructorUsedError;
   String get link => throw _privateConstructorUsedError;
+  String get imagePath => throw _privateConstructorUsedError;
   String get memo => throw _privateConstructorUsedError;
   List<Tag> get tags => throw _privateConstructorUsedError;
+  MetaData? get metaData => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InklingCopyWith<Inkling> get copyWith => throw _privateConstructorUsedError;
@@ -29,7 +31,13 @@ mixin _$Inkling {
 abstract class $InklingCopyWith<$Res> {
   factory $InklingCopyWith(Inkling value, $Res Function(Inkling) then) =
       _$InklingCopyWithImpl<$Res>;
-  $Res call({String note, String link, String memo, List<Tag> tags});
+  $Res call(
+      {String note,
+      String link,
+      String imagePath,
+      String memo,
+      List<Tag> tags,
+      MetaData? metaData});
 }
 
 /// @nodoc
@@ -44,8 +52,10 @@ class _$InklingCopyWithImpl<$Res> implements $InklingCopyWith<$Res> {
   $Res call({
     Object? note = freezed,
     Object? link = freezed,
+    Object? imagePath = freezed,
     Object? memo = freezed,
     Object? tags = freezed,
+    Object? metaData = freezed,
   }) {
     return _then(_value.copyWith(
       note: note == freezed
@@ -56,6 +66,10 @@ class _$InklingCopyWithImpl<$Res> implements $InklingCopyWith<$Res> {
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
+      imagePath: imagePath == freezed
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as String,
       memo: memo == freezed
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
@@ -64,6 +78,10 @@ class _$InklingCopyWithImpl<$Res> implements $InklingCopyWith<$Res> {
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>,
+      metaData: metaData == freezed
+          ? _value.metaData
+          : metaData // ignore: cast_nullable_to_non_nullable
+              as MetaData?,
     ));
   }
 }
@@ -74,7 +92,13 @@ abstract class _$$_InklingCopyWith<$Res> implements $InklingCopyWith<$Res> {
           _$_Inkling value, $Res Function(_$_Inkling) then) =
       __$$_InklingCopyWithImpl<$Res>;
   @override
-  $Res call({String note, String link, String memo, List<Tag> tags});
+  $Res call(
+      {String note,
+      String link,
+      String imagePath,
+      String memo,
+      List<Tag> tags,
+      MetaData? metaData});
 }
 
 /// @nodoc
@@ -90,8 +114,10 @@ class __$$_InklingCopyWithImpl<$Res> extends _$InklingCopyWithImpl<$Res>
   $Res call({
     Object? note = freezed,
     Object? link = freezed,
+    Object? imagePath = freezed,
     Object? memo = freezed,
     Object? tags = freezed,
+    Object? metaData = freezed,
   }) {
     return _then(_$_Inkling(
       note: note == freezed
@@ -102,6 +128,10 @@ class __$$_InklingCopyWithImpl<$Res> extends _$InklingCopyWithImpl<$Res>
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
+      imagePath: imagePath == freezed
+          ? _value.imagePath
+          : imagePath // ignore: cast_nullable_to_non_nullable
+              as String,
       memo: memo == freezed
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
@@ -110,6 +140,10 @@ class __$$_InklingCopyWithImpl<$Res> extends _$InklingCopyWithImpl<$Res>
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>,
+      metaData: metaData == freezed
+          ? _value.metaData
+          : metaData // ignore: cast_nullable_to_non_nullable
+              as MetaData?,
     ));
   }
 }
@@ -120,14 +154,18 @@ class _$_Inkling implements _Inkling {
   const _$_Inkling(
       {required this.note,
       required this.link,
+      required this.imagePath,
       required this.memo,
-      required final List<Tag> tags})
+      required final List<Tag> tags,
+      this.metaData})
       : _tags = tags;
 
   @override
   final String note;
   @override
   final String link;
+  @override
+  final String imagePath;
   @override
   final String memo;
   final List<Tag> _tags;
@@ -138,8 +176,11 @@ class _$_Inkling implements _Inkling {
   }
 
   @override
+  final MetaData? metaData;
+
+  @override
   String toString() {
-    return 'Inkling(note: $note, link: $link, memo: $memo, tags: $tags)';
+    return 'Inkling(note: $note, link: $link, imagePath: $imagePath, memo: $memo, tags: $tags, metaData: $metaData)';
   }
 
   @override
@@ -149,8 +190,10 @@ class _$_Inkling implements _Inkling {
             other is _$_Inkling &&
             const DeepCollectionEquality().equals(other.note, note) &&
             const DeepCollectionEquality().equals(other.link, link) &&
+            const DeepCollectionEquality().equals(other.imagePath, imagePath) &&
             const DeepCollectionEquality().equals(other.memo, memo) &&
-            const DeepCollectionEquality().equals(other._tags, _tags));
+            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            const DeepCollectionEquality().equals(other.metaData, metaData));
   }
 
   @override
@@ -158,8 +201,10 @@ class _$_Inkling implements _Inkling {
       runtimeType,
       const DeepCollectionEquality().hash(note),
       const DeepCollectionEquality().hash(link),
+      const DeepCollectionEquality().hash(imagePath),
       const DeepCollectionEquality().hash(memo),
-      const DeepCollectionEquality().hash(_tags));
+      const DeepCollectionEquality().hash(_tags),
+      const DeepCollectionEquality().hash(metaData));
 
   @JsonKey(ignore: true)
   @override
@@ -171,17 +216,23 @@ abstract class _Inkling implements Inkling {
   const factory _Inkling(
       {required final String note,
       required final String link,
+      required final String imagePath,
       required final String memo,
-      required final List<Tag> tags}) = _$_Inkling;
+      required final List<Tag> tags,
+      final MetaData? metaData}) = _$_Inkling;
 
   @override
   String get note;
   @override
   String get link;
   @override
+  String get imagePath;
+  @override
   String get memo;
   @override
   List<Tag> get tags;
+  @override
+  MetaData? get metaData;
   @override
   @JsonKey(ignore: true)
   _$$_InklingCopyWith<_$_Inkling> get copyWith =>

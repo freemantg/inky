@@ -19,7 +19,6 @@ class _InklingsPageState extends ConsumerState<InklingsPage> {
   void initState() {
     super.initState();
     final notifier = ref.read(inklingsNotifierProvider.notifier);
-
     notifier.registerService().then((_) => notifier.fetchInklings());
   }
 
@@ -45,18 +44,21 @@ class _InklingsPageState extends ConsumerState<InklingsPage> {
 
   Widget _buildInklingCardGridView() {
     return ref.watch(inklingsNotifierProvider).maybeMap(
-          initial: (_) => const Text('Initial'),
           loadInProgress: (_) => const CircularProgressIndicator(),
-          loadFailure: (_) => const Text('Failed'),
           loadSuccess: (state) {
             return Padding(
-              padding: EdgeInsets.all($styles.insets.sm),
-              child: GridView.count(
-                crossAxisCount: 2,
-                crossAxisSpacing: $styles.insets.xs,
-                mainAxisSpacing: $styles.insets.xs,
-                children:
-                    state.inklings.map((e) => InklingCard(inkling: e)).toList(),
+              padding: EdgeInsets.symmetric(horizontal: $styles.insets.sm),
+              child: GridView.builder(
+                itemCount: state.inklings.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisSpacing: $styles.insets.xs,
+                  crossAxisSpacing: $styles.insets.xs,
+                  crossAxisCount: 2,
+                ),
+                itemBuilder: (context, index) {
+                  final inkling = state.inklings[index];
+                  return InklingCard(inkling: inkling);
+                },
               ),
             );
           },

@@ -16,13 +16,15 @@ class InklingDto extends HiveObject with _$InklingDto {
   factory InklingDto({
     @HiveField(0) required String note,
     @HiveField(1) required String link,
-    @HiveField(2) required List<TagDto> tags,
-    @HiveField(3) required String memo,
+    @HiveField(2) required String imagePath,
+    @HiveField(3) required List<TagDto> tags,
+    @HiveField(4) required String memo,
   }) = _InklingDto;
 
   factory InklingDto.fromDomain(Inkling inkling) => InklingDto(
         note: inkling.note,
         link: inkling.link,
+        imagePath: inkling.imagePath,
         tags: inkling.tags.map((e) => TagDto.fromDomain(e)).toList(),
         memo: inkling.memo,
       );
@@ -32,6 +34,7 @@ extension InklingDtoX on InklingDto {
   Inkling toDomain() => Inkling(
         note: note,
         link: link,
+        imagePath: imagePath,
         memo: memo,
         tags: tags.map((e) => e.toDomain()).toList(),
       );

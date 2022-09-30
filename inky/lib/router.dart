@@ -8,7 +8,9 @@ import 'package:inky/presentation/settings/manage_tags_page.dart';
 import 'package:inky/presentation/settings/settings_page.dart';
 import 'package:inky/presentation/tags/tags_page.dart';
 
-/// InklingType for navigating the add Inkling process. 
+import 'domain/inklings/inkling.dart';
+
+/// InklingType for navigating the add Inkling process.
 enum InklingType { post, image, link }
 
 /// Shared Paths
@@ -55,7 +57,12 @@ final appRouter = GoRouter(
     ),
     AppRoute(
       path: '/addInkling/:type',
-      builder: (_) => AddInklingPage(_tryParseInklingType(_.params['type']!)!),
+      builder: (_) {
+        return AddInklingPage(
+          inklingType: _tryParseInklingType(_.params['type']!)!,
+          inkling: _.extra as Inkling?,
+        );
+      },
     )
   ],
 );

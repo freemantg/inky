@@ -5,11 +5,17 @@ import 'package:inky/domain/tags/tag_failure.dart';
 import 'package:inky/infrastructure/inklings/inklings_local_service.dart';
 
 import 'inkling_dto.dart';
+import 'inklings_remote_service.dart';
 
 class InklingsRepository implements InklingsInterface {
   final InklingLocalServices _localServices;
+  final InklingRemoteService _remoteServices;
 
-  InklingsRepository(this._localServices);
+  InklingsRepository({
+    required InklingLocalServices localServices,
+    required InklingRemoteService remoteServices,
+  })  : _localServices = localServices,
+        _remoteServices = remoteServices;
 
   @override
   Future<Either<InklingFailure, Unit>> create(Inkling inkling) async {
@@ -34,8 +40,10 @@ class InklingsRepository implements InklingsInterface {
   @override
   Future<Either<InklingFailure, List<Inkling>>> fetchInklings() async {
     try {
-      final dtos = await _localServices.fetchInklings();
-      return right(dtos.map((e) => e.toDomain()).toList());
+      final dtos = _localServices.fetchInklings();
+      final inklings = dtos.map((e) => e.toDomain()).toList();
+      final inklingsWithMetaData = await _insertMetaData(inklings);
+      return right(inklingsWithMetaData);
     } catch (e) {
       return left(const InklingFailure.unexpected());
     }
@@ -45,6 +53,25 @@ class InklingsRepository implements InklingsInterface {
   Future<Either<InklingFailure, Unit>> update(Inkling inkling) {
     // TODO: implement update
     throw UnimplementedError();
+  }
+
+  Future<List<Inkling>> _insertMetaData(List<Inkling> inklings) async {
+    final List<Inkling> inklingsWithMetaData = [];
+    for (final inkling in inklings) {
+      if (inkling.link.isNotEmpty) {
+        final metaData = await _remoteServices.fetchMetaData(inkling.link);
+        final inklingWithMetaData = inkling.copyWith(
+          metaData: metaData.fold(
+            (l) => null,
+            (metaData) => metaData,
+          ),
+        );
+        inklingsWithMetaData.add(inklingWithMetaData);
+      } else {
+        inklingsWithMetaData.add(inkling);
+      }
+    }
+    return inklingsWithMetaData;
   }
 
   Future<void> registerService() async => await _localServices.init();

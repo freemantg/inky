@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:math' as math;
 
@@ -56,11 +57,11 @@ class StyledAnimatedFAB extends HookWidget {
   }
 }
 
-class _DialogMenu extends StatelessWidget {
+class _DialogMenu extends ConsumerWidget {
   const _DialogMenu();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Align(
       alignment: Alignment.bottomRight,
       child: _styledContainer(
@@ -108,6 +109,48 @@ class _DialogMenu extends StatelessWidget {
         horizontal: $styles.insets.xs,
       ),
       child: child,
+    );
+  }
+}
+
+class PickImageSourceButton extends StatelessWidget {
+  const PickImageSourceButton({
+    super.key,
+    this.color,
+    required this.title,
+    required this.iconData,
+    required this.onTap,
+  });
+
+  final String title;
+  final Color? color;
+  final IconData? iconData;
+  final void Function() onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          CircleAvatar(
+            backgroundColor: color,
+            radius: $styles.insets.md,
+            child: Icon(
+              iconData,
+              color: Colors.white,
+            ),
+          ),
+          HSpace(size: $styles.insets.xxs),
+          Text(
+            title,
+            style: $styles.text.bodySmallBold.copyWith(
+              color: Colors.white,
+              fontSize: 12,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
