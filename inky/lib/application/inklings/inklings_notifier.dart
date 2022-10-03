@@ -4,15 +4,20 @@ import 'package:inky/domain/tags/tag_failure.dart';
 import 'package:inky/infrastructure/inklings/inklings_repository.dart';
 
 import '../../domain/inklings/inkling.dart';
+import '../../domain/tags/tag.dart';
+import '../../router.dart';
 
 part 'inklings_notifier.freezed.dart';
 
 @freezed
 class InklingsState with _$InklingsState {
   const factory InklingsState.initial() = _Initial;
+
   const factory InklingsState.loadInProgress() = _LoadInProgress;
+
   const factory InklingsState.loadSuccess({required List<Inkling> inklings}) =
       _LoadSuccess;
+
   const factory InklingsState.loadFailure({required InklingFailure failure}) =
       _LoadFailure;
 }
@@ -24,8 +29,19 @@ class InklingsNotifier extends StateNotifier<InklingsState> {
     this._repository,
   ) : super(const InklingsState.initial());
 
-  Future<void> fetchInklings() async {
-    final successOrFailure = await _repository.fetchInklings();
+  //OPENS THE INKLING HIVE BOX.
+  Future<void> registerService() async {
+    await _repository.registerService().then((_) => fetchInklings());
+  }
+
+  Future<void> fetchInklings({
+    List<Tag>? filter,
+    InklingType? inklingType,
+  }) async {
+    final successOrFailure = await _repository.fetchInklings(
+      filter: filter,
+      inklingType: inklingType,
+    );
 
     state = successOrFailure.fold(
       (failure) => InklingsState.loadFailure(failure: failure),
@@ -33,5 +49,11 @@ class InklingsNotifier extends StateNotifier<InklingsState> {
     );
   }
 
-  Future<void> registerService() async => await _repository.registerService();
+  Future<void> deleteInkling(Inkling inkling) async {
+    final successOrFailure = await _repository.delete(inkling);
+    successOrFailure.fold(
+      (failure) => state = InklingsState.loadFailure(failure: failure),
+      (success) async => await fetchInklings(),
+    );
+  }
 }

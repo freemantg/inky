@@ -16,16 +16,18 @@ class StyledModalBottomSheet extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Stack(
             children: const [
-              StyledAppbarLeadingBackButton(),
-              StyledAppbarTitle(title: 'ADD TAG'),
-              StyledAppbarAction(title: 'DONE'),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Icon(Icons.arrow_back_ios_new),
+              ),
+              Center(child: StyledAppbarTitle(title: 'ADD TAG')),
             ],
           ),
-          HSpace(size: $styles.insets.sm),
+          HSpace(size: $styles.insets.md),
           const TagFilterTextField(),
+          HSpace(size: $styles.insets.xl),
           //SizedBox with bottomPadding to allow TextField to scroll w/ Bottom Sheet
           HSpace(size: MediaQuery.of(context).viewInsets.bottom),
         ],

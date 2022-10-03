@@ -14,8 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+InklingDto _$InklingDtoFromJson(Map<String, dynamic> json) {
+  return _InklingDto.fromJson(json);
+}
+
 /// @nodoc
 mixin _$InklingDto {
+  int? get hiveId => throw _privateConstructorUsedError;
   @HiveField(0)
   String get note => throw _privateConstructorUsedError;
   @HiveField(1)
@@ -27,6 +32,7 @@ mixin _$InklingDto {
   @HiveField(4)
   String get memo => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $InklingDtoCopyWith<InklingDto> get copyWith =>
       throw _privateConstructorUsedError;
@@ -38,7 +44,8 @@ abstract class $InklingDtoCopyWith<$Res> {
           InklingDto value, $Res Function(InklingDto) then) =
       _$InklingDtoCopyWithImpl<$Res>;
   $Res call(
-      {@HiveField(0) String note,
+      {int? hiveId,
+      @HiveField(0) String note,
       @HiveField(1) String link,
       @HiveField(2) String imagePath,
       @HiveField(3) List<TagDto> tags,
@@ -55,6 +62,7 @@ class _$InklingDtoCopyWithImpl<$Res> implements $InklingDtoCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? hiveId = freezed,
     Object? note = freezed,
     Object? link = freezed,
     Object? imagePath = freezed,
@@ -62,6 +70,10 @@ class _$InklingDtoCopyWithImpl<$Res> implements $InklingDtoCopyWith<$Res> {
     Object? memo = freezed,
   }) {
     return _then(_value.copyWith(
+      hiveId: hiveId == freezed
+          ? _value.hiveId
+          : hiveId // ignore: cast_nullable_to_non_nullable
+              as int?,
       note: note == freezed
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -94,7 +106,8 @@ abstract class _$$_InklingDtoCopyWith<$Res>
       __$$_InklingDtoCopyWithImpl<$Res>;
   @override
   $Res call(
-      {@HiveField(0) String note,
+      {int? hiveId,
+      @HiveField(0) String note,
       @HiveField(1) String link,
       @HiveField(2) String imagePath,
       @HiveField(3) List<TagDto> tags,
@@ -113,6 +126,7 @@ class __$$_InklingDtoCopyWithImpl<$Res> extends _$InklingDtoCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? hiveId = freezed,
     Object? note = freezed,
     Object? link = freezed,
     Object? imagePath = freezed,
@@ -120,6 +134,10 @@ class __$$_InklingDtoCopyWithImpl<$Res> extends _$InklingDtoCopyWithImpl<$Res>
     Object? memo = freezed,
   }) {
     return _then(_$_InklingDto(
+      hiveId: hiveId == freezed
+          ? _value.hiveId
+          : hiveId // ignore: cast_nullable_to_non_nullable
+              as int?,
       note: note == freezed
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -149,7 +167,8 @@ class __$$_InklingDtoCopyWithImpl<$Res> extends _$InklingDtoCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_InklingDto extends _InklingDto {
   _$_InklingDto(
-      {@HiveField(0) required this.note,
+      {this.hiveId,
+      @HiveField(0) required this.note,
       @HiveField(1) required this.link,
       @HiveField(2) required this.imagePath,
       @HiveField(3) required final List<TagDto> tags,
@@ -157,6 +176,11 @@ class _$_InklingDto extends _InklingDto {
       : _tags = tags,
         super._();
 
+  factory _$_InklingDto.fromJson(Map<String, dynamic> json) =>
+      _$$_InklingDtoFromJson(json);
+
+  @override
+  final int? hiveId;
   @override
   @HiveField(0)
   final String note;
@@ -180,7 +204,7 @@ class _$_InklingDto extends _InklingDto {
 
   @override
   String toString() {
-    return 'InklingDto(note: $note, link: $link, imagePath: $imagePath, tags: $tags, memo: $memo)';
+    return 'InklingDto(hiveId: $hiveId, note: $note, link: $link, imagePath: $imagePath, tags: $tags, memo: $memo)';
   }
 
   @override
@@ -188,6 +212,7 @@ class _$_InklingDto extends _InklingDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_InklingDto &&
+            const DeepCollectionEquality().equals(other.hiveId, hiveId) &&
             const DeepCollectionEquality().equals(other.note, note) &&
             const DeepCollectionEquality().equals(other.link, link) &&
             const DeepCollectionEquality().equals(other.imagePath, imagePath) &&
@@ -195,9 +220,11 @@ class _$_InklingDto extends _InklingDto {
             const DeepCollectionEquality().equals(other.memo, memo));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(hiveId),
       const DeepCollectionEquality().hash(note),
       const DeepCollectionEquality().hash(link),
       const DeepCollectionEquality().hash(imagePath),
@@ -208,17 +235,30 @@ class _$_InklingDto extends _InklingDto {
   @override
   _$$_InklingDtoCopyWith<_$_InklingDto> get copyWith =>
       __$$_InklingDtoCopyWithImpl<_$_InklingDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_InklingDtoToJson(
+      this,
+    );
+  }
 }
 
 abstract class _InklingDto extends InklingDto {
   factory _InklingDto(
-      {@HiveField(0) required final String note,
+      {final int? hiveId,
+      @HiveField(0) required final String note,
       @HiveField(1) required final String link,
       @HiveField(2) required final String imagePath,
       @HiveField(3) required final List<TagDto> tags,
       @HiveField(4) required final String memo}) = _$_InklingDto;
   _InklingDto._() : super._();
 
+  factory _InklingDto.fromJson(Map<String, dynamic> json) =
+      _$_InklingDto.fromJson;
+
+  @override
+  int? get hiveId;
   @override
   @HiveField(0)
   String get note;

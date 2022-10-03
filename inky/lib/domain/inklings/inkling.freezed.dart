@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Inkling {
+  int? get hiveId => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
   String get link => throw _privateConstructorUsedError;
   String get imagePath => throw _privateConstructorUsedError;
@@ -32,7 +33,8 @@ abstract class $InklingCopyWith<$Res> {
   factory $InklingCopyWith(Inkling value, $Res Function(Inkling) then) =
       _$InklingCopyWithImpl<$Res>;
   $Res call(
-      {String note,
+      {int? hiveId,
+      String note,
       String link,
       String imagePath,
       String memo,
@@ -50,6 +52,7 @@ class _$InklingCopyWithImpl<$Res> implements $InklingCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? hiveId = freezed,
     Object? note = freezed,
     Object? link = freezed,
     Object? imagePath = freezed,
@@ -58,6 +61,10 @@ class _$InklingCopyWithImpl<$Res> implements $InklingCopyWith<$Res> {
     Object? metaData = freezed,
   }) {
     return _then(_value.copyWith(
+      hiveId: hiveId == freezed
+          ? _value.hiveId
+          : hiveId // ignore: cast_nullable_to_non_nullable
+              as int?,
       note: note == freezed
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -93,7 +100,8 @@ abstract class _$$_InklingCopyWith<$Res> implements $InklingCopyWith<$Res> {
       __$$_InklingCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String note,
+      {int? hiveId,
+      String note,
       String link,
       String imagePath,
       String memo,
@@ -112,6 +120,7 @@ class __$$_InklingCopyWithImpl<$Res> extends _$InklingCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? hiveId = freezed,
     Object? note = freezed,
     Object? link = freezed,
     Object? imagePath = freezed,
@@ -120,6 +129,10 @@ class __$$_InklingCopyWithImpl<$Res> extends _$InklingCopyWithImpl<$Res>
     Object? metaData = freezed,
   }) {
     return _then(_$_Inkling(
+      hiveId: hiveId == freezed
+          ? _value.hiveId
+          : hiveId // ignore: cast_nullable_to_non_nullable
+              as int?,
       note: note == freezed
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -152,7 +165,8 @@ class __$$_InklingCopyWithImpl<$Res> extends _$InklingCopyWithImpl<$Res>
 
 class _$_Inkling implements _Inkling {
   const _$_Inkling(
-      {required this.note,
+      {this.hiveId,
+      required this.note,
       required this.link,
       required this.imagePath,
       required this.memo,
@@ -160,6 +174,8 @@ class _$_Inkling implements _Inkling {
       this.metaData})
       : _tags = tags;
 
+  @override
+  final int? hiveId;
   @override
   final String note;
   @override
@@ -180,7 +196,7 @@ class _$_Inkling implements _Inkling {
 
   @override
   String toString() {
-    return 'Inkling(note: $note, link: $link, imagePath: $imagePath, memo: $memo, tags: $tags, metaData: $metaData)';
+    return 'Inkling(hiveId: $hiveId, note: $note, link: $link, imagePath: $imagePath, memo: $memo, tags: $tags, metaData: $metaData)';
   }
 
   @override
@@ -188,6 +204,7 @@ class _$_Inkling implements _Inkling {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Inkling &&
+            const DeepCollectionEquality().equals(other.hiveId, hiveId) &&
             const DeepCollectionEquality().equals(other.note, note) &&
             const DeepCollectionEquality().equals(other.link, link) &&
             const DeepCollectionEquality().equals(other.imagePath, imagePath) &&
@@ -199,6 +216,7 @@ class _$_Inkling implements _Inkling {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(hiveId),
       const DeepCollectionEquality().hash(note),
       const DeepCollectionEquality().hash(link),
       const DeepCollectionEquality().hash(imagePath),
@@ -214,13 +232,16 @@ class _$_Inkling implements _Inkling {
 
 abstract class _Inkling implements Inkling {
   const factory _Inkling(
-      {required final String note,
+      {final int? hiveId,
+      required final String note,
       required final String link,
       required final String imagePath,
       required final String memo,
       required final List<Tag> tags,
       final MetaData? metaData}) = _$_Inkling;
 
+  @override
+  int? get hiveId;
   @override
   String get note;
   @override

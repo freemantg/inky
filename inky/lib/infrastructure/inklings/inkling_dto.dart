@@ -14,6 +14,7 @@ class InklingDto extends HiveObject with _$InklingDto {
 
   @JsonSerializable(explicitToJson: true)
   factory InklingDto({
+    int? hiveId,
     @HiveField(0) required String note,
     @HiveField(1) required String link,
     @HiveField(2) required String imagePath,
@@ -22,16 +23,21 @@ class InklingDto extends HiveObject with _$InklingDto {
   }) = _InklingDto;
 
   factory InklingDto.fromDomain(Inkling inkling) => InklingDto(
+        hiveId: inkling.hiveId,
         note: inkling.note,
         link: inkling.link,
         imagePath: inkling.imagePath,
         tags: inkling.tags.map((e) => TagDto.fromDomain(e)).toList(),
         memo: inkling.memo,
       );
+
+  factory InklingDto.fromJson(Map<String, dynamic> json) =>
+      _$InklingDtoFromJson(json);
 }
 
 extension InklingDtoX on InklingDto {
   Inkling toDomain() => Inkling(
+        hiveId: key,
         note: note,
         link: link,
         imagePath: imagePath,

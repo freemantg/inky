@@ -3,7 +3,10 @@ import 'package:dartz/dartz.dart';
 import 'package:inky/domain/inklings/inklings_interface.dart';
 import 'package:inky/domain/tags/tag_failure.dart';
 import 'package:inky/infrastructure/inklings/inklings_local_service.dart';
+import 'package:inky/infrastructure/tags/tag_dto.dart';
+import 'package:inky/router.dart';
 
+import '../../domain/tags/tag.dart';
 import 'inkling_dto.dart';
 import 'inklings_remote_service.dart';
 
@@ -38,9 +41,15 @@ class InklingsRepository implements InklingsInterface {
   }
 
   @override
-  Future<Either<InklingFailure, List<Inkling>>> fetchInklings() async {
+  Future<Either<InklingFailure, List<Inkling>>> fetchInklings({
+    List<Tag>? filter,
+    InklingType? inklingType,
+  }) async {
     try {
-      final dtos = _localServices.fetchInklings();
+      final dtos = _localServices.fetchInklings(
+        filter: filter?.map((tag) => TagDto.fromDomain(tag)).toList(),
+        inklingType: inklingType,
+      );
       final inklings = dtos.map((e) => e.toDomain()).toList();
       final inklingsWithMetaData = await _insertMetaData(inklings);
       return right(inklingsWithMetaData);
@@ -50,9 +59,13 @@ class InklingsRepository implements InklingsInterface {
   }
 
   @override
-  Future<Either<InklingFailure, Unit>> update(Inkling inkling) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<Either<InklingFailure, Unit>> update(Inkling inkling) async {
+    try {
+      await _localServices.update(InklingDto.fromDomain(inkling));
+      return right(unit);
+    } catch (e) {
+      return left(const InklingFailure.unableToUpdate());
+    }
   }
 
   Future<List<Inkling>> _insertMetaData(List<Inkling> inklings) async {
@@ -74,5 +87,8 @@ class InklingsRepository implements InklingsInterface {
     return inklingsWithMetaData;
   }
 
-  Future<void> registerService() async => await _localServices.init();
+  Future<void> registerService() async {
+    await _localServices.init();
+    fetchInklings();
+  }
 }

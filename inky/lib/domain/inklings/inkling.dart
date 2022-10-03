@@ -8,6 +8,7 @@ part 'inkling.freezed.dart';
 @freezed
 class Inkling with _$Inkling {
   const factory Inkling({
+    int? hiveId,
     required String note,
     required String link,
     required String imagePath,

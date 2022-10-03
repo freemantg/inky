@@ -35,16 +35,12 @@ class TagRepository implements TagsInterface {
   }
 
   @override
-  Future<Either<InklingFailure, Unit>> update(Tag tag) async {
-    // TODO: implement update
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<InklingFailure, List<Tag>>> fetchTags() async {
+  Either<InklingFailure, List<Tag>> fetchTags({List<Tag>? filter}) {
     try {
-      final tagDtos = await _localService.fetchTags();
-      return right(tagDtos.map((tagDto) => tagDto.toDomain()).toList());
+      final query = filter?.map((tag) => TagDto.fromDomain(tag)).toList();
+      final tagDtos = _localService.fetchTags(filter: query);
+      final tags = tagDtos.map((tagDto) => tagDto.toDomain()).toList();
+      return right(tags);
     } catch (e) {
       return const Left(InklingFailure.unexpected());
     }

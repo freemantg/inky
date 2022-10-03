@@ -17,10 +17,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
-      child: MaterialApp.router(
-        routerConfig: appRouter,
-        theme: $styles.colors.toThemeData(),
-      ),
-    );
+        child: MaterialApp.router(
+      routerConfig: appRouter,
+      theme: $styles.colors.toThemeData(),
+    ));
   }
 }

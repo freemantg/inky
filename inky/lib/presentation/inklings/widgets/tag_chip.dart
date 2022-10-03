@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import '../../../domain/tags/tag.dart';
 import '../../../styles/styles.dart';
 
 class TagChip extends StatelessWidget {
   const TagChip({
     Key? key,
-    required this.title,
-    this.isDense = false,
+    required this.tag,
     this.greyIndex,
+    this.isDense = false,
+    this.isExpanded = false,
+    this.leadingAction = false,
   }) : super(key: key);
 
-  final String title;
+  final Tag tag;
   final bool isDense;
+  final bool leadingAction;
+  final bool isExpanded;
   final int? greyIndex;
 
   @override
@@ -27,12 +32,27 @@ class TagChip extends StatelessWidget {
         color: $styles.colors.grey[greyIndex ?? math.Random().nextInt(2)],
         borderRadius: BorderRadius.circular($styles.corners.sm),
       ),
-      child: Text(
-        '#$title',
-        style: $styles.text.caption.copyWith(
-          color: isDense ? null : Colors.black,
-          fontSize: isDense ? 10.0 : null,
-        ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(height: isExpanded ? 18.0 : null),
+          Text(
+            '#${tag.name}',
+            style: $styles.text.caption.copyWith(
+              color: isDense ? null : Colors.black,
+              fontSize: isDense ? 10.0 : null,
+            ),
+          ),
+          if (leadingAction)
+            Padding(
+              padding: EdgeInsets.only(left: $styles.insets.xxs),
+              child: Icon(
+                Icons.close,
+                size: 14.0,
+                color: $styles.colors.grey06,
+              ),
+            )
+        ],
       ),
     );
   }

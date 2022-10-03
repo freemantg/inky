@@ -30,13 +30,15 @@ class TagFilterTextField extends HookConsumerWidget {
       style: $styles.text.bodySmall,
       decoration: InputDecoration(
         hintText: 'Type to filter...',
-        hintStyle: $styles.text.bodySmall,
+        hintStyle: $styles.text.bodySmall.copyWith(
+          color: $styles.colors.grey02,
+        ),
         suffixIcon: controller.text.isEmpty
             ? null
             : IconButton(
                 onPressed: () => ref
                     .read(tagsNotifierProvider.notifier)
-                    .addTag(controller.text)
+                    .createTag(controller.text)
                     .then((_) => controller.clear()),
                 icon: const Icon(Icons.add),
               ),

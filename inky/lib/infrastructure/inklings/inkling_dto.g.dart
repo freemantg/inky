@@ -58,6 +58,7 @@ class InklingDtoAdapter extends TypeAdapter<InklingDto> {
 
 _$_InklingDto _$$_InklingDtoFromJson(Map<String, dynamic> json) =>
     _$_InklingDto(
+      hiveId: json['hiveId'] as int?,
       note: json['note'] as String,
       link: json['link'] as String,
       imagePath: json['imagePath'] as String,
@@ -69,6 +70,7 @@ _$_InklingDto _$$_InklingDtoFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_InklingDtoToJson(_$_InklingDto instance) =>
     <String, dynamic>{
+      'hiveId': instance.hiveId,
       'note': instance.note,
       'link': instance.link,
       'imagePath': instance.imagePath,

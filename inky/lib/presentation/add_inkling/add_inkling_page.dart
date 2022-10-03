@@ -7,9 +7,10 @@ import '../../domain/inklings/inkling.dart';
 import '../../router.dart';
 import '../../styles/styles.dart';
 import '../shared/widgets.dart';
+import 'widgets/tags_list.dart';
 import 'widgets/widgets.dart';
 
-class AddInklingPage extends ConsumerWidget {
+class AddInklingPage extends ConsumerStatefulWidget {
   const AddInklingPage({
     required this.inklingType,
     this.inkling,
@@ -20,38 +21,55 @@ class AddInklingPage extends ConsumerWidget {
   final Inkling? inkling;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final initializeInkling = inkling;
+  ConsumerState<AddInklingPage> createState() => _AddInklingPageState();
+}
 
-    if (initializeInkling != null) {
-      ref
-          .read(inklingFormNotifierProvider.notifier)
-          .initialized(inkling: initializeInkling);
-    }
+class _AddInklingPageState extends ConsumerState<AddInklingPage> {
+  @override
+  void initState() {
+    super.initState();
 
+    ///INITIALIZES INKING
+    ref
+        .read(inklingFormNotifierProvider.notifier)
+        .initialized(inkling: widget.inkling);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    //POPS CURRENT STACK IF NO LONGER SAVING & FETCHES UPDATED INKLING LIST
     ref.listen(inklingFormNotifierProvider, (previous, next) {
       if (previous?.isSaving != next.isSaving) {
         context.go(ScreenPaths.home);
+        ref.read(inklingsNotifierProvider.notifier).fetchInklings();
       }
     });
+
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         leading: const StyledAppbarLeadingBackButton(),
-        title: ref.read(inklingFormNotifierProvider).isEditing
-            ? StyledAppbarTitle(
-                title: "EDIT ${inklingType.name.toUpperCase()}",
-              )
-            : StyledAppbarTitle(
-                title: "ADD ${inklingType.name.toUpperCase()}",
-              ),
+        centerTitle: true,
+        title: StyledAppbarTitle(
+          title: ref.read(inklingFormNotifierProvider).isEditing
+              ? "EDIT ${widget.inklingType.name.toUpperCase()}"
+              : "ADD ${widget.inklingType.name.toUpperCase()}",
+        ),
+        actions: [
+          if (ref.read(inklingFormNotifierProvider).isEditing)
+            IconButton(
+              onPressed: () => ref
+                  .read(inklingsNotifierProvider.notifier)
+                  .deleteInkling(widget.inkling!),
+              icon: const Icon(Icons.delete),
+            )
+        ],
       ),
-      body: _buildScaffoldBody(context),
-      bottomNavigationBar: _buildBottomNavigationBar(ref),
+      body: _buildScaffoldBody(),
+      bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 
-  Widget _buildScaffoldBody(BuildContext context) {
+  Widget _buildScaffoldBody() {
     return Padding(
       padding: EdgeInsets.all($styles.insets.sm),
       child: CustomScrollView(
@@ -61,13 +79,27 @@ class AddInklingPage extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _inklingTypeToWidget(inklingType),
+                //MAIN INKING INPUT
+                _inklingTypeToWidget(widget.inklingType),
                 HSpace(size: $styles.insets.md),
+
+                //TAGS SECTION
                 const StyledSubtitle(title: 'Tags'),
                 HSpace(size: $styles.insets.xs),
-                const StyledAddTagButton(),
+                const TagsList(),
                 HSpace(size: $styles.insets.md),
-                const StyledSubtitle(title: 'Memo'),
+
+                //MEMO SECTION
+                Row(
+                  children: [
+                    const StyledSubtitle(title: 'Memo'),
+                    const Spacer(),
+                    Icon(
+                      Icons.edit,
+                      color: $styles.colors.grey04,
+                    )
+                  ],
+                ),
                 HSpace(size: $styles.insets.xs),
                 const MemoTextField(),
               ],
@@ -80,22 +112,25 @@ class AddInklingPage extends ConsumerWidget {
 
   Widget _inklingTypeToWidget(InklingType type) {
     switch (type) {
-      case InklingType.post:
+      case InklingType.note:
         return const NoteTextFormField();
       case InklingType.image:
         return const InklingImage();
       case InklingType.link:
-        return LinkTextField(inkling: inkling);
+        return LinkTextField(inkling: widget.inkling);
     }
   }
 
-  Widget _buildBottomNavigationBar(WidgetRef ref) {
+  Widget _buildBottomNavigationBar() {
     return Padding(
       padding: EdgeInsets.all($styles.insets.sm),
-      child: StyledElevatedButton(
-        title: 'Ink It!',
-        onPressed: () => ref.read(inklingFormNotifierProvider.notifier).saved(),
-      ),
+      child: Consumer(builder: (context, ref, child) {
+        return StyledElevatedButton(
+          title: 'Ink It!',
+          onPressed: () =>
+              ref.read(inklingFormNotifierProvider.notifier).saved(),
+        );
+      }),
     );
   }
 }

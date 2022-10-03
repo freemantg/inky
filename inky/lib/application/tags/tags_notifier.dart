@@ -9,10 +9,12 @@ part 'tags_notifier.freezed.dart';
 
 @freezed
 class TagsState with _$TagsState {
-  const factory TagsState.initial() = _Initial;
-  const factory TagsState.loadInProgress() = _LoadInProgress;
-  const factory TagsState.loadSuccess(List<Tag> tags) = _LoadSuccess;
-  const factory TagsState.loadFailure(InklingFailure failure) = _Failure;
+  const factory TagsState.initial({List<Tag>? filter}) = _Initial;
+  const factory TagsState.loadInProgress({List<Tag>? filter}) = _LoadInProgress;
+  const factory TagsState.loadSuccess(List<Tag> tags, {List<Tag>? filter}) =
+      _LoadSuccess;
+  const factory TagsState.loadFailure(InklingFailure failure,
+      {List<Tag>? filter}) = _Failure;
 }
 
 class TagsNotifier extends StateNotifier<TagsState> {
@@ -22,25 +24,43 @@ class TagsNotifier extends StateNotifier<TagsState> {
       : _tagRepository = tagRepository,
         super(const TagsState.initial());
 
-  Future<void> registerService() async =>
-      await _tagRepository.registerService();
+  //OPENS TAG HIVE BOX
+  Future<void> registerService() async {
+    await _tagRepository
+        .registerService()
+        .then((_) => fetchTags(filter: state.filter));
+  }
 
-  Future<void> fetchTags() async {
+  void fetchTags({List<Tag>? filter}) {
     state = const TagsState.loadInProgress();
-    final successOrFailure = await _tagRepository.fetchTags();
+    final successOrFailure = _tagRepository.fetchTags(filter: filter);
     successOrFailure.fold(
       (failure) => state = TagsState.loadFailure(failure),
-      (tags) => state = TagsState.loadSuccess(tags),
+      (tags) => state = TagsState.loadSuccess(tags, filter: filter),
     );
   }
 
-  Future<void> addTag(String name) async {
+  Future<void> createTag(String name) async {
     await _tagRepository.create(Tag(name: name));
-    await fetchTags();
+    fetchTags(filter: state.filter);
   }
 
   Future<void> deleteTag(Tag tag) async {
     await _tagRepository.delete(tag);
-    await fetchTags();
+    fetchTags();
+  }
+
+  void addFilterTag(Tag tag) {
+    final newFilterTags = List<Tag>.from(state.filter ?? []);
+    newFilterTags.add(tag);
+    state = state.copyWith(filter: newFilterTags);
+    fetchTags(filter: newFilterTags);
+  }
+
+  void removeFilterTag(Tag tag) {
+    final newFilterTags = List<Tag>.from(state.filter ?? []);
+    newFilterTags.remove(tag);
+    state = state.copyWith(filter: newFilterTags);
+    fetchTags(filter: newFilterTags);
   }
 }

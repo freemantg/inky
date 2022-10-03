@@ -30,7 +30,5 @@ class InklingLinkNotifier extends StateNotifier<AsyncValue<MetaData>> {
     );
   }
 
-  void clearMetaData() {
-    state = const AsyncValue.loading();
-  }
+  void clearMetaData() => state = const AsyncValue.loading();
 }

@@ -49,7 +49,9 @@ class SettingsPage extends StatelessWidget {
           ),
           _SettingsTile(
             title: 'Manage Tags',
-            onTap: () => context.go(ScreenPaths.manageTags),
+            onTap: () => context.go(
+              "${ScreenPaths.home}/${ScreenPaths.settings}/${ScreenPaths.manageTags}",
+            ),
           ),
           StyledDivider()
         ],

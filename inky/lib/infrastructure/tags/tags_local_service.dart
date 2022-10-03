@@ -7,10 +7,26 @@ class TagsLocalService {
 
   Future<void> init() async => _tagDtos = await Hive.openBox<TagDto>('tagDtos');
 
-  Future<List<TagDto>> fetchTags() async => _tagDtos.values.toList();
+  List<TagDto> fetchTags({List<TagDto>? filter}) {
+    if (filter != null) {
+      return _tagDtos.values
+          .where((tagDto) => !filter.contains(tagDto))
+          .toList();
+    }
+    return _tagDtos.values.toList();
+  }
+
+  Stream<List<TagDto>> tagStream({List<TagDto>? filter}) {
+    final stream = _tagDtos.watch().map((_) => _tagDtos.values.toList());
+
+    return stream;
+  }
 
   Future<void> insert(TagDto tagDto) async {
-    await _tagDtos.add(tagDto);
+    if (_tagDtos.values.contains(tagDto)) {
+      return;
+    }
+    _tagDtos.add(tagDto);
   }
 
   Future<void> delete(TagDto tagDto) async {

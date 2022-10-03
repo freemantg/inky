@@ -24,13 +24,13 @@ class InklingCard extends StatelessWidget {
         ? inkling.link.isEmpty
             ? InklingType.image
             : InklingType.link
-        : InklingType.post;
+        : InklingType.note;
 
-    final greyIndex = math.Random().nextInt(4);
+    final greyIndex = math.Random().nextInt(5);
 
     return GestureDetector(
       onTap: () => context.go(
-        ScreenPaths.addInkling(inklingType),
+        "/home/${ScreenPaths.addInkling(inklingType)}",
         extra: inkling,
       ),
       child: Container(
@@ -47,13 +47,13 @@ class InklingCard extends StatelessWidget {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: [
-                  TagChip(
-                    title: 'Apples',
-                    isDense: true,
-                    greyIndex: greyIndex + 1,
-                  )
-                ],
+                children: inkling.tags
+                    .map((e) => TagChip(
+                          tag: e,
+                          isDense: true,
+                          greyIndex: greyIndex + 1,
+                        ))
+                    .toList(),
               ),
             ),
           ],
@@ -64,7 +64,7 @@ class InklingCard extends StatelessWidget {
 
   Widget _buildInklingCardDisplay(InklingType type, int greyIndex) {
     switch (type) {
-      case InklingType.post:
+      case InklingType.note:
         return _NoteDisplay(inkling: inkling);
       case InklingType.image:
         return _ImageDisplay(inkling: inkling);

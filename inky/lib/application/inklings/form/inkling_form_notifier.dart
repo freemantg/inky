@@ -32,7 +32,9 @@ class InklingFormNotifier extends StateNotifier<InklingFormState> {
   final InklingsRepository _repository;
   final InklingImageRepository _imageRepository;
 
-  void initialized({required Inkling inkling}) {
+  void initialized({required Inkling? inkling}) {
+    if (inkling == null) return;
+
     state = state.copyWith(
       inkling: inkling,
       isEditing: true,

@@ -7,22 +7,8 @@ import '../../domain/tags/tag.dart';
 import '../../styles/styles.dart';
 import 'widgets/styled_modal_bottom_sheet.dart';
 
-class ManageTagsPage extends ConsumerStatefulWidget {
+class ManageTagsPage extends StatelessWidget {
   const ManageTagsPage({super.key});
-
-  @override
-  ConsumerState<ManageTagsPage> createState() => _ManageTagsPageState();
-}
-
-class _ManageTagsPageState extends ConsumerState<ManageTagsPage> {
-  @override
-  void initState() {
-    super.initState();
-    ref
-        .read(tagsNotifierProvider.notifier)
-        .registerService()
-        .then((value) => ref.read(tagsNotifierProvider.notifier).fetchTags());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,28 +17,40 @@ class _ManageTagsPageState extends ConsumerState<ManageTagsPage> {
         centerTitle: true,
         leading: const StyledAppbarLeadingBackButton(),
         title: const StyledAppbarTitle(title: 'MANAGE TAGS'),
-        // actions: const [StyledAppbarAction(title: 'SAVE')],
       ),
-      body: _buildScaffoldBody(ref),
+      body: _buildScaffoldBody(),
       bottomNavigationBar: _buildBottomNavigationBar(context),
     );
   }
 
-  Widget _buildScaffoldBody(WidgetRef ref) {
+  Widget _buildScaffoldBody() {
     return Padding(
-        padding: EdgeInsets.symmetric(horizontal: $styles.insets.sm),
-        child: ref.watch(tagsNotifierProvider).maybeMap(
-              loadSuccess: (state) {
-                return ListView.separated(
-                  itemCount: state.tags.length,
-                  separatorBuilder: (_, __) => StyledDivider(),
-                  itemBuilder: (context, index) => _TagTile(state.tags[index]),
-                );
-              },
-              loadInProgress: (_) =>
-                  const CircularProgressIndicator(color: Colors.pink),
-              orElse: () => const Text('Failure'),
-            ));
+      padding: EdgeInsets.symmetric(horizontal: $styles.insets.sm),
+      child: Consumer(
+        builder: (context, ref, child) {
+          final tagState = ref.watch(tagsNotifierProvider);
+
+          return tagState.maybeMap(
+            loadSuccess: (state) {
+              return ListView.separated(
+                itemCount: state.tags.length,
+                separatorBuilder: (_, __) => StyledDivider(),
+                itemBuilder: (context, index) {
+                  final tag = state.tags[index];
+                  return _TagTile(
+                    tag: state.tags[index],
+                    onTap: () =>
+                        ref.read(tagsNotifierProvider.notifier).deleteTag(tag),
+                  );
+                },
+              );
+            },
+            loadInProgress: (_) => const CircularProgressIndicator(),
+            orElse: () => const SizedBox.shrink(),
+          );
+        },
+      ),
+    );
   }
 }
 
@@ -78,18 +76,22 @@ Padding _buildBottomNavigationBar(BuildContext context) {
   );
 }
 
-class _TagTile extends ConsumerWidget {
-  const _TagTile(this.tag);
+class _TagTile extends StatelessWidget {
+  const _TagTile({
+    required this.tag,
+    required this.onTap,
+  });
 
   final Tag tag;
+  final void Function() onTap;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       title: Text(tag.name, style: $styles.text.bodySmall),
       trailing: GestureDetector(
-        onTap: () => ref.read(tagsNotifierProvider.notifier).deleteTag(tag),
+        onTap: onTap,
         child: Icon(
           Icons.remove_circle,
           color: $styles.colors.accent1,

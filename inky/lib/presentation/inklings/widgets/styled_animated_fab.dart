@@ -19,6 +19,7 @@ class StyledAnimatedFAB extends HookWidget {
     return Padding(
       padding: EdgeInsets.only(bottom: $styles.insets.xxl),
       child: FloatingActionButton.small(
+        heroTag: null,
         elevation: 0,
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),
@@ -72,20 +73,22 @@ class _DialogMenu extends ConsumerWidget {
             _MenuAction(
               title: 'Note',
               iconData: Icons.edit,
-              onTap: () => context.go(ScreenPaths.addInkling(InklingType.post)),
+              onTap: () => context.go(
+                  "${ScreenPaths.home}/${ScreenPaths.addInkling(InklingType.note)}"),
             ),
             Divider(color: $styles.colors.grey02),
             _MenuAction(
               title: 'Image',
               iconData: Icons.photo,
-              onTap: () =>
-                  context.go(ScreenPaths.addInkling(InklingType.image)),
+              onTap: () => context.go(
+                  "${ScreenPaths.home}/${ScreenPaths.addInkling(InklingType.image)}"),
             ),
             Divider(color: $styles.colors.grey02),
             _MenuAction(
               title: 'Link',
               iconData: Icons.link,
-              onTap: () => context.go(ScreenPaths.addInkling(InklingType.link)),
+              onTap: () => context.go(
+                  "${ScreenPaths.home}/${ScreenPaths.addInkling(InklingType.link)}"),
             ),
           ],
         ),
@@ -172,7 +175,11 @@ class _MenuAction extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all($styles.insets.xxs),
       child: GestureDetector(
-        onTap: () => onTap(),
+        onTap: () {
+          //POP MENU DIALOG
+          Navigator.pop(context, true);
+          onTap();
+        },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           textBaseline: TextBaseline.ideographic,

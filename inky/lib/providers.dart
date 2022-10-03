@@ -1,6 +1,7 @@
 import 'package:http/http.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:inky/application/inklings/inklings_notifier.dart';
+import 'package:inky/application/tags/inkling_filter_notifier.dart';
 import 'package:inky/application/tags/tags_notifier.dart';
 import 'package:inky/infrastructure/inklings/inklings_local_service.dart';
 import 'package:inky/infrastructure/inklings/inklings_remote_service.dart';
@@ -19,8 +20,9 @@ final tagsLocalServiceProvider = Provider((ref) => TagsLocalService());
 final tagRepositoryProvider =
     Provider((ref) => TagRepository(ref.watch(tagsLocalServiceProvider)));
 final tagsNotifierProvider =
-    StateNotifierProvider.autoDispose<TagsNotifier, TagsState>(
-        (ref) => TagsNotifier(tagRepository: ref.watch(tagRepositoryProvider)));
+    StateNotifierProvider.autoDispose<TagsNotifier, TagsState>((ref) =>
+        TagsNotifier(tagRepository: ref.watch(tagRepositoryProvider))
+          ..registerService());
 
 //INKLING PROVIDERS
 final inklingLocalServiceProvider = Provider((ref) => InklingLocalServices());
@@ -41,8 +43,9 @@ final inklingFormNotifierProvider =
             ref.watch(inklingImageRepositoryProvider)));
 
 final inklingsNotifierProvider =
-    StateNotifierProvider<InklingsNotifier, InklingsState>(
-        (ref) => InklingsNotifier(ref.watch(inklingRepositoryProvider)));
+    StateNotifierProvider.autoDispose<InklingsNotifier, InklingsState>((ref) =>
+        InklingsNotifier(ref.watch(inklingRepositoryProvider))
+          ..registerService());
 
 final httpProvider = Provider((ref) => Client());
 final inklingRemoteService =
@@ -51,3 +54,7 @@ final inklingRemoteService =
 final inklingLinkNotifier = StateNotifierProvider.autoDispose<
         InklingLinkNotifier, AsyncValue<MetaData>>(
     (ref) => InklingLinkNotifier(ref.watch(inklingRemoteService)));
+
+final inklingFilterNotifier = StateNotifierProvider.autoDispose<
+    InklingFilterNotifier,
+    InklingFilterState>((ref) => InklingFilterNotifier());

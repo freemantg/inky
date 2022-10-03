@@ -17,7 +17,7 @@ class StyledSubtitle extends StatelessWidget {
     return Text(
       title,
       style: $styles.text.bodySmall.copyWith(
-        color: $styles.colors.grey04,
+        color: $styles.colors.grey05,
         fontSize: size,
       ),
       maxLines: 1,
