@@ -4,8 +4,8 @@ import '../tags/tag_failure.dart';
 import 'inkling.dart';
 
 abstract class InklingsInterface {
-  Future<Either<InklingFailure, List<Inkling>>> fetchInklings();
-  Future<Either<InklingFailure, Unit>> create(Inkling inkling);
-  Future<Either<InklingFailure, Unit>> update(Inkling inkling);
-  Future<Either<InklingFailure, Unit>> delete(Inkling inkling);
+  Future<Either<TagFailure, List<Inkling>>> fetchInklings();
+  Future<Either<TagFailure, Unit>> create(Inkling inkling);
+  Future<Either<TagFailure, Unit>> update(Inkling inkling);
+  Future<Either<TagFailure, Unit>> delete(Inkling inkling);
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inky/providers.dart';
+import 'package:inky/presentation/shared/widgets.dart';
 
-import '../../styles/styles.dart';
+import '../../../providers.dart';
+import '../../../styles/styles.dart';
 
 class TagFilterTextField extends HookConsumerWidget {
   const TagFilterTextField({
@@ -28,10 +29,11 @@ class TagFilterTextField extends HookConsumerWidget {
     return TextField(
       controller: controller,
       style: $styles.text.bodySmall,
-      decoration: InputDecoration(
+      decoration: StyledInputDecoration(
         hintText: 'Type to filter...',
-        hintStyle: $styles.text.bodySmall.copyWith(
-          color: $styles.colors.grey02,
+        prefixIcon: Icon(
+          Icons.search,
+          color: $styles.colors.grey04,
         ),
         suffixIcon: controller.text.isEmpty
             ? null
@@ -40,19 +42,11 @@ class TagFilterTextField extends HookConsumerWidget {
                     .read(tagsNotifierProvider.notifier)
                     .createTag(controller.text)
                     .then((_) => controller.clear()),
-                icon: const Icon(Icons.add),
+                icon: Icon(
+                  Icons.add,
+                  color: $styles.colors.accent1,
+                ),
               ),
-        contentPadding: EdgeInsets.zero,
-        prefixIcon: Icon(
-          Icons.search,
-          color: $styles.colors.grey04,
-        ),
-        filled: true,
-        fillColor: $styles.colors.grey01,
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular($styles.corners.sm),
-        ),
       ),
     );
   }

@@ -7,6 +7,7 @@ class StyledInputDecoration extends InputDecoration {
   StyledInputDecoration({
     String? hintText,
     Widget? suffixIcon,
+    Widget? prefixIcon,
     bool? isDense,
   }) : super(
           isDense: isDense,
@@ -20,6 +21,7 @@ class StyledInputDecoration extends InputDecoration {
           counterStyle: $styles.text.caption.copyWith(
             color: $styles.colors.grey02,
           ),
+          prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,
           suffixIconConstraints: const BoxConstraints(
             minHeight: 38.0,

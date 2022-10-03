@@ -10,7 +10,7 @@ class InklingRemoteService {
 
   InklingRemoteService(http.Client client) : _client = client;
 
-  Future<Either<InklingFailure, MetaData?>> fetchMetaData(String url) async {
+  Future<Either<TagFailure, MetaData?>> fetchMetaData(String url) async {
     final requestUri = Uri.parse(url);
 
     try {
@@ -23,7 +23,7 @@ class InklingRemoteService {
         throw Exception();
       }
     } catch (e) {
-      return left(const InklingFailure.unexpected());
+      return left(const TagFailure.unexpected());
     }
   }
 }

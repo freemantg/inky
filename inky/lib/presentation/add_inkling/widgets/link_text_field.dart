@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart' hide MetaData;
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inky/presentation/add_inkling/widgets/widgets.dart';
+import 'package:inky/infrastructure/infrastructure.dart';
+import 'package:inky/presentation/presentation.dart';
 import 'package:inky/providers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-import '../../../domain/inklings/inkling.dart';
-import '../../../infrastructure/inklings/meta_data_parser_repository.dart';
+import '../../../domain/domain.dart';
 import '../../../styles/styles.dart';
-import '../../shared/widgets.dart';
 
 class LinkTextField extends StatefulHookConsumerWidget {
   const LinkTextField({super.key, this.inkling});

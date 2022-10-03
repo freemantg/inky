@@ -21,27 +21,27 @@ class InklingsRepository implements InklingsInterface {
         _remoteServices = remoteServices;
 
   @override
-  Future<Either<InklingFailure, Unit>> create(Inkling inkling) async {
+  Future<Either<TagFailure, Unit>> create(Inkling inkling) async {
     try {
       await _localServices.insert(InklingDto.fromDomain(inkling));
       return right(unit);
     } catch (e) {
-      return left(const InklingFailure.unableToCreate());
+      return left(const TagFailure.unableToCreate());
     }
   }
 
   @override
-  Future<Either<InklingFailure, Unit>> delete(Inkling inkling) async {
+  Future<Either<TagFailure, Unit>> delete(Inkling inkling) async {
     try {
       await _localServices.delete(InklingDto.fromDomain(inkling));
       return right(unit);
     } catch (e) {
-      return left(const InklingFailure.unableToDelete());
+      return left(const TagFailure.unableToDelete());
     }
   }
 
   @override
-  Future<Either<InklingFailure, List<Inkling>>> fetchInklings({
+  Future<Either<TagFailure, List<Inkling>>> fetchInklings({
     List<Tag>? filter,
     InklingType? inklingType,
   }) async {
@@ -54,17 +54,17 @@ class InklingsRepository implements InklingsInterface {
       final inklingsWithMetaData = await _insertMetaData(inklings);
       return right(inklingsWithMetaData);
     } catch (e) {
-      return left(const InklingFailure.unexpected());
+      return left(const TagFailure.unexpected());
     }
   }
 
   @override
-  Future<Either<InklingFailure, Unit>> update(Inkling inkling) async {
+  Future<Either<TagFailure, Unit>> update(Inkling inkling) async {
     try {
       await _localServices.update(InklingDto.fromDomain(inkling));
       return right(unit);
     } catch (e) {
-      return left(const InklingFailure.unableToUpdate());
+      return left(const TagFailure.unableToUpdate());
     }
   }
 

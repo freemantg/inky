@@ -13,8 +13,8 @@ class TagsState with _$TagsState {
   const factory TagsState.loadInProgress({List<Tag>? filter}) = _LoadInProgress;
   const factory TagsState.loadSuccess(List<Tag> tags, {List<Tag>? filter}) =
       _LoadSuccess;
-  const factory TagsState.loadFailure(InklingFailure failure,
-      {List<Tag>? filter}) = _Failure;
+  const factory TagsState.loadFailure(TagFailure failure, {List<Tag>? filter}) =
+      _Failure;
 }
 
 class TagsNotifier extends StateNotifier<TagsState> {

@@ -8,6 +8,7 @@ import 'dart:math' as math;
 
 import '../../../domain/inklings/inkling.dart';
 import '../../../styles/styles.dart';
+import '../../shared/styled_titles.dart';
 import 'widgets.dart';
 
 class InklingCard extends StatelessWidget {
@@ -20,42 +21,34 @@ class InklingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Decides the color of the Inkling card using grey scale $styles.colors.grey[]
+    //Greys go up to 6 shades
+    final greyIndex = math.Random().nextInt(5);
+
+    //Determines the type of inkling
     final inklingType = inkling.note.isEmpty
         ? inkling.link.isEmpty
             ? InklingType.image
             : InklingType.link
         : InklingType.note;
 
-    final greyIndex = math.Random().nextInt(5);
-
-    return GestureDetector(
-      onTap: () => context.go(
-        "/home/${ScreenPaths.addInkling(inklingType)}",
-        extra: inkling,
+    return Container(
+      decoration: BoxDecoration(
+        color: $styles.colors.grey[greyIndex],
+        borderRadius: BorderRadius.circular($styles.corners.sm),
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: $styles.colors.grey[greyIndex],
-          borderRadius: BorderRadius.circular($styles.corners.sm),
+      padding: EdgeInsets.all($styles.insets.xxs),
+      child: GestureDetector(
+        onTap: () => context.go(
+          "${ScreenPaths.home}${ScreenPaths.addInkling(inklingType)}",
+          extra: inkling,
         ),
-        padding: const EdgeInsets.all(6.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(child: _buildInklingCardDisplay(inklingType, greyIndex)),
-            const HSpace(size: 6.0),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: inkling.tags
-                    .map((e) => TagChip(
-                          tag: e,
-                          isDense: true,
-                          greyIndex: greyIndex + 1,
-                        ))
-                    .toList(),
-              ),
-            ),
+            HSpace(size: $styles.insets.xxs),
+            _MiniTagRow(inkling: inkling, greyIndex: greyIndex),
           ],
         ),
       ),
@@ -69,16 +62,13 @@ class InklingCard extends StatelessWidget {
       case InklingType.image:
         return _ImageDisplay(inkling: inkling);
       case InklingType.link:
-        return _LinkDisplay(
-          inkling: inkling,
-          greyIndex: greyIndex,
-        );
+        return _LinkDisplay(inkling: inkling, greyIndex: greyIndex);
     }
   }
 }
 
-class _LinkDisplay extends StatelessWidget {
-  const _LinkDisplay({
+class _MiniTagRow extends StatelessWidget {
+  const _MiniTagRow({
     required this.inkling,
     required this.greyIndex,
   });
@@ -88,65 +78,16 @@ class _LinkDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(bottom: 4.0),
-      clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
-        color: $styles.colors.grey[greyIndex + 1],
-        borderRadius: BorderRadius.circular($styles.corners.sm),
-      ),
-      child: Column(
-        children: [
-          if (inkling.metaData?.imageUrl != null)
-            Expanded(
-              child: CachedNetworkImage(
-                placeholder: (context, url) =>
-                    const CircularProgressIndicator(),
-                imageUrl: inkling.metaData!.imageUrl!,
-                fit: BoxFit.cover,
-              ),
-            ),
-          StyledLinkTitleAndSubtitle(
-            title: inkling.metaData?.title,
-            subtitle: inkling.metaData?.url,
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class StyledLinkTitleAndSubtitle extends StatelessWidget {
-  const StyledLinkTitleAndSubtitle({
-    super.key,
-    required this.title,
-    required this.subtitle,
-  });
-
-  final String? title;
-  final String? subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(left: $styles.insets.xxs),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            title ?? '',
-            maxLines: 1,
-            style: $styles.text.bodySmall.copyWith(
-              color: Colors.white,
-              fontSize: 12,
-            ),
-          ),
-          Text(
-            subtitle ?? '',
-            style: $styles.text.caption.copyWith(fontSize: 11),
-            overflow: TextOverflow.ellipsis,
-          )
-        ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: inkling.tags
+            .map((e) => TagChip(
+                  tag: e,
+                  isDense: true,
+                  greyIndex: greyIndex + 1,
+                ))
+            .toList(),
       ),
     );
   }
@@ -191,6 +132,45 @@ class _ImageDisplay extends StatelessWidget {
       child: Image.file(
         File(inkling.imagePath),
         fit: BoxFit.cover,
+      ),
+    );
+  }
+}
+
+class _LinkDisplay extends StatelessWidget {
+  const _LinkDisplay({
+    required this.inkling,
+    required this.greyIndex,
+  });
+
+  final Inkling inkling;
+  final int greyIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.only(bottom: 4.0),
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+        color: $styles.colors.grey[greyIndex + 1],
+        borderRadius: BorderRadius.circular($styles.corners.sm),
+      ),
+      child: Column(
+        children: [
+          if (inkling.metaData?.imageUrl != null)
+            Expanded(
+              child: CachedNetworkImage(
+                placeholder: (context, url) =>
+                    const CircularProgressIndicator(),
+                imageUrl: inkling.metaData!.imageUrl!,
+                fit: BoxFit.cover,
+              ),
+            ),
+          StyledLinkTitleAndSubtitle(
+            title: inkling.metaData?.title,
+            subtitle: inkling.metaData?.url,
+          )
+        ],
       ),
     );
   }

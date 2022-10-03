@@ -1,26 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:inky/presentation/add_inkling/add_inkling_page.dart';
-import 'package:inky/presentation/inklings/inklings_page.dart';
-import 'package:inky/presentation/onboarding/onboarding_page.dart';
-import 'package:inky/presentation/settings/manage_tags_page.dart';
-import 'package:inky/presentation/settings/settings_page.dart';
-import 'package:inky/presentation/tags/tags_page.dart';
 
-import 'domain/inklings/inkling.dart';
-import 'domain/tags/tag.dart';
+import 'domain/domain.dart';
+import 'presentation/presentation.dart';
 
-/// InklingType for navigating the add Inkling process.
+/// InklingType for Inklings. Determines add route.
 enum InklingType { note, image, link }
 
 /// Shared Paths
 class ScreenPaths {
-  static String splash = '/';
-  static String home = '/home';
+  static String home = '/';
   static String onboarding = '/onboarding';
 
-  //SUB ROUTES
+  //Sub Routes
   static String addInkling(InklingType type) => 'addInkling/${type.name}';
   static String tags = 'tags';
 
@@ -31,11 +24,6 @@ class ScreenPaths {
 // Routing table, matches string paths to UI Screens
 final appRouter = GoRouter(
   routes: [
-    AppRoute(
-      path: ScreenPaths.splash,
-      builder: (_) => const InklingsPage(),
-      routes: const [],
-    ),
     AppRoute(
       path: ScreenPaths.home,
       builder: (_) => const InklingsPage(),
@@ -83,7 +71,7 @@ final appRouter = GoRouter(
   ],
 );
 
-/// Custom GoRoute sub-class to make the router custom transitions declaration easier.
+// Custom GoRoute sub-class to make the router custom transitions declaration easier.
 class AppRoute extends GoRoute {
   AppRoute({
     required String path,

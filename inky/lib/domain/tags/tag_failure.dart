@@ -3,9 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'tag_failure.freezed.dart';
 
 @freezed
-abstract class InklingFailure with _$InklingFailure {
-  const factory InklingFailure.unexpected({String? message}) = Unexpected;
-  const factory InklingFailure.unableToUpdate() = UnableToUpdate;
-  const factory InklingFailure.unableToCreate() = UnableToCreate;
-  const factory InklingFailure.unableToDelete() = UnableToDelete;
+abstract class TagFailure with _$TagFailure {
+  const factory TagFailure.unexpected({String? message}) = _Unexpected;
+  const factory TagFailure.unableToUpdate() = _UnableToUpdate;
+  const factory TagFailure.unableToCreate() = _UnableToCreate;
+  const factory TagFailure.unableToDelete() = _UnableToDelete;
 }

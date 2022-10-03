@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:inky/presentation/presentation.dart';
 import 'package:inky/providers.dart';
 
 import '../../domain/inklings/inkling.dart';
 import '../../router.dart';
 import '../../styles/styles.dart';
-import '../shared/widgets.dart';
-import 'widgets/tags_list.dart';
-import 'widgets/widgets.dart';
+
 
 class AddInklingPage extends ConsumerStatefulWidget {
   const AddInklingPage({
@@ -29,7 +28,7 @@ class _AddInklingPageState extends ConsumerState<AddInklingPage> {
   void initState() {
     super.initState();
 
-    ///INITIALIZES INKING
+    ///Initialises existing Inkling
     ref
         .read(inklingFormNotifierProvider.notifier)
         .initialized(inkling: widget.inkling);
@@ -37,7 +36,7 @@ class _AddInklingPageState extends ConsumerState<AddInklingPage> {
 
   @override
   Widget build(BuildContext context) {
-    //POPS CURRENT STACK IF NO LONGER SAVING & FETCHES UPDATED INKLING LIST
+    //Pops current stack if form state is not longer saving
     ref.listen(inklingFormNotifierProvider, (previous, next) {
       if (previous?.isSaving != next.isSaving) {
         context.go(ScreenPaths.home);
@@ -45,17 +44,19 @@ class _AddInklingPageState extends ConsumerState<AddInklingPage> {
       }
     });
 
+    final isEditing = ref.watch(inklingFormNotifierProvider).isEditing;
+
     return Scaffold(
       appBar: AppBar(
         leading: const StyledAppbarLeadingBackButton(),
         centerTitle: true,
-        title: StyledAppbarTitle(
-          title: ref.read(inklingFormNotifierProvider).isEditing
+        title: StyledTitle(
+          title: isEditing
               ? "EDIT ${widget.inklingType.name.toUpperCase()}"
               : "ADD ${widget.inklingType.name.toUpperCase()}",
         ),
         actions: [
-          if (ref.read(inklingFormNotifierProvider).isEditing)
+          if (isEditing)
             IconButton(
               onPressed: () => ref
                   .read(inklingsNotifierProvider.notifier)
@@ -79,25 +80,22 @@ class _AddInklingPageState extends ConsumerState<AddInklingPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                //MAIN INKING INPUT
+                //Main inkling input field
                 _inklingTypeToWidget(widget.inklingType),
                 HSpace(size: $styles.insets.md),
 
-                //TAGS SECTION
+                //Tag section
                 const StyledSubtitle(title: 'Tags'),
                 HSpace(size: $styles.insets.xs),
                 const TagsList(),
                 HSpace(size: $styles.insets.md),
 
-                //MEMO SECTION
+                //Memo section
                 Row(
                   children: [
                     const StyledSubtitle(title: 'Memo'),
                     const Spacer(),
-                    Icon(
-                      Icons.edit,
-                      color: $styles.colors.grey04,
-                    )
+                    Icon(Icons.edit, color: $styles.colors.grey04)
                   ],
                 ),
                 HSpace(size: $styles.insets.xs),

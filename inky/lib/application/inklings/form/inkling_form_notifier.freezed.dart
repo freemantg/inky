@@ -19,6 +19,7 @@ mixin _$InklingFormState {
   Inkling get inkling => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
   bool get isSaving => throw _privateConstructorUsedError;
+  bool get showErrorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InklingFormStateCopyWith<InklingFormState> get copyWith =>
@@ -30,7 +31,8 @@ abstract class $InklingFormStateCopyWith<$Res> {
   factory $InklingFormStateCopyWith(
           InklingFormState value, $Res Function(InklingFormState) then) =
       _$InklingFormStateCopyWithImpl<$Res>;
-  $Res call({Inkling inkling, bool isEditing, bool isSaving});
+  $Res call(
+      {Inkling inkling, bool isEditing, bool isSaving, bool showErrorMessage});
 
   $InklingCopyWith<$Res> get inkling;
 }
@@ -49,6 +51,7 @@ class _$InklingFormStateCopyWithImpl<$Res>
     Object? inkling = freezed,
     Object? isEditing = freezed,
     Object? isSaving = freezed,
+    Object? showErrorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       inkling: inkling == freezed
@@ -62,6 +65,10 @@ class _$InklingFormStateCopyWithImpl<$Res>
       isSaving: isSaving == freezed
           ? _value.isSaving
           : isSaving // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showErrorMessage: showErrorMessage == freezed
+          ? _value.showErrorMessage
+          : showErrorMessage // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -81,7 +88,8 @@ abstract class _$$_InklingFormStateCopyWith<$Res>
           _$_InklingFormState value, $Res Function(_$_InklingFormState) then) =
       __$$_InklingFormStateCopyWithImpl<$Res>;
   @override
-  $Res call({Inkling inkling, bool isEditing, bool isSaving});
+  $Res call(
+      {Inkling inkling, bool isEditing, bool isSaving, bool showErrorMessage});
 
   @override
   $InklingCopyWith<$Res> get inkling;
@@ -103,6 +111,7 @@ class __$$_InklingFormStateCopyWithImpl<$Res>
     Object? inkling = freezed,
     Object? isEditing = freezed,
     Object? isSaving = freezed,
+    Object? showErrorMessage = freezed,
   }) {
     return _then(_$_InklingFormState(
       inkling: inkling == freezed
@@ -117,6 +126,10 @@ class __$$_InklingFormStateCopyWithImpl<$Res>
           ? _value.isSaving
           : isSaving // ignore: cast_nullable_to_non_nullable
               as bool,
+      showErrorMessage: showErrorMessage == freezed
+          ? _value.showErrorMessage
+          : showErrorMessage // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -125,7 +138,10 @@ class __$$_InklingFormStateCopyWithImpl<$Res>
 
 class _$_InklingFormState implements _InklingFormState {
   const _$_InklingFormState(
-      {required this.inkling, required this.isEditing, required this.isSaving});
+      {required this.inkling,
+      required this.isEditing,
+      required this.isSaving,
+      required this.showErrorMessage});
 
   @override
   final Inkling inkling;
@@ -133,10 +149,12 @@ class _$_InklingFormState implements _InklingFormState {
   final bool isEditing;
   @override
   final bool isSaving;
+  @override
+  final bool showErrorMessage;
 
   @override
   String toString() {
-    return 'InklingFormState(inkling: $inkling, isEditing: $isEditing, isSaving: $isSaving)';
+    return 'InklingFormState(inkling: $inkling, isEditing: $isEditing, isSaving: $isSaving, showErrorMessage: $showErrorMessage)';
   }
 
   @override
@@ -146,7 +164,9 @@ class _$_InklingFormState implements _InklingFormState {
             other is _$_InklingFormState &&
             const DeepCollectionEquality().equals(other.inkling, inkling) &&
             const DeepCollectionEquality().equals(other.isEditing, isEditing) &&
-            const DeepCollectionEquality().equals(other.isSaving, isSaving));
+            const DeepCollectionEquality().equals(other.isSaving, isSaving) &&
+            const DeepCollectionEquality()
+                .equals(other.showErrorMessage, showErrorMessage));
   }
 
   @override
@@ -154,7 +174,8 @@ class _$_InklingFormState implements _InklingFormState {
       runtimeType,
       const DeepCollectionEquality().hash(inkling),
       const DeepCollectionEquality().hash(isEditing),
-      const DeepCollectionEquality().hash(isSaving));
+      const DeepCollectionEquality().hash(isSaving),
+      const DeepCollectionEquality().hash(showErrorMessage));
 
   @JsonKey(ignore: true)
   @override
@@ -166,7 +187,8 @@ abstract class _InklingFormState implements InklingFormState {
   const factory _InklingFormState(
       {required final Inkling inkling,
       required final bool isEditing,
-      required final bool isSaving}) = _$_InklingFormState;
+      required final bool isSaving,
+      required final bool showErrorMessage}) = _$_InklingFormState;
 
   @override
   Inkling get inkling;
@@ -174,6 +196,8 @@ abstract class _InklingFormState implements InklingFormState {
   bool get isEditing;
   @override
   bool get isSaving;
+  @override
+  bool get showErrorMessage;
   @override
   @JsonKey(ignore: true)
   _$$_InklingFormStateCopyWith<_$_InklingFormState> get copyWith =>

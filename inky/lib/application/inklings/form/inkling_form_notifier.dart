@@ -14,12 +14,14 @@ class InklingFormState with _$InklingFormState {
     required Inkling inkling,
     required bool isEditing,
     required bool isSaving,
+    required bool showErrorMessage,
   }) = _InklingFormState;
 
   factory InklingFormState.initial() => InklingFormState(
         inkling: Inkling.empty(),
         isEditing: false,
         isSaving: false,
+        showErrorMessage: false,
       );
 }
 
@@ -87,6 +89,13 @@ class InklingFormNotifier extends StateNotifier<InklingFormState> {
     final failureOrSuccess = state.isEditing
         ? await _repository.update(state.inkling)
         : await _repository.create(state.inkling);
-    state = state.copyWith(isSaving: false);
+        
+    state = failureOrSuccess.fold(
+      (failure) => state.copyWith(
+        showErrorMessage: true,
+        isSaving: false,
+      ),
+      (success) => state.copyWith(isSaving: false),
+    );
   }
 }

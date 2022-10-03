@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:inky/presentation/shared/styled_appbar_leading_back_button.dart';
-import 'package:inky/presentation/shared/styled_appbar_title.dart';
-import 'package:inky/presentation/shared/styled_divider.dart';
+
 
 import '../../router.dart';
 import '../../styles/styles.dart';
+import '../shared/widgets.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -15,7 +14,7 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const StyledAppbarLeadingBackButton(),
-        title: const StyledAppbarTitle(title: 'SETTINGS'),
+        title: const StyledTitle(title: 'SETTINGS'),
         centerTitle: true,
       ),
       body: _buildScaffoldBody(context),

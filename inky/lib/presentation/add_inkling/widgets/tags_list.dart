@@ -3,8 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../providers.dart';
 import '../../../styles/styles.dart';
-import '../../inklings/widgets/widgets.dart';
-import 'widgets.dart';
+import '../../presentation.dart';
 
 class TagsList extends StatelessWidget {
   const TagsList({super.key});

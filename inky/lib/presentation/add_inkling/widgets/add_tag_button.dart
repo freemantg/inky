@@ -17,7 +17,7 @@ class StyledAddTagButton extends ConsumerWidget {
 
     return GestureDetector(
       onTap: () => context.push(
-        '/home/addInkling/post/${ScreenPaths.tags}',
+        '${ScreenPaths.home}${ScreenPaths.addInkling(InklingType.note)}/${ScreenPaths.tags}',
         extra: formTags,
       ),
       child: Container(

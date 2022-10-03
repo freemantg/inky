@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 
 import '../../../domain/tags/tag.dart';
 import '../../../styles/styles.dart';
@@ -8,6 +9,7 @@ class TagChip extends StatelessWidget {
   const TagChip({
     Key? key,
     required this.tag,
+    this.onTap,
     this.greyIndex,
     this.isDense = false,
     this.isExpanded = false,
@@ -19,6 +21,7 @@ class TagChip extends StatelessWidget {
   final bool leadingAction;
   final bool isExpanded;
   final int? greyIndex;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -29,30 +32,33 @@ class TagChip extends StatelessWidget {
         horizontal: isDense ? $styles.insets.xxs : $styles.insets.xs,
       ),
       decoration: BoxDecoration(
-        color: $styles.colors.grey[greyIndex ?? math.Random().nextInt(2)],
+        color: $styles.colors.grey[greyIndex ?? math.Random().nextInt(3)],
         borderRadius: BorderRadius.circular($styles.corners.sm),
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(height: isExpanded ? 18.0 : null),
-          Text(
-            '#${tag.name}',
-            style: $styles.text.caption.copyWith(
-              color: isDense ? null : Colors.black,
-              fontSize: isDense ? 10.0 : null,
-            ),
-          ),
-          if (leadingAction)
-            Padding(
-              padding: EdgeInsets.only(left: $styles.insets.xxs),
-              child: Icon(
-                Icons.close,
-                size: 14.0,
-                color: $styles.colors.grey06,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(height: isExpanded ? 18.0 : null),
+            Text(
+              '#${tag.name}',
+              style: $styles.text.caption.copyWith(
+                color: isDense ? null : Colors.black,
+                fontSize: isDense ? 10.0 : null,
               ),
-            )
-        ],
+            ),
+            if (leadingAction)
+              Padding(
+                padding: EdgeInsets.only(left: $styles.insets.xxs),
+                child: Icon(
+                  Icons.close,
+                  size: 14.0,
+                  color: $styles.colors.grey06,
+                ),
+              )
+          ],
+        ),
       ),
     );
   }

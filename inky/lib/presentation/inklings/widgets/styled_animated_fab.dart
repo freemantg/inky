@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:inky/presentation/shared/widgets.dart';
 import 'dart:math' as math;
 
 import '../../../router.dart';
 import '../../../styles/styles.dart';
+import '../../shared/styled_menu_action.dart';
+import '../../shared/styled_menu_container.dart';
 
 class StyledAnimatedFAB extends HookWidget {
   const StyledAnimatedFAB({
@@ -58,145 +60,41 @@ class StyledAnimatedFAB extends HookWidget {
   }
 }
 
-class _DialogMenu extends ConsumerWidget {
+class _DialogMenu extends StatelessWidget {
   const _DialogMenu();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomRight,
-      child: _styledContainer(
-        context,
+      child: StyledMenuContainer(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _MenuAction(
+            MenuAction(
               title: 'Note',
               iconData: Icons.edit,
               onTap: () => context.go(
-                  "${ScreenPaths.home}/${ScreenPaths.addInkling(InklingType.note)}"),
+                  "${ScreenPaths.home}${ScreenPaths.addInkling(InklingType.note)}"),
             ),
             Divider(color: $styles.colors.grey02),
-            _MenuAction(
+            MenuAction(
               title: 'Image',
               iconData: Icons.photo,
               onTap: () => context.go(
-                  "${ScreenPaths.home}/${ScreenPaths.addInkling(InklingType.image)}"),
+                  "${ScreenPaths.home}${ScreenPaths.addInkling(InklingType.image)}"),
             ),
             Divider(color: $styles.colors.grey02),
-            _MenuAction(
+            MenuAction(
               title: 'Link',
               iconData: Icons.link,
               onTap: () => context.go(
-                  "${ScreenPaths.home}/${ScreenPaths.addInkling(InklingType.link)}"),
+                  "${ScreenPaths.home}${ScreenPaths.addInkling(InklingType.link)}"),
             ),
           ],
         ),
       ),
     );
   }
-
-  Widget _styledContainer(BuildContext context, {required Widget child}) {
-    return Container(
-      decoration: BoxDecoration(
-        color: $styles.colors.bgGrey,
-        borderRadius: BorderRadius.circular($styles.corners.md),
-      ),
-      margin: EdgeInsets.only(
-        right: $styles.insets.sm,
-        bottom: MediaQuery.of(context).size.height / 5,
-      ),
-      width: MediaQuery.of(context).size.width / 3,
-      padding: EdgeInsets.symmetric(
-        vertical: $styles.insets.sm,
-        horizontal: $styles.insets.xs,
-      ),
-      child: child,
-    );
-  }
 }
 
-class PickImageSourceButton extends StatelessWidget {
-  const PickImageSourceButton({
-    super.key,
-    this.color,
-    required this.title,
-    required this.iconData,
-    required this.onTap,
-  });
-
-  final String title;
-  final Color? color;
-  final IconData? iconData;
-  final void Function() onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        children: [
-          CircleAvatar(
-            backgroundColor: color,
-            radius: $styles.insets.md,
-            child: Icon(
-              iconData,
-              color: Colors.white,
-            ),
-          ),
-          HSpace(size: $styles.insets.xxs),
-          Text(
-            title,
-            style: $styles.text.bodySmallBold.copyWith(
-              color: Colors.white,
-              fontSize: 12,
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class _MenuAction extends StatelessWidget {
-  const _MenuAction({
-    Key? key,
-    required this.title,
-    required this.iconData,
-    required this.onTap,
-  }) : super(key: key);
-
-  final String title;
-  final IconData iconData;
-  final void Function() onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all($styles.insets.xxs),
-      child: GestureDetector(
-        onTap: () {
-          //POP MENU DIALOG
-          Navigator.pop(context, true);
-          onTap();
-        },
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          textBaseline: TextBaseline.ideographic,
-          children: [
-            Icon(
-              iconData,
-              color: $styles.colors.grey04,
-            ),
-            const VSpace(size: 12.0),
-            Text(
-              title,
-              style:
-                  $styles.text.bodySmall.copyWith(color: $styles.colors.grey04),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}

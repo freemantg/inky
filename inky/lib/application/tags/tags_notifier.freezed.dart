@@ -22,7 +22,7 @@ mixin _$TagsState {
     required TResult Function(List<Tag>? filter) initial,
     required TResult Function(List<Tag>? filter) loadInProgress,
     required TResult Function(List<Tag> tags, List<Tag>? filter) loadSuccess,
-    required TResult Function(InklingFailure failure, List<Tag>? filter)
+    required TResult Function(TagFailure failure, List<Tag>? filter)
         loadFailure,
   }) =>
       throw _privateConstructorUsedError;
@@ -31,7 +31,7 @@ mixin _$TagsState {
     TResult Function(List<Tag>? filter)? initial,
     TResult Function(List<Tag>? filter)? loadInProgress,
     TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(InklingFailure failure, List<Tag>? filter)? loadFailure,
+    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,7 +39,7 @@ mixin _$TagsState {
     TResult Function(List<Tag>? filter)? initial,
     TResult Function(List<Tag>? filter)? loadInProgress,
     TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(InklingFailure failure, List<Tag>? filter)? loadFailure,
+    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -175,7 +175,7 @@ class _$_Initial implements _Initial {
     required TResult Function(List<Tag>? filter) initial,
     required TResult Function(List<Tag>? filter) loadInProgress,
     required TResult Function(List<Tag> tags, List<Tag>? filter) loadSuccess,
-    required TResult Function(InklingFailure failure, List<Tag>? filter)
+    required TResult Function(TagFailure failure, List<Tag>? filter)
         loadFailure,
   }) {
     return initial(filter);
@@ -187,7 +187,7 @@ class _$_Initial implements _Initial {
     TResult Function(List<Tag>? filter)? initial,
     TResult Function(List<Tag>? filter)? loadInProgress,
     TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(InklingFailure failure, List<Tag>? filter)? loadFailure,
+    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
   }) {
     return initial?.call(filter);
   }
@@ -198,7 +198,7 @@ class _$_Initial implements _Initial {
     TResult Function(List<Tag>? filter)? initial,
     TResult Function(List<Tag>? filter)? loadInProgress,
     TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(InklingFailure failure, List<Tag>? filter)? loadFailure,
+    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -332,7 +332,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function(List<Tag>? filter) initial,
     required TResult Function(List<Tag>? filter) loadInProgress,
     required TResult Function(List<Tag> tags, List<Tag>? filter) loadSuccess,
-    required TResult Function(InklingFailure failure, List<Tag>? filter)
+    required TResult Function(TagFailure failure, List<Tag>? filter)
         loadFailure,
   }) {
     return loadInProgress(filter);
@@ -344,7 +344,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(List<Tag>? filter)? initial,
     TResult Function(List<Tag>? filter)? loadInProgress,
     TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(InklingFailure failure, List<Tag>? filter)? loadFailure,
+    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
   }) {
     return loadInProgress?.call(filter);
   }
@@ -355,7 +355,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function(List<Tag>? filter)? initial,
     TResult Function(List<Tag>? filter)? loadInProgress,
     TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(InklingFailure failure, List<Tag>? filter)? loadFailure,
+    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -505,7 +505,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function(List<Tag>? filter) initial,
     required TResult Function(List<Tag>? filter) loadInProgress,
     required TResult Function(List<Tag> tags, List<Tag>? filter) loadSuccess,
-    required TResult Function(InklingFailure failure, List<Tag>? filter)
+    required TResult Function(TagFailure failure, List<Tag>? filter)
         loadFailure,
   }) {
     return loadSuccess(tags, filter);
@@ -517,7 +517,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(List<Tag>? filter)? initial,
     TResult Function(List<Tag>? filter)? loadInProgress,
     TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(InklingFailure failure, List<Tag>? filter)? loadFailure,
+    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
   }) {
     return loadSuccess?.call(tags, filter);
   }
@@ -528,7 +528,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function(List<Tag>? filter)? initial,
     TResult Function(List<Tag>? filter)? loadInProgress,
     TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(InklingFailure failure, List<Tag>? filter)? loadFailure,
+    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -594,9 +594,9 @@ abstract class _$$_FailureCopyWith<$Res> implements $TagsStateCopyWith<$Res> {
           _$_Failure value, $Res Function(_$_Failure) then) =
       __$$_FailureCopyWithImpl<$Res>;
   @override
-  $Res call({InklingFailure failure, List<Tag>? filter});
+  $Res call({TagFailure failure, List<Tag>? filter});
 
-  $InklingFailureCopyWith<$Res> get failure;
+  $TagFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -617,7 +617,7 @@ class __$$_FailureCopyWithImpl<$Res> extends _$TagsStateCopyWithImpl<$Res>
       failure == freezed
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
-              as InklingFailure,
+              as TagFailure,
       filter: filter == freezed
           ? _value._filter
           : filter // ignore: cast_nullable_to_non_nullable
@@ -626,8 +626,8 @@ class __$$_FailureCopyWithImpl<$Res> extends _$TagsStateCopyWithImpl<$Res>
   }
 
   @override
-  $InklingFailureCopyWith<$Res> get failure {
-    return $InklingFailureCopyWith<$Res>(_value.failure, (value) {
+  $TagFailureCopyWith<$Res> get failure {
+    return $TagFailureCopyWith<$Res>(_value.failure, (value) {
       return _then(_value.copyWith(failure: value));
     });
   }
@@ -639,7 +639,7 @@ class _$_Failure implements _Failure {
   const _$_Failure(this.failure, {final List<Tag>? filter}) : _filter = filter;
 
   @override
-  final InklingFailure failure;
+  final TagFailure failure;
   final List<Tag>? _filter;
   @override
   List<Tag>? get filter {
@@ -680,7 +680,7 @@ class _$_Failure implements _Failure {
     required TResult Function(List<Tag>? filter) initial,
     required TResult Function(List<Tag>? filter) loadInProgress,
     required TResult Function(List<Tag> tags, List<Tag>? filter) loadSuccess,
-    required TResult Function(InklingFailure failure, List<Tag>? filter)
+    required TResult Function(TagFailure failure, List<Tag>? filter)
         loadFailure,
   }) {
     return loadFailure(failure, filter);
@@ -692,7 +692,7 @@ class _$_Failure implements _Failure {
     TResult Function(List<Tag>? filter)? initial,
     TResult Function(List<Tag>? filter)? loadInProgress,
     TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(InklingFailure failure, List<Tag>? filter)? loadFailure,
+    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
   }) {
     return loadFailure?.call(failure, filter);
   }
@@ -703,7 +703,7 @@ class _$_Failure implements _Failure {
     TResult Function(List<Tag>? filter)? initial,
     TResult Function(List<Tag>? filter)? loadInProgress,
     TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(InklingFailure failure, List<Tag>? filter)? loadFailure,
+    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -751,10 +751,10 @@ class _$_Failure implements _Failure {
 }
 
 abstract class _Failure implements TagsState {
-  const factory _Failure(final InklingFailure failure,
-      {final List<Tag>? filter}) = _$_Failure;
+  const factory _Failure(final TagFailure failure, {final List<Tag>? filter}) =
+      _$_Failure;
 
-  InklingFailure get failure;
+  TagFailure get failure;
   @override
   List<Tag>? get filter;
   @override

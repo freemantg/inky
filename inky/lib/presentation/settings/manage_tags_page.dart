@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:inky/presentation/shared/widgets.dart';
 import 'package:inky/providers.dart';
 
-import '../../domain/tags/tag.dart';
+import '../../domain/domain.dart';
 import '../../styles/styles.dart';
-import 'widgets/styled_modal_bottom_sheet.dart';
+import '../presentation.dart';
 
 class ManageTagsPage extends StatelessWidget {
   const ManageTagsPage({super.key});
@@ -16,7 +15,7 @@ class ManageTagsPage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         leading: const StyledAppbarLeadingBackButton(),
-        title: const StyledAppbarTitle(title: 'MANAGE TAGS'),
+        title: const StyledTitle(title: 'MANAGE TAGS'),
       ),
       body: _buildScaffoldBody(),
       bottomNavigationBar: _buildBottomNavigationBar(context),
@@ -54,7 +53,7 @@ class ManageTagsPage extends StatelessWidget {
   }
 }
 
-Padding _buildBottomNavigationBar(BuildContext context) {
+Widget _buildBottomNavigationBar(BuildContext context) {
   return Padding(
     padding: EdgeInsets.all($styles.insets.sm),
     child: StyledElevatedButton(

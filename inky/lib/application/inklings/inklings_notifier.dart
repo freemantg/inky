@@ -18,7 +18,7 @@ class InklingsState with _$InklingsState {
   const factory InklingsState.loadSuccess({required List<Inkling> inklings}) =
       _LoadSuccess;
 
-  const factory InklingsState.loadFailure({required InklingFailure failure}) =
+  const factory InklingsState.loadFailure({required TagFailure failure}) =
       _LoadFailure;
 }
 
