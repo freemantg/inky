@@ -54,7 +54,7 @@ class InklingsRepository implements InklingsInterface {
       final inklingsWithMetaData = await _insertMetaData(inklings);
       return right(inklingsWithMetaData);
     } catch (e) {
-      return left(const TagFailure.unexpected());
+      return left(TagFailure.unexpected(message: e.toString()));
     }
   }
 
@@ -70,8 +70,11 @@ class InklingsRepository implements InklingsInterface {
 
   Future<List<Inkling>> _insertMetaData(List<Inkling> inklings) async {
     final List<Inkling> inklingsWithMetaData = [];
+
     for (final inkling in inklings) {
-      if (inkling.link.isNotEmpty) {
+      if (inkling.link.isEmpty) {
+        inklingsWithMetaData.add(inkling);
+      } else {
         final metaData = await _remoteServices.fetchMetaData(inkling.link);
         final inklingWithMetaData = inkling.copyWith(
           metaData: metaData.fold(
@@ -80,8 +83,6 @@ class InklingsRepository implements InklingsInterface {
           ),
         );
         inklingsWithMetaData.add(inklingWithMetaData);
-      } else {
-        inklingsWithMetaData.add(inkling);
       }
     }
     return inklingsWithMetaData;

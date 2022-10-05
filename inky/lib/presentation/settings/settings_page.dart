@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-
 import '../../router.dart';
 import '../../styles/styles.dart';
 import '../shared/widgets.dart';
@@ -35,24 +34,29 @@ class SettingsPage extends StatelessWidget {
               padding: EdgeInsets.all($styles.insets.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(
-                    'Freeman',
-                    style: $styles.text.bodySmallBold,
-                  ),
-                  HSpace(size: $styles.insets.xs),
-                  const Placeholder()
-                ],
+                children: const [],
               ),
             ),
           ),
           _SettingsTile(
             title: 'Manage Tags',
             onTap: () => context.go(
-              "${ScreenPaths.home}/${ScreenPaths.settings}/${ScreenPaths.manageTags}",
+              "${ScreenPaths.home}${ScreenPaths.settings}/${ScreenPaths.manageTags}",
             ),
           ),
-          StyledDivider()
+          StyledDivider(),
+          _SettingsTile(
+            title: 'Privacy Policy',
+            onTap: () {},
+          ),
+          StyledDivider(),
+          const Spacer(),
+          _SettingsTile(
+            title: 'App Feedback',
+            onTap: () {},
+          ),
+          StyledDivider(),
+          HSpace(size: $styles.insets.sm)
         ],
       ),
     );
@@ -73,7 +77,10 @@ class _SettingsTile extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       contentPadding: EdgeInsets.zero,
-      title: Text(title, style: $styles.text.bodySmall),
+      title: Text(
+        title,
+        style: $styles.text.bodySmall,
+      ),
     );
   }
 }

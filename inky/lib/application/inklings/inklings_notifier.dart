@@ -12,22 +12,19 @@ part 'inklings_notifier.freezed.dart';
 @freezed
 class InklingsState with _$InklingsState {
   const factory InklingsState.initial() = _Initial;
-
   const factory InklingsState.loadInProgress() = _LoadInProgress;
-
-  const factory InklingsState.loadSuccess({required List<Inkling> inklings}) =
-      _LoadSuccess;
-
-  const factory InklingsState.loadFailure({required TagFailure failure}) =
-      _LoadFailure;
+  const factory InklingsState.loadSuccess({
+    required List<Inkling> inklings,
+  }) = _LoadSuccess;
+  const factory InklingsState.loadFailure({
+    required TagFailure failure,
+  }) = _LoadFailure;
 }
 
 class InklingsNotifier extends StateNotifier<InklingsState> {
   final InklingsRepository _repository;
 
-  InklingsNotifier(
-    this._repository,
-  ) : super(const InklingsState.initial());
+  InklingsNotifier(this._repository) : super(const InklingsState.initial());
 
   //OPENS THE INKLING HIVE BOX.
   Future<void> registerService() async {

@@ -72,6 +72,7 @@ class StyledLinkParseTextField extends ConsumerWidget {
       controller: textEditingController,
       style: $styles.text.bodySmall,
       decoration: StyledInputDecoration(
+        hintText: 'Paste in your dinspiration',
         suffixIcon: _AddLinkButton(onTap: () {
           ref
               .read(inklingFormNotifierProvider.notifier)

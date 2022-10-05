@@ -8,7 +8,6 @@ import '../../domain/inklings/inkling.dart';
 import '../../router.dart';
 import '../../styles/styles.dart';
 
-
 class AddInklingPage extends ConsumerStatefulWidget {
   const AddInklingPage({
     required this.inklingType,
@@ -60,7 +59,8 @@ class _AddInklingPageState extends ConsumerState<AddInklingPage> {
             IconButton(
               onPressed: () => ref
                   .read(inklingsNotifierProvider.notifier)
-                  .deleteInkling(widget.inkling!),
+                  .deleteInkling(widget.inkling!)
+                  .then((_) => context.pop()),
               icon: const Icon(Icons.delete),
             )
         ],

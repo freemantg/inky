@@ -30,9 +30,6 @@ class InklingDto extends HiveObject with _$InklingDto {
         tags: inkling.tags.map((e) => TagDto.fromDomain(e)).toList(),
         memo: inkling.memo,
       );
-
-  factory InklingDto.fromJson(Map<String, dynamic> json) =>
-      _$InklingDtoFromJson(json);
 }
 
 extension InklingDtoX on InklingDto {

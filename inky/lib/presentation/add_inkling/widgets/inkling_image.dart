@@ -26,7 +26,10 @@ class InklingImage extends ConsumerWidget {
             ? Stack(
                 fit: StackFit.expand,
                 children: [
-                  Image.file(File(inklingImagePath)),
+                  Image.file(
+                    File(inklingImagePath),
+                    fit: BoxFit.cover,
+                  ),
                   const _RemoveImageButton(),
                 ],
               )

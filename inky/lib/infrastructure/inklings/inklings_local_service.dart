@@ -14,9 +14,9 @@ class InklingLocalServices {
     InklingType? inklingType,
   }) {
     final inklings = _inklingDtos.values.toList();
-
     List<InklingDto> filteredList;
 
+    //Filters by Inkling Type
     if (inklingType != null) {
       filteredList = inklings.where(
         (inklingDto) {
@@ -34,7 +34,7 @@ class InklingLocalServices {
       filteredList = inklings;
     }
 
-    //IF FILTER IS NOT NULL OR EMPTY
+    //Filters by tags if Filters is NOT null or empty
     if (filter?.isNotEmpty ?? false) {
       filteredList = filteredList
           .where((inklingDto) =>

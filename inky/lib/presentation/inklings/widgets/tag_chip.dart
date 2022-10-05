@@ -32,7 +32,7 @@ class TagChip extends StatelessWidget {
         horizontal: isDense ? $styles.insets.xxs : $styles.insets.xs,
       ),
       decoration: BoxDecoration(
-        color: $styles.colors.grey[greyIndex ?? math.Random().nextInt(3)],
+        color: $styles.colors.grey[greyIndex ?? math.Random().nextInt(2)],
         borderRadius: BorderRadius.circular($styles.corners.sm),
       ),
       child: GestureDetector(

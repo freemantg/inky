@@ -12,18 +12,17 @@ class InklingRemoteService {
 
   Future<Either<TagFailure, MetaData?>> fetchMetaData(String url) async {
     final requestUri = Uri.parse(url);
+    MetaData metaData = MetaData();
 
     try {
       final response = await _client.get(requestUri);
       if (response.statusCode == 200) {
         final document = parse(response.body);
-        final metaData = MetaDataParser(document).parse();
-        return right(metaData);
-      } else {
-        throw Exception();
+        metaData = MetaDataParser(document).parse();
       }
+      return right(metaData);
     } catch (e) {
-      return left(const TagFailure.unexpected());
+      return left(TagFailure.unexpected(message: e.toString()));
     }
   }
 }

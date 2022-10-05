@@ -72,7 +72,7 @@ Widget _buildScaffoldBody() {
                     loadSuccess: (state) =>
                         InklingGridBuilder(inklings: state.inklings),
                     orElse: () => const SizedBox.shrink(),
-                  )
+                  ),
             ],
           );
         },

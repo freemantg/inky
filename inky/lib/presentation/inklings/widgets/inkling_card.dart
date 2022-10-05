@@ -25,10 +25,12 @@ class InklingCard extends StatelessWidget {
     //Greys go up to 6 shades
     final greyIndex = math.Random().nextInt(5);
 
-    //Determines the type of inkling
+    //Determines the type of inkling else returns a Note Inkling
     final inklingType = inkling.note.isEmpty
         ? inkling.link.isEmpty
-            ? InklingType.image
+            ? inkling.imagePath.isEmpty
+                ? InklingType.note
+                : InklingType.image
             : InklingType.link
         : InklingType.note;
 

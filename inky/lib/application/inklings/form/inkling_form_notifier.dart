@@ -1,10 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:inky/infrastructure/inklings/inkling_image_repository.dart';
-import 'package:inky/infrastructure/inklings/inklings_repository.dart';
+
 import 'package:riverpod/riverpod.dart';
 
-import '../../../domain/inklings/inkling.dart';
-import '../../../domain/tags/tag.dart';
+import '../../../domain/domain.dart';
+import '../../../infrastructure/infrastructure.dart';
 
 part 'inkling_form_notifier.freezed.dart';
 
@@ -86,10 +85,11 @@ class InklingFormNotifier extends StateNotifier<InklingFormState> {
 
   Future<void> saved() async {
     state = state.copyWith(isSaving: true);
+
     final failureOrSuccess = state.isEditing
         ? await _repository.update(state.inkling)
         : await _repository.create(state.inkling);
-        
+
     state = failureOrSuccess.fold(
       (failure) => state.copyWith(
         showErrorMessage: true,

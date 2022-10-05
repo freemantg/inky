@@ -14,11 +14,12 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   //Creates an app using the [MaterialApp.router] constructor and the `appRouter`, an instance of [GoRouter].
-  
+
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
         child: MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
       theme: $styles.colors.toThemeData(),
     ));
