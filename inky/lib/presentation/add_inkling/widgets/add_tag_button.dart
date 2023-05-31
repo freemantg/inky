@@ -28,7 +28,7 @@ class StyledAddTagButton extends ConsumerWidget {
         ),
         child: Icon(
           Icons.add,
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.background,
           size: 18.0,
         ),
       ),

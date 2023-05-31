@@ -22,7 +22,7 @@ class StyledElevatedButton extends StatelessWidget {
         child: Text(
           title,
           style: $styles.text.h4.copyWith(
-            color: Theme.of(context).backgroundColor,
+            color: Theme.of(context).colorScheme.background,
             height: 0,
           ),
         ),

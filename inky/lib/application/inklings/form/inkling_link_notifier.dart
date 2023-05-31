@@ -22,9 +22,8 @@ class InklingLinkNotifier extends StateNotifier<AsyncValue<MetaData>> {
 
   void updateState(Either<TagFailure, MetaData?> successOrFailure) {
     state = successOrFailure.fold(
-      (failure) => AsyncValue.error(failure),
+      (failure) => AsyncValue.error(failure, StackTrace.current),
       (metaData) {
-        print(metaData?.title);
         return AsyncValue.data(metaData!);
       },
     );
