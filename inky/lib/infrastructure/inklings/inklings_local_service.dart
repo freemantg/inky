@@ -5,15 +5,9 @@ import '../tags/tag_dto.dart';
 import 'inkling_dto.dart';
 
 class InklingLocalServices {
-  late final Box<InklingDto> _inklingDtoBox;
+  final Box<InklingDto> _inklingDtoBox;
 
-  InklingLocalServices() {
-    _initializeBox();
-  }
-
-  Future<void> _initializeBox() async {
-    _inklingDtoBox = await Hive.openBox<InklingDto>('inklings');
-  }
+  InklingLocalServices(this._inklingDtoBox);
 
   Stream<List<InklingDto>> streamInklings(
       {List<TagDto>? filter, InklingType? inklingType}) {

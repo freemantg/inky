@@ -11,23 +11,16 @@ final httpProvider = Provider((ref) => Client());
 final imagePickerProvider = Provider((ref) => ImagePicker());
 
 //Tag providers
-final tagsLocalServiceProvider = Provider.autoDispose<TagsLocalService>(
-  (ref) {
-    final service = TagsLocalService();
-    ref.onDispose(() async {
-      await service.dispose();
-    });
-    return service;
-  },
-);
-final tagRepositoryProvider = Provider.autoDispose(
-    (ref) => TagRepository(ref.watch(tagsLocalServiceProvider)));
-final tagsNotifierProvider =
-    StateNotifierProvider.autoDispose<TagsNotifier, TagsState>(
-        (ref) => TagsNotifier(tagRepository: ref.watch(tagRepositoryProvider)));
+final tagsLocalServiceProvider =
+    Provider<TagsLocalService>((ref) => throw UnimplementedError());
+final tagRepositoryProvider =
+    Provider((ref) => TagRepository(ref.watch(tagsLocalServiceProvider)));
+final tagsNotifierProvider = StateNotifierProvider<TagsNotifier, TagsState>(
+    (ref) => TagsNotifier(tagRepository: ref.watch(tagRepositoryProvider)));
 
 //Inkling providers
-final inklingLocalServiceProvider = Provider((ref) => InklingLocalServices());
+final inklingLocalServiceProvider =
+    Provider<InklingLocalServices>((ref) => throw UnimplementedError());
 final inklingRemoteService =
     Provider((ref) => InklingRemoteService(ref.watch(httpProvider)));
 final inklingImageRepositoryProvider = Provider((ref) =>
@@ -41,7 +34,7 @@ final inklingRepositoryProvider = Provider(
 
 //Inkling state providers
 final inklingsNotifierProvider =
-    StateNotifierProvider.autoDispose<InklingsNotifier, InklingsState>(
+    StateNotifierProvider<InklingsNotifier, InklingsState>(
         (ref) => InklingsNotifier(ref.watch(inklingRepositoryProvider)));
 
 //State for holding MetaData during link preview during creation of link inkling
@@ -51,11 +44,11 @@ final inklingLinkNotifier = StateNotifierProvider.autoDispose<
 
 //State for holding inkling input data
 final inklingFormNotifierProvider =
-    StateNotifierProvider.autoDispose<InklingFormNotifier, InklingFormState>(
-        (ref) => InklingFormNotifier(ref.watch(inklingRepositoryProvider),
+    StateNotifierProvider<InklingFormNotifier, InklingFormState>((ref) =>
+        InklingFormNotifier(ref.watch(inklingRepositoryProvider),
             ref.watch(inklingImageRepositoryProvider)));
 
 //State for managing inkling filters
-final inklingFilterNotifier = StateNotifierProvider.autoDispose<
-    InklingFilterNotifier,
-    InklingFilterState>((ref) => InklingFilterNotifier());
+final inklingFilterNotifier =
+    StateNotifierProvider<InklingFilterNotifier, InklingFilterState>(
+        (ref) => InklingFilterNotifier());

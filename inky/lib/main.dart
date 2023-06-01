@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:inky/infrastructure/hive/hive_database.dart';
+import 'package:inky/infrastructure/infrastructure.dart';
+import 'package:inky/providers.dart';
 import 'package:inky/router.dart';
 
 import 'styles/styles.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await HiveDatabase.init();
-  runApp(const MyApp());
+  final boxes = await HiveDatabase.init();
+
+  runApp(
+    ProviderScope(
+      overrides: [
+        inklingLocalServiceProvider.overrideWithValue(
+          InklingLocalServices(boxes['inklingDtos'] as Box<InklingDto>),
+        ),
+        tagsLocalServiceProvider.overrideWithValue(
+          TagsLocalService(boxes['tagDtos'] as Box<TagDto>),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -16,11 +32,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-        child: MaterialApp.router(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
       theme: $styles.colors.toThemeData(),
-    ));
+    );
   }
 }

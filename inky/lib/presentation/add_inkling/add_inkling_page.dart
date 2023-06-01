@@ -39,7 +39,6 @@ class _AddInklingPageState extends ConsumerState<AddInklingPage> {
     ref.listen(inklingFormNotifierProvider, (previous, next) {
       if (previous?.isSaving != next.isSaving) {
         context.go(ScreenPaths.home);
-        ref.read(inklingsNotifierProvider.notifier).fetchInklings();
       }
     });
 

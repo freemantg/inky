@@ -1,15 +1,11 @@
 import 'dart:async';
 
-import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:inky/domain/tags/tag_failure.dart';
-import 'package:inky/infrastructure/inklings/inklings_repository.dart';
 
 import '../../domain/inklings/inkling.dart';
 import '../../domain/inklings/inkling_failure.dart';
-import '../../domain/tags/tag.dart';
-import '../../router.dart';
+import '../../infrastructure/infrastructure.dart';
 
 part 'inklings_notifier.freezed.dart';
 
@@ -21,29 +17,30 @@ class InklingsState with _$InklingsState {
     required List<Inkling> inklings,
   }) = _LoadSuccess;
   const factory InklingsState.loadFailure({
-    required TagFailure failure,
+    required InklingFailure failure,
   }) = _LoadFailure;
 }
 
 class InklingsNotifier extends StateNotifier<InklingsState> {
   final InklingsRepository _repository;
-  StreamSubscription<Either<InklingFailure, List<Inkling>>>?
-      _inklingsStreamSubscription;
 
-  InklingsNotifier(this._repository) : super(const InklingsState.initial());
+  InklingsNotifier(this._repository) : super(const InklingsState.initial()) {
+    watchInklings();
+  }
 
-  Future<void> fetchInklings({
-    List<Tag>? filter,
-    InklingType? inklingType,
-  }) async {
-    final successOrFailure = await _repository.fetchInklings(
-      filter: filter,
-      inklingType: inklingType,
-    );
-
-    state = successOrFailure.fold(
-      (failure) => InklingsState.loadFailure(failure: failure),
-      (inklings) => InklingsState.loadSuccess(inklings: inklings),
+  Future<void> watchInklings() async {
+    final inklingStream = _repository.watchInklings();
+    inklingStream.listen(
+      (successOrFailure) {
+        successOrFailure.fold(
+          (failure) => state = InklingsState.loadFailure(failure: failure),
+          (inklings) => state = InklingsState.loadSuccess(inklings: inklings),
+        );
+      },
+      onError: (failure) => state = InklingsState.loadFailure(
+        failure:
+            InklingFailure.unexpected(message: "Unexpected error: $failure"),
+      ),
     );
   }
 
@@ -51,15 +48,7 @@ class InklingsNotifier extends StateNotifier<InklingsState> {
     final successOrFailure = await _repository.delete(inkling);
     successOrFailure.fold(
       (failure) => state = InklingsState.loadFailure(failure: failure),
-      (success) async => await fetchInklings(),
+      (success) => {},
     );
-  }
-
-
-
-  @override
-  void dispose() {
-    _inklingsStreamSubscription?.cancel();
-    super.dispose();
   }
 }

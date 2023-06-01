@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:inky/providers.dart';
@@ -7,24 +8,11 @@ import '../../router.dart';
 import '../../styles/styles.dart';
 import 'widgets/widgets.dart';
 
-class InklingsPage extends ConsumerWidget {
+class InklingsPage extends HookWidget {
   const InklingsPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    //Watches filter state and updates Inklings state accordingly
-    ref.listen(
-      inklingFilterNotifier,
-      (previous, next) {
-        if (previous?.filter != next.filter ||
-            previous?.typeFilter != next.typeFilter) {
-          ref
-              .read(inklingsNotifierProvider.notifier)
-              .fetchInklings(filter: next.filter, inklingType: next.typeFilter);
-        }
-      },
-    );
-
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(actions: _buildAppBarActions(context)),
       body: _buildScaffoldBody(),

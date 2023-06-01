@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:inky/domain/domain.dart';
 
 import '../tags/tag_failure.dart';
 import 'inkling.dart';
 
 abstract class InklingsInterface {
-  Future<Either<TagFailure, List<Inkling>>> fetchInklings();
-  Stream<Either<TagFailure, List<Inkling>>> watchInklings();
-  Future<Either<TagFailure, Unit>> create(Inkling inkling);
-  Future<Either<TagFailure, Unit>> update(Inkling inkling);
-  Future<Either<TagFailure, Unit>> delete(Inkling inkling);
+  Stream<Either<InklingFailure, List<Inkling>>> watchInklings();
+  Future<Either<InklingFailure, Unit>> create(Inkling inkling);
+  Future<Either<InklingFailure, Unit>> update(Inkling inkling);
+  Future<Either<InklingFailure, Unit>> delete(Inkling inkling);
 }

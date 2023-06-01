@@ -21,7 +21,7 @@ mixin _$InklingsState {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(List<Inkling> inklings) loadSuccess,
-    required TResult Function(TagFailure failure) loadFailure,
+    required TResult Function(InklingFailure failure) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$InklingsState {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(List<Inkling> inklings)? loadSuccess,
-    TResult? Function(TagFailure failure)? loadFailure,
+    TResult? Function(InklingFailure failure)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$InklingsState {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(List<Inkling> inklings)? loadSuccess,
-    TResult Function(TagFailure failure)? loadFailure,
+    TResult Function(InklingFailure failure)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,7 +126,7 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(List<Inkling> inklings) loadSuccess,
-    required TResult Function(TagFailure failure) loadFailure,
+    required TResult Function(InklingFailure failure) loadFailure,
   }) {
     return initial();
   }
@@ -137,7 +137,7 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(List<Inkling> inklings)? loadSuccess,
-    TResult? Function(TagFailure failure)? loadFailure,
+    TResult? Function(InklingFailure failure)? loadFailure,
   }) {
     return initial?.call();
   }
@@ -148,7 +148,7 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(List<Inkling> inklings)? loadSuccess,
-    TResult Function(TagFailure failure)? loadFailure,
+    TResult Function(InklingFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -240,7 +240,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(List<Inkling> inklings) loadSuccess,
-    required TResult Function(TagFailure failure) loadFailure,
+    required TResult Function(InklingFailure failure) loadFailure,
   }) {
     return loadInProgress();
   }
@@ -251,7 +251,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(List<Inkling> inklings)? loadSuccess,
-    TResult? Function(TagFailure failure)? loadFailure,
+    TResult? Function(InklingFailure failure)? loadFailure,
   }) {
     return loadInProgress?.call();
   }
@@ -262,7 +262,7 @@ class _$_LoadInProgress implements _LoadInProgress {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(List<Inkling> inklings)? loadSuccess,
-    TResult Function(TagFailure failure)? loadFailure,
+    TResult Function(InklingFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -387,7 +387,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(List<Inkling> inklings) loadSuccess,
-    required TResult Function(TagFailure failure) loadFailure,
+    required TResult Function(InklingFailure failure) loadFailure,
   }) {
     return loadSuccess(inklings);
   }
@@ -398,7 +398,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(List<Inkling> inklings)? loadSuccess,
-    TResult? Function(TagFailure failure)? loadFailure,
+    TResult? Function(InklingFailure failure)? loadFailure,
   }) {
     return loadSuccess?.call(inklings);
   }
@@ -409,7 +409,7 @@ class _$_LoadSuccess implements _LoadSuccess {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(List<Inkling> inklings)? loadSuccess,
-    TResult Function(TagFailure failure)? loadFailure,
+    TResult Function(InklingFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -472,9 +472,9 @@ abstract class _$$_LoadFailureCopyWith<$Res> {
           _$_LoadFailure value, $Res Function(_$_LoadFailure) then) =
       __$$_LoadFailureCopyWithImpl<$Res>;
   @useResult
-  $Res call({TagFailure failure});
+  $Res call({InklingFailure failure});
 
-  $TagFailureCopyWith<$Res> get failure;
+  $InklingFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
@@ -494,14 +494,14 @@ class __$$_LoadFailureCopyWithImpl<$Res>
       failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
-              as TagFailure,
+              as InklingFailure,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TagFailureCopyWith<$Res> get failure {
-    return $TagFailureCopyWith<$Res>(_value.failure, (value) {
+  $InklingFailureCopyWith<$Res> get failure {
+    return $InklingFailureCopyWith<$Res>(_value.failure, (value) {
       return _then(_value.copyWith(failure: value));
     });
   }
@@ -513,7 +513,7 @@ class _$_LoadFailure implements _LoadFailure {
   const _$_LoadFailure({required this.failure});
 
   @override
-  final TagFailure failure;
+  final InklingFailure failure;
 
   @override
   String toString() {
@@ -543,7 +543,7 @@ class _$_LoadFailure implements _LoadFailure {
     required TResult Function() initial,
     required TResult Function() loadInProgress,
     required TResult Function(List<Inkling> inklings) loadSuccess,
-    required TResult Function(TagFailure failure) loadFailure,
+    required TResult Function(InklingFailure failure) loadFailure,
   }) {
     return loadFailure(failure);
   }
@@ -554,7 +554,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
     TResult? Function(List<Inkling> inklings)? loadSuccess,
-    TResult? Function(TagFailure failure)? loadFailure,
+    TResult? Function(InklingFailure failure)? loadFailure,
   }) {
     return loadFailure?.call(failure);
   }
@@ -565,7 +565,7 @@ class _$_LoadFailure implements _LoadFailure {
     TResult Function()? initial,
     TResult Function()? loadInProgress,
     TResult Function(List<Inkling> inklings)? loadSuccess,
-    TResult Function(TagFailure failure)? loadFailure,
+    TResult Function(InklingFailure failure)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -613,10 +613,10 @@ class _$_LoadFailure implements _LoadFailure {
 }
 
 abstract class _LoadFailure implements InklingsState {
-  const factory _LoadFailure({required final TagFailure failure}) =
+  const factory _LoadFailure({required final InklingFailure failure}) =
       _$_LoadFailure;
 
-  TagFailure get failure;
+  InklingFailure get failure;
   @JsonKey(ignore: true)
   _$$_LoadFailureCopyWith<_$_LoadFailure> get copyWith =>
       throw _privateConstructorUsedError;
