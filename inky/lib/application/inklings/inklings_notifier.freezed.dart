@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'inklings_notifier.dart';
 
@@ -26,10 +26,10 @@ mixin _$InklingsState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(List<Inkling> inklings)? loadSuccess,
-    TResult Function(TagFailure failure)? loadFailure,
+    TResult? Function()? initial,
+    TResult? Function()? loadInProgress,
+    TResult? Function(List<Inkling> inklings)? loadSuccess,
+    TResult? Function(TagFailure failure)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,10 +51,10 @@ mixin _$InklingsState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_LoadSuccess value)? loadSuccess,
+    TResult? Function(_LoadFailure value)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,17 +72,18 @@ mixin _$InklingsState {
 abstract class $InklingsStateCopyWith<$Res> {
   factory $InklingsStateCopyWith(
           InklingsState value, $Res Function(InklingsState) then) =
-      _$InklingsStateCopyWithImpl<$Res>;
+      _$InklingsStateCopyWithImpl<$Res, InklingsState>;
 }
 
 /// @nodoc
-class _$InklingsStateCopyWithImpl<$Res>
+class _$InklingsStateCopyWithImpl<$Res, $Val extends InklingsState>
     implements $InklingsStateCopyWith<$Res> {
   _$InklingsStateCopyWithImpl(this._value, this._then);
 
-  final InklingsState _value;
   // ignore: unused_field
-  final $Res Function(InklingsState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -93,13 +94,11 @@ abstract class _$$_InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$InklingsStateCopyWithImpl<$Res>
+class __$$_InitialCopyWithImpl<$Res>
+    extends _$InklingsStateCopyWithImpl<$Res, _$_Initial>
     implements _$$_InitialCopyWith<$Res> {
   __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, (v) => _then(v as _$_Initial));
-
-  @override
-  _$_Initial get _value => super._value as _$_Initial;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -135,10 +134,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(List<Inkling> inklings)? loadSuccess,
-    TResult Function(TagFailure failure)? loadFailure,
+    TResult? Function()? initial,
+    TResult? Function()? loadInProgress,
+    TResult? Function(List<Inkling> inklings)? loadSuccess,
+    TResult? Function(TagFailure failure)? loadFailure,
   }) {
     return initial?.call();
   }
@@ -172,10 +171,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_LoadSuccess value)? loadSuccess,
+    TResult? Function(_LoadFailure value)? loadFailure,
   }) {
     return initial?.call(this);
   }
@@ -209,14 +208,11 @@ abstract class _$$_LoadInProgressCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadInProgressCopyWithImpl<$Res>
-    extends _$InklingsStateCopyWithImpl<$Res>
+    extends _$InklingsStateCopyWithImpl<$Res, _$_LoadInProgress>
     implements _$$_LoadInProgressCopyWith<$Res> {
   __$$_LoadInProgressCopyWithImpl(
       _$_LoadInProgress _value, $Res Function(_$_LoadInProgress) _then)
-      : super(_value, (v) => _then(v as _$_LoadInProgress));
-
-  @override
-  _$_LoadInProgress get _value => super._value as _$_LoadInProgress;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -252,10 +248,10 @@ class _$_LoadInProgress implements _LoadInProgress {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(List<Inkling> inklings)? loadSuccess,
-    TResult Function(TagFailure failure)? loadFailure,
+    TResult? Function()? initial,
+    TResult? Function()? loadInProgress,
+    TResult? Function(List<Inkling> inklings)? loadSuccess,
+    TResult? Function(TagFailure failure)? loadFailure,
   }) {
     return loadInProgress?.call();
   }
@@ -289,10 +285,10 @@ class _$_LoadInProgress implements _LoadInProgress {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_LoadSuccess value)? loadSuccess,
+    TResult? Function(_LoadFailure value)? loadFailure,
   }) {
     return loadInProgress?.call(this);
   }
@@ -322,26 +318,25 @@ abstract class _$$_LoadSuccessCopyWith<$Res> {
   factory _$$_LoadSuccessCopyWith(
           _$_LoadSuccess value, $Res Function(_$_LoadSuccess) then) =
       __$$_LoadSuccessCopyWithImpl<$Res>;
+  @useResult
   $Res call({List<Inkling> inklings});
 }
 
 /// @nodoc
 class __$$_LoadSuccessCopyWithImpl<$Res>
-    extends _$InklingsStateCopyWithImpl<$Res>
+    extends _$InklingsStateCopyWithImpl<$Res, _$_LoadSuccess>
     implements _$$_LoadSuccessCopyWith<$Res> {
   __$$_LoadSuccessCopyWithImpl(
       _$_LoadSuccess _value, $Res Function(_$_LoadSuccess) _then)
-      : super(_value, (v) => _then(v as _$_LoadSuccess));
+      : super(_value, _then);
 
-  @override
-  _$_LoadSuccess get _value => super._value as _$_LoadSuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? inklings = freezed,
+    Object? inklings = null,
   }) {
     return _then(_$_LoadSuccess(
-      inklings: inklings == freezed
+      inklings: null == inklings
           ? _value._inklings
           : inklings // ignore: cast_nullable_to_non_nullable
               as List<Inkling>,
@@ -358,6 +353,7 @@ class _$_LoadSuccess implements _LoadSuccess {
   final List<Inkling> _inklings;
   @override
   List<Inkling> get inklings {
+    if (_inklings is EqualUnmodifiableListView) return _inklings;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_inklings);
   }
@@ -381,6 +377,7 @@ class _$_LoadSuccess implements _LoadSuccess {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LoadSuccessCopyWith<_$_LoadSuccess> get copyWith =>
       __$$_LoadSuccessCopyWithImpl<_$_LoadSuccess>(this, _$identity);
 
@@ -398,10 +395,10 @@ class _$_LoadSuccess implements _LoadSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(List<Inkling> inklings)? loadSuccess,
-    TResult Function(TagFailure failure)? loadFailure,
+    TResult? Function()? initial,
+    TResult? Function()? loadInProgress,
+    TResult? Function(List<Inkling> inklings)? loadSuccess,
+    TResult? Function(TagFailure failure)? loadFailure,
   }) {
     return loadSuccess?.call(inklings);
   }
@@ -435,10 +432,10 @@ class _$_LoadSuccess implements _LoadSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_LoadSuccess value)? loadSuccess,
+    TResult? Function(_LoadFailure value)? loadFailure,
   }) {
     return loadSuccess?.call(this);
   }
@@ -474,6 +471,7 @@ abstract class _$$_LoadFailureCopyWith<$Res> {
   factory _$$_LoadFailureCopyWith(
           _$_LoadFailure value, $Res Function(_$_LoadFailure) then) =
       __$$_LoadFailureCopyWithImpl<$Res>;
+  @useResult
   $Res call({TagFailure failure});
 
   $TagFailureCopyWith<$Res> get failure;
@@ -481,21 +479,19 @@ abstract class _$$_LoadFailureCopyWith<$Res> {
 
 /// @nodoc
 class __$$_LoadFailureCopyWithImpl<$Res>
-    extends _$InklingsStateCopyWithImpl<$Res>
+    extends _$InklingsStateCopyWithImpl<$Res, _$_LoadFailure>
     implements _$$_LoadFailureCopyWith<$Res> {
   __$$_LoadFailureCopyWithImpl(
       _$_LoadFailure _value, $Res Function(_$_LoadFailure) _then)
-      : super(_value, (v) => _then(v as _$_LoadFailure));
+      : super(_value, _then);
 
-  @override
-  _$_LoadFailure get _value => super._value as _$_LoadFailure;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? failure = freezed,
+    Object? failure = null,
   }) {
     return _then(_$_LoadFailure(
-      failure: failure == freezed
+      failure: null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as TagFailure,
@@ -503,6 +499,7 @@ class __$$_LoadFailureCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TagFailureCopyWith<$Res> get failure {
     return $TagFailureCopyWith<$Res>(_value.failure, (value) {
       return _then(_value.copyWith(failure: value));
@@ -528,15 +525,15 @@ class _$_LoadFailure implements _LoadFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LoadFailure &&
-            const DeepCollectionEquality().equals(other.failure, failure));
+            (identical(other.failure, failure) || other.failure == failure));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(failure));
+  int get hashCode => Object.hash(runtimeType, failure);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LoadFailureCopyWith<_$_LoadFailure> get copyWith =>
       __$$_LoadFailureCopyWithImpl<_$_LoadFailure>(this, _$identity);
 
@@ -554,10 +551,10 @@ class _$_LoadFailure implements _LoadFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loadInProgress,
-    TResult Function(List<Inkling> inklings)? loadSuccess,
-    TResult Function(TagFailure failure)? loadFailure,
+    TResult? Function()? initial,
+    TResult? Function()? loadInProgress,
+    TResult? Function(List<Inkling> inklings)? loadSuccess,
+    TResult? Function(TagFailure failure)? loadFailure,
   }) {
     return loadFailure?.call(failure);
   }
@@ -591,10 +588,10 @@ class _$_LoadFailure implements _LoadFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_LoadFailure value)? loadFailure,
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_LoadSuccess value)? loadSuccess,
+    TResult? Function(_LoadFailure value)? loadFailure,
   }) {
     return loadFailure?.call(this);
   }

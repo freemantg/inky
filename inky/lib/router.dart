@@ -39,7 +39,7 @@ final appRouter = GoRouter(
           path: 'addInkling/:type',
           builder: (_) {
             return AddInklingPage(
-              inklingType: _tryParseInklingType(_.params['type']!)!,
+              inklingType: _tryParseInklingType(_.pathParameters['type']!)!,
               inkling: _.extra as Inkling?,
             );
           },

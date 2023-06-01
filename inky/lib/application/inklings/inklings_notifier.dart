@@ -1,9 +1,13 @@
+import 'dart:async';
+
+import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:inky/domain/tags/tag_failure.dart';
 import 'package:inky/infrastructure/inklings/inklings_repository.dart';
 
 import '../../domain/inklings/inkling.dart';
+import '../../domain/inklings/inkling_failure.dart';
 import '../../domain/tags/tag.dart';
 import '../../router.dart';
 
@@ -23,13 +27,10 @@ class InklingsState with _$InklingsState {
 
 class InklingsNotifier extends StateNotifier<InklingsState> {
   final InklingsRepository _repository;
+  StreamSubscription<Either<InklingFailure, List<Inkling>>>?
+      _inklingsStreamSubscription;
 
   InklingsNotifier(this._repository) : super(const InklingsState.initial());
-
-  //OPENS THE INKLING HIVE BOX.
-  Future<void> registerService() async {
-    await _repository.registerService().then((_) => fetchInklings());
-  }
 
   Future<void> fetchInklings({
     List<Tag>? filter,
@@ -52,5 +53,13 @@ class InklingsNotifier extends StateNotifier<InklingsState> {
       (failure) => state = InklingsState.loadFailure(failure: failure),
       (success) async => await fetchInklings(),
     );
+  }
+
+
+
+  @override
+  void dispose() {
+    _inklingsStreamSubscription?.cancel();
+    super.dispose();
   }
 }

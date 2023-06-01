@@ -5,8 +5,8 @@ import 'package:inky/providers.dart';
 
 import '../../styles/styles.dart';
 
-class StyledAppbarAction extends StatelessWidget {
-  const StyledAppbarAction({
+class StyledAppBarAction extends StatelessWidget {
+  const StyledAppBarAction({
     super.key,
     required this.isManagingInklingTags,
   });

@@ -68,10 +68,11 @@ Widget _buildScaffoldBody() {
             children: [
               const FilterTagRow(),
               ref.watch(inklingsNotifierProvider).maybeMap(
+                    initial: (value) => const Text('Initial'),
                     loadInProgress: (_) => const CircularProgressIndicator(),
                     loadSuccess: (state) =>
                         InklingGridBuilder(inklings: state.inklings),
-                    orElse: () => const SizedBox.shrink(),
+                    orElse: () => const Text('Load Failure'),
                   ),
             ],
           );

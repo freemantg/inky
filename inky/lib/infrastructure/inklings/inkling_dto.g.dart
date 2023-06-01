@@ -6,17 +6,17 @@ part of 'inkling_dto.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class InklingDtoAdapter extends TypeAdapter<InklingDto> {
+class InklingDtoAdapter extends TypeAdapter<_$_InklingDto> {
   @override
   final int typeId = 1;
 
   @override
-  InklingDto read(BinaryReader reader) {
+  _$_InklingDto read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return InklingDto(
+    return _$_InklingDto(
       note: fields[0] as String,
       link: fields[1] as String,
       imagePath: fields[2] as String,
@@ -26,7 +26,7 @@ class InklingDtoAdapter extends TypeAdapter<InklingDto> {
   }
 
   @override
-  void write(BinaryWriter writer, InklingDto obj) {
+  void write(BinaryWriter writer, _$_InklingDto obj) {
     writer
       ..writeByte(5)
       ..writeByte(0)
@@ -35,10 +35,10 @@ class InklingDtoAdapter extends TypeAdapter<InklingDto> {
       ..write(obj.link)
       ..writeByte(2)
       ..write(obj.imagePath)
-      ..writeByte(3)
-      ..write(obj.tags)
       ..writeByte(4)
-      ..write(obj.memo);
+      ..write(obj.memo)
+      ..writeByte(3)
+      ..write(obj.tags);
   }
 
   @override

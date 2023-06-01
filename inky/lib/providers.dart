@@ -11,13 +11,20 @@ final httpProvider = Provider((ref) => Client());
 final imagePickerProvider = Provider((ref) => ImagePicker());
 
 //Tag providers
-final tagsLocalServiceProvider = Provider((ref) => TagsLocalService());
-final tagRepositoryProvider =
-    Provider((ref) => TagRepository(ref.watch(tagsLocalServiceProvider)));
+final tagsLocalServiceProvider = Provider.autoDispose<TagsLocalService>(
+  (ref) {
+    final service = TagsLocalService();
+    ref.onDispose(() async {
+      await service.dispose();
+    });
+    return service;
+  },
+);
+final tagRepositoryProvider = Provider.autoDispose(
+    (ref) => TagRepository(ref.watch(tagsLocalServiceProvider)));
 final tagsNotifierProvider =
-    StateNotifierProvider.autoDispose<TagsNotifier, TagsState>((ref) =>
-        TagsNotifier(tagRepository: ref.watch(tagRepositoryProvider))
-          ..registerService());
+    StateNotifierProvider.autoDispose<TagsNotifier, TagsState>(
+        (ref) => TagsNotifier(tagRepository: ref.watch(tagRepositoryProvider)));
 
 //Inkling providers
 final inklingLocalServiceProvider = Provider((ref) => InklingLocalServices());
@@ -34,9 +41,8 @@ final inklingRepositoryProvider = Provider(
 
 //Inkling state providers
 final inklingsNotifierProvider =
-    StateNotifierProvider.autoDispose<InklingsNotifier, InklingsState>((ref) =>
-        InklingsNotifier(ref.watch(inklingRepositoryProvider))
-          ..registerService());
+    StateNotifierProvider.autoDispose<InklingsNotifier, InklingsState>(
+        (ref) => InklingsNotifier(ref.watch(inklingRepositoryProvider)));
 
 //State for holding MetaData during link preview during creation of link inkling
 final inklingLinkNotifier = StateNotifierProvider.autoDispose<

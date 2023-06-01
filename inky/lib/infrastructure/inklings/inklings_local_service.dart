@@ -5,21 +5,24 @@ import '../tags/tag_dto.dart';
 import 'inkling_dto.dart';
 
 class InklingLocalServices {
-  late Box<InklingDto> _inklingDtos;
+  late final Box<InklingDto> _inklingDtoBox;
 
-  Future<void> init() async => _inklingDtos = await Hive.openBox('inklingBox');
+  InklingLocalServices() {
+    _initializeBox();
+  }
 
-  List<InklingDto> fetchInklings({
-    List<TagDto>? filter,
-    InklingType? inklingType,
-  }) {
-    final inklings = _inklingDtos.values.toList();
-    List<InklingDto> filteredList;
+  Future<void> _initializeBox() async {
+    _inklingDtoBox = await Hive.openBox<InklingDto>('inklings');
+  }
 
-    //Filters by Inkling Type
-    if (inklingType != null) {
-      filteredList = inklings.where(
-        (inklingDto) {
+  Stream<List<InklingDto>> streamInklings(
+      {List<TagDto>? filter, InklingType? inklingType}) {
+    return _inklingDtoBox.watch().map((event) {
+      var inklings = _inklingDtoBox.values.toList();
+
+      // Filter by Inkling Type
+      if (inklingType != null) {
+        inklings = inklings.where((inklingDto) {
           switch (inklingType) {
             case InklingType.note:
               return inklingDto.note.isNotEmpty;
@@ -27,41 +30,64 @@ class InklingLocalServices {
               return inklingDto.imagePath.isNotEmpty;
             case InklingType.link:
               return inklingDto.link.isNotEmpty;
+            default:
+              return true;
           }
-        },
-      ).toList();
-    } else {
-      filteredList = inklings;
+        }).toList();
+      }
+
+      // Filter by tags
+      if (filter != null && filter.isNotEmpty) {
+        inklings = inklings
+            .where((dto) => dto.tags.any((tag) => filter.contains(tag)))
+            .toList();
+      }
+      return inklings;
+    });
+  }
+
+  Future<List<InklingDto>> fetchInklings({
+    List<TagDto>? filter,
+    InklingType? inklingType,
+  }) async {
+    var inklings = _inklingDtoBox.values.toList();
+
+    if (inklingType != null) {
+      inklings = inklings.where((inklingDto) {
+        switch (inklingType) {
+          case InklingType.note:
+            return inklingDto.note.isNotEmpty;
+          case InklingType.image:
+            return inklingDto.imagePath.isNotEmpty;
+          case InklingType.link:
+            return inklingDto.link.isNotEmpty;
+        }
+      }).toList();
     }
 
-    //Filters by tags if Filters is NOT null or empty
     if (filter?.isNotEmpty ?? false) {
-      filteredList = filteredList
+      inklings = inklings
           .where((inklingDto) =>
               inklingDto.tags.any((tagDto) => filter!.contains(tagDto)))
           .toList();
     }
-    return filteredList;
+
+    return inklings;
   }
 
   Future<void> insert(InklingDto dto) async {
-    await _inklingDtos.add(dto);
+    await _inklingDtoBox.add(dto);
   }
 
   Future<void> delete(InklingDto dto) async {
-    final index = dto.hiveId;
-    final dtoToDelete = _inklingDtos.get(index);
-    if (dtoToDelete != null) {
-      await dtoToDelete.delete();
+    if (dto.hiveId != null) {
+      await _inklingDtoBox.delete(dto.hiveId);
     }
-    return;
   }
 
   Future<void> update(InklingDto dto) async {
-    final index = dto.hiveId;
-    if (index != null) {
-      await _inklingDtos.put(index, dto);
+    if (dto.hiveId != null) {
+      await _inklingDtoBox.put(dto.hiveId, dto);
     }
-    return;
   }
 }

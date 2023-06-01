@@ -17,15 +17,18 @@ class TagDtoAdapter extends TypeAdapter<TagDto> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return TagDto(
-      name: fields[0] as String,
+      id: fields[0] as String,
+      name: fields[1] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, TagDto obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(2)
       ..writeByte(0)
+      ..write(obj.id)
+      ..writeByte(1)
       ..write(obj.name);
   }
 
@@ -45,9 +48,11 @@ class TagDtoAdapter extends TypeAdapter<TagDto> {
 // **************************************************************************
 
 _$_TagDto _$$_TagDtoFromJson(Map<String, dynamic> json) => _$_TagDto(
+      id: json['id'] as String,
       name: json['name'] as String,
     );
 
 Map<String, dynamic> _$$_TagDtoToJson(_$_TagDto instance) => <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
     };

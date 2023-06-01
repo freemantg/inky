@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'inkling.dart';
 
@@ -31,7 +31,8 @@ mixin _$Inkling {
 /// @nodoc
 abstract class $InklingCopyWith<$Res> {
   factory $InklingCopyWith(Inkling value, $Res Function(Inkling) then) =
-      _$InklingCopyWithImpl<$Res>;
+      _$InklingCopyWithImpl<$Res, Inkling>;
+  @useResult
   $Res call(
       {int? hiveId,
       String note,
@@ -43,53 +44,56 @@ abstract class $InklingCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InklingCopyWithImpl<$Res> implements $InklingCopyWith<$Res> {
+class _$InklingCopyWithImpl<$Res, $Val extends Inkling>
+    implements $InklingCopyWith<$Res> {
   _$InklingCopyWithImpl(this._value, this._then);
 
-  final Inkling _value;
   // ignore: unused_field
-  final $Res Function(Inkling) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? hiveId = freezed,
-    Object? note = freezed,
-    Object? link = freezed,
-    Object? imagePath = freezed,
-    Object? memo = freezed,
-    Object? tags = freezed,
+    Object? note = null,
+    Object? link = null,
+    Object? imagePath = null,
+    Object? memo = null,
+    Object? tags = null,
     Object? metaData = freezed,
   }) {
     return _then(_value.copyWith(
-      hiveId: hiveId == freezed
+      hiveId: freezed == hiveId
           ? _value.hiveId
           : hiveId // ignore: cast_nullable_to_non_nullable
               as int?,
-      note: note == freezed
+      note: null == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
-      link: link == freezed
+      link: null == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
-      imagePath: imagePath == freezed
+      imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
-      memo: memo == freezed
+      memo: null == memo
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
               as String,
-      tags: tags == freezed
+      tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>,
-      metaData: metaData == freezed
+      metaData: freezed == metaData
           ? _value.metaData
           : metaData // ignore: cast_nullable_to_non_nullable
               as MetaData?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -99,6 +103,7 @@ abstract class _$$_InklingCopyWith<$Res> implements $InklingCopyWith<$Res> {
           _$_Inkling value, $Res Function(_$_Inkling) then) =
       __$$_InklingCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int? hiveId,
       String note,
@@ -110,50 +115,49 @@ abstract class _$$_InklingCopyWith<$Res> implements $InklingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_InklingCopyWithImpl<$Res> extends _$InklingCopyWithImpl<$Res>
+class __$$_InklingCopyWithImpl<$Res>
+    extends _$InklingCopyWithImpl<$Res, _$_Inkling>
     implements _$$_InklingCopyWith<$Res> {
   __$$_InklingCopyWithImpl(_$_Inkling _value, $Res Function(_$_Inkling) _then)
-      : super(_value, (v) => _then(v as _$_Inkling));
+      : super(_value, _then);
 
-  @override
-  _$_Inkling get _value => super._value as _$_Inkling;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? hiveId = freezed,
-    Object? note = freezed,
-    Object? link = freezed,
-    Object? imagePath = freezed,
-    Object? memo = freezed,
-    Object? tags = freezed,
+    Object? note = null,
+    Object? link = null,
+    Object? imagePath = null,
+    Object? memo = null,
+    Object? tags = null,
     Object? metaData = freezed,
   }) {
     return _then(_$_Inkling(
-      hiveId: hiveId == freezed
+      hiveId: freezed == hiveId
           ? _value.hiveId
           : hiveId // ignore: cast_nullable_to_non_nullable
               as int?,
-      note: note == freezed
+      note: null == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
-      link: link == freezed
+      link: null == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
-      imagePath: imagePath == freezed
+      imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
-      memo: memo == freezed
+      memo: null == memo
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
               as String,
-      tags: tags == freezed
+      tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>,
-      metaData: metaData == freezed
+      metaData: freezed == metaData
           ? _value.metaData
           : metaData // ignore: cast_nullable_to_non_nullable
               as MetaData?,
@@ -187,6 +191,7 @@ class _$_Inkling implements _Inkling {
   final List<Tag> _tags;
   @override
   List<Tag> get tags {
+    if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
@@ -204,28 +209,24 @@ class _$_Inkling implements _Inkling {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Inkling &&
-            const DeepCollectionEquality().equals(other.hiveId, hiveId) &&
-            const DeepCollectionEquality().equals(other.note, note) &&
-            const DeepCollectionEquality().equals(other.link, link) &&
-            const DeepCollectionEquality().equals(other.imagePath, imagePath) &&
-            const DeepCollectionEquality().equals(other.memo, memo) &&
+            (identical(other.hiveId, hiveId) || other.hiveId == hiveId) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.link, link) || other.link == link) &&
+            (identical(other.imagePath, imagePath) ||
+                other.imagePath == imagePath) &&
+            (identical(other.memo, memo) || other.memo == memo) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
-            const DeepCollectionEquality().equals(other.metaData, metaData));
+            (identical(other.metaData, metaData) ||
+                other.metaData == metaData));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(hiveId),
-      const DeepCollectionEquality().hash(note),
-      const DeepCollectionEquality().hash(link),
-      const DeepCollectionEquality().hash(imagePath),
-      const DeepCollectionEquality().hash(memo),
-      const DeepCollectionEquality().hash(_tags),
-      const DeepCollectionEquality().hash(metaData));
+  int get hashCode => Object.hash(runtimeType, hiveId, note, link, imagePath,
+      memo, const DeepCollectionEquality().hash(_tags), metaData);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_InklingCopyWith<_$_Inkling> get copyWith =>
       __$$_InklingCopyWithImpl<_$_Inkling>(this, _$identity);
 }

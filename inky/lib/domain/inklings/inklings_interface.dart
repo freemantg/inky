@@ -5,6 +5,7 @@ import 'inkling.dart';
 
 abstract class InklingsInterface {
   Future<Either<TagFailure, List<Inkling>>> fetchInklings();
+  Stream<Either<TagFailure, List<Inkling>>> watchInklings();
   Future<Either<TagFailure, Unit>> create(Inkling inkling);
   Future<Either<TagFailure, Unit>> update(Inkling inkling);
   Future<Either<TagFailure, Unit>> delete(Inkling inkling);

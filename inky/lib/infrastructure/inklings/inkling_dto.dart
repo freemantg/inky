@@ -8,12 +8,10 @@ part 'inkling_dto.freezed.dart';
 part 'inkling_dto.g.dart';
 
 @freezed
-@HiveType(typeId: 1)
-class InklingDto extends HiveObject with _$InklingDto {
-  InklingDto._();
-
+class InklingDto with _$InklingDto {
+  @HiveType(typeId: 1)
   @JsonSerializable(explicitToJson: true)
-  factory InklingDto({
+  const factory InklingDto({
     int? hiveId,
     @HiveField(0) required String note,
     @HiveField(1) required String link,
@@ -34,7 +32,7 @@ class InklingDto extends HiveObject with _$InklingDto {
 
 extension InklingDtoX on InklingDto {
   Inkling toDomain() => Inkling(
-        hiveId: key,
+        hiveId: hiveId,
         note: note,
         link: link,
         imagePath: imagePath,

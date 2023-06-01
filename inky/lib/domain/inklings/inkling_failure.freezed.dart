@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'inkling_failure.dart';
 
@@ -26,10 +26,10 @@ mixin _$InklingFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? message)? unexpected,
-    TResult Function()? unableToUpdate,
-    TResult Function()? unableToCreate,
-    TResult Function()? unableToDelete,
+    TResult? Function(String? message)? unexpected,
+    TResult? Function()? unableToUpdate,
+    TResult? Function()? unableToCreate,
+    TResult? Function()? unableToDelete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -51,10 +51,10 @@ mixin _$InklingFailure {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Unexpected value)? unexpected,
-    TResult Function(UnableToUpdate value)? unableToUpdate,
-    TResult Function(UnableToCreate value)? unableToCreate,
-    TResult Function(UnableToDelete value)? unableToDelete,
+    TResult? Function(Unexpected value)? unexpected,
+    TResult? Function(UnableToUpdate value)? unableToUpdate,
+    TResult? Function(UnableToCreate value)? unableToCreate,
+    TResult? Function(UnableToDelete value)? unableToDelete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,17 +72,18 @@ mixin _$InklingFailure {
 abstract class $InklingFailureCopyWith<$Res> {
   factory $InklingFailureCopyWith(
           InklingFailure value, $Res Function(InklingFailure) then) =
-      _$InklingFailureCopyWithImpl<$Res>;
+      _$InklingFailureCopyWithImpl<$Res, InklingFailure>;
 }
 
 /// @nodoc
-class _$InklingFailureCopyWithImpl<$Res>
+class _$InklingFailureCopyWithImpl<$Res, $Val extends InklingFailure>
     implements $InklingFailureCopyWith<$Res> {
   _$InklingFailureCopyWithImpl(this._value, this._then);
 
-  final InklingFailure _value;
   // ignore: unused_field
-  final $Res Function(InklingFailure) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -90,26 +91,25 @@ abstract class _$$UnexpectedCopyWith<$Res> {
   factory _$$UnexpectedCopyWith(
           _$Unexpected value, $Res Function(_$Unexpected) then) =
       __$$UnexpectedCopyWithImpl<$Res>;
+  @useResult
   $Res call({String? message});
 }
 
 /// @nodoc
 class __$$UnexpectedCopyWithImpl<$Res>
-    extends _$InklingFailureCopyWithImpl<$Res>
+    extends _$InklingFailureCopyWithImpl<$Res, _$Unexpected>
     implements _$$UnexpectedCopyWith<$Res> {
   __$$UnexpectedCopyWithImpl(
       _$Unexpected _value, $Res Function(_$Unexpected) _then)
-      : super(_value, (v) => _then(v as _$Unexpected));
+      : super(_value, _then);
 
-  @override
-  _$Unexpected get _value => super._value as _$Unexpected;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? message = freezed,
   }) {
     return _then(_$Unexpected(
-      message: message == freezed
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -135,15 +135,15 @@ class _$Unexpected implements Unexpected {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$Unexpected &&
-            const DeepCollectionEquality().equals(other.message, message));
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$UnexpectedCopyWith<_$Unexpected> get copyWith =>
       __$$UnexpectedCopyWithImpl<_$Unexpected>(this, _$identity);
 
@@ -161,10 +161,10 @@ class _$Unexpected implements Unexpected {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? message)? unexpected,
-    TResult Function()? unableToUpdate,
-    TResult Function()? unableToCreate,
-    TResult Function()? unableToDelete,
+    TResult? Function(String? message)? unexpected,
+    TResult? Function()? unableToUpdate,
+    TResult? Function()? unableToCreate,
+    TResult? Function()? unableToDelete,
   }) {
     return unexpected?.call(message);
   }
@@ -198,10 +198,10 @@ class _$Unexpected implements Unexpected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Unexpected value)? unexpected,
-    TResult Function(UnableToUpdate value)? unableToUpdate,
-    TResult Function(UnableToCreate value)? unableToCreate,
-    TResult Function(UnableToDelete value)? unableToDelete,
+    TResult? Function(Unexpected value)? unexpected,
+    TResult? Function(UnableToUpdate value)? unableToUpdate,
+    TResult? Function(UnableToCreate value)? unableToCreate,
+    TResult? Function(UnableToDelete value)? unableToDelete,
   }) {
     return unexpected?.call(this);
   }
@@ -240,14 +240,11 @@ abstract class _$$UnableToUpdateCopyWith<$Res> {
 
 /// @nodoc
 class __$$UnableToUpdateCopyWithImpl<$Res>
-    extends _$InklingFailureCopyWithImpl<$Res>
+    extends _$InklingFailureCopyWithImpl<$Res, _$UnableToUpdate>
     implements _$$UnableToUpdateCopyWith<$Res> {
   __$$UnableToUpdateCopyWithImpl(
       _$UnableToUpdate _value, $Res Function(_$UnableToUpdate) _then)
-      : super(_value, (v) => _then(v as _$UnableToUpdate));
-
-  @override
-  _$UnableToUpdate get _value => super._value as _$UnableToUpdate;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -283,10 +280,10 @@ class _$UnableToUpdate implements UnableToUpdate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? message)? unexpected,
-    TResult Function()? unableToUpdate,
-    TResult Function()? unableToCreate,
-    TResult Function()? unableToDelete,
+    TResult? Function(String? message)? unexpected,
+    TResult? Function()? unableToUpdate,
+    TResult? Function()? unableToCreate,
+    TResult? Function()? unableToDelete,
   }) {
     return unableToUpdate?.call();
   }
@@ -320,10 +317,10 @@ class _$UnableToUpdate implements UnableToUpdate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Unexpected value)? unexpected,
-    TResult Function(UnableToUpdate value)? unableToUpdate,
-    TResult Function(UnableToCreate value)? unableToCreate,
-    TResult Function(UnableToDelete value)? unableToDelete,
+    TResult? Function(Unexpected value)? unexpected,
+    TResult? Function(UnableToUpdate value)? unableToUpdate,
+    TResult? Function(UnableToCreate value)? unableToCreate,
+    TResult? Function(UnableToDelete value)? unableToDelete,
   }) {
     return unableToUpdate?.call(this);
   }
@@ -357,14 +354,11 @@ abstract class _$$UnableToCreateCopyWith<$Res> {
 
 /// @nodoc
 class __$$UnableToCreateCopyWithImpl<$Res>
-    extends _$InklingFailureCopyWithImpl<$Res>
+    extends _$InklingFailureCopyWithImpl<$Res, _$UnableToCreate>
     implements _$$UnableToCreateCopyWith<$Res> {
   __$$UnableToCreateCopyWithImpl(
       _$UnableToCreate _value, $Res Function(_$UnableToCreate) _then)
-      : super(_value, (v) => _then(v as _$UnableToCreate));
-
-  @override
-  _$UnableToCreate get _value => super._value as _$UnableToCreate;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -400,10 +394,10 @@ class _$UnableToCreate implements UnableToCreate {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? message)? unexpected,
-    TResult Function()? unableToUpdate,
-    TResult Function()? unableToCreate,
-    TResult Function()? unableToDelete,
+    TResult? Function(String? message)? unexpected,
+    TResult? Function()? unableToUpdate,
+    TResult? Function()? unableToCreate,
+    TResult? Function()? unableToDelete,
   }) {
     return unableToCreate?.call();
   }
@@ -437,10 +431,10 @@ class _$UnableToCreate implements UnableToCreate {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Unexpected value)? unexpected,
-    TResult Function(UnableToUpdate value)? unableToUpdate,
-    TResult Function(UnableToCreate value)? unableToCreate,
-    TResult Function(UnableToDelete value)? unableToDelete,
+    TResult? Function(Unexpected value)? unexpected,
+    TResult? Function(UnableToUpdate value)? unableToUpdate,
+    TResult? Function(UnableToCreate value)? unableToCreate,
+    TResult? Function(UnableToDelete value)? unableToDelete,
   }) {
     return unableToCreate?.call(this);
   }
@@ -474,14 +468,11 @@ abstract class _$$UnableToDeleteCopyWith<$Res> {
 
 /// @nodoc
 class __$$UnableToDeleteCopyWithImpl<$Res>
-    extends _$InklingFailureCopyWithImpl<$Res>
+    extends _$InklingFailureCopyWithImpl<$Res, _$UnableToDelete>
     implements _$$UnableToDeleteCopyWith<$Res> {
   __$$UnableToDeleteCopyWithImpl(
       _$UnableToDelete _value, $Res Function(_$UnableToDelete) _then)
-      : super(_value, (v) => _then(v as _$UnableToDelete));
-
-  @override
-  _$UnableToDelete get _value => super._value as _$UnableToDelete;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -517,10 +508,10 @@ class _$UnableToDelete implements UnableToDelete {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? message)? unexpected,
-    TResult Function()? unableToUpdate,
-    TResult Function()? unableToCreate,
-    TResult Function()? unableToDelete,
+    TResult? Function(String? message)? unexpected,
+    TResult? Function()? unableToUpdate,
+    TResult? Function()? unableToCreate,
+    TResult? Function()? unableToDelete,
   }) {
     return unableToDelete?.call();
   }
@@ -554,10 +545,10 @@ class _$UnableToDelete implements UnableToDelete {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Unexpected value)? unexpected,
-    TResult Function(UnableToUpdate value)? unableToUpdate,
-    TResult Function(UnableToCreate value)? unableToCreate,
-    TResult Function(UnableToDelete value)? unableToDelete,
+    TResult? Function(Unexpected value)? unexpected,
+    TResult? Function(UnableToUpdate value)? unableToUpdate,
+    TResult? Function(UnableToCreate value)? unableToCreate,
+    TResult? Function(UnableToDelete value)? unableToDelete,
   }) {
     return unableToDelete?.call(this);
   }

@@ -46,7 +46,7 @@ class InklingsRepository implements InklingsInterface {
     InklingType? inklingType,
   }) async {
     try {
-      final dtos = _localServices.fetchInklings(
+      final dtos = await _localServices.fetchInklings(
         filter: filter?.map((tag) => TagDto.fromDomain(tag)).toList(),
         inklingType: inklingType,
       );
@@ -68,6 +68,29 @@ class InklingsRepository implements InklingsInterface {
     }
   }
 
+  @override
+  Stream<Either<TagFailure, List<Inkling>>> watchInklings({
+    List<Tag>? filter,
+    InklingType? inklingType,
+  }) {
+    return _localServices
+        .streamInklings(
+      filter: filter?.map((tag) => TagDto.fromDomain(tag)).toList(),
+      inklingType: inklingType,
+    )
+        .asyncExpand((inklingDtos) async* {
+      // Convert the dto list to domain list
+      final inklings = inklingDtos.map((e) => e.toDomain()).toList();
+      try {
+        // Insert metadata and yield the result
+        final inklingsWithMetaData = await _insertMetaData(inklings);
+        yield right(inklingsWithMetaData);
+      } catch (e) {
+        yield left(TagFailure.unexpected(message: e.toString()));
+      }
+    });
+  }
+
   Future<List<Inkling>> _insertMetaData(List<Inkling> inklings) async {
     final List<Inkling> inklingsWithMetaData = [];
 
@@ -86,10 +109,5 @@ class InklingsRepository implements InklingsInterface {
       }
     }
     return inklingsWithMetaData;
-  }
-
-  Future<void> registerService() async {
-    await _localServices.init();
-    fetchInklings();
   }
 }

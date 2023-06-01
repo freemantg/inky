@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'inkling_filter_notifier.dart';
 
@@ -28,34 +28,37 @@ mixin _$InklingFilterState {
 abstract class $InklingFilterStateCopyWith<$Res> {
   factory $InklingFilterStateCopyWith(
           InklingFilterState value, $Res Function(InklingFilterState) then) =
-      _$InklingFilterStateCopyWithImpl<$Res>;
+      _$InklingFilterStateCopyWithImpl<$Res, InklingFilterState>;
+  @useResult
   $Res call({List<Tag> filter, InklingType? typeFilter});
 }
 
 /// @nodoc
-class _$InklingFilterStateCopyWithImpl<$Res>
+class _$InklingFilterStateCopyWithImpl<$Res, $Val extends InklingFilterState>
     implements $InklingFilterStateCopyWith<$Res> {
   _$InklingFilterStateCopyWithImpl(this._value, this._then);
 
-  final InklingFilterState _value;
   // ignore: unused_field
-  final $Res Function(InklingFilterState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? filter = freezed,
+    Object? filter = null,
     Object? typeFilter = freezed,
   }) {
     return _then(_value.copyWith(
-      filter: filter == freezed
+      filter: null == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
               as List<Tag>,
-      typeFilter: typeFilter == freezed
+      typeFilter: freezed == typeFilter
           ? _value.typeFilter
           : typeFilter // ignore: cast_nullable_to_non_nullable
               as InklingType?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,31 +69,30 @@ abstract class _$$_InklingFilterStateCopyWith<$Res>
           $Res Function(_$_InklingFilterState) then) =
       __$$_InklingFilterStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<Tag> filter, InklingType? typeFilter});
 }
 
 /// @nodoc
 class __$$_InklingFilterStateCopyWithImpl<$Res>
-    extends _$InklingFilterStateCopyWithImpl<$Res>
+    extends _$InklingFilterStateCopyWithImpl<$Res, _$_InklingFilterState>
     implements _$$_InklingFilterStateCopyWith<$Res> {
   __$$_InklingFilterStateCopyWithImpl(
       _$_InklingFilterState _value, $Res Function(_$_InklingFilterState) _then)
-      : super(_value, (v) => _then(v as _$_InklingFilterState));
+      : super(_value, _then);
 
-  @override
-  _$_InklingFilterState get _value => super._value as _$_InklingFilterState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? filter = freezed,
+    Object? filter = null,
     Object? typeFilter = freezed,
   }) {
     return _then(_$_InklingFilterState(
-      filter: filter == freezed
+      filter: null == filter
           ? _value._filter
           : filter // ignore: cast_nullable_to_non_nullable
               as List<Tag>,
-      typeFilter: typeFilter == freezed
+      typeFilter: freezed == typeFilter
           ? _value.typeFilter
           : typeFilter // ignore: cast_nullable_to_non_nullable
               as InklingType?,
@@ -108,6 +110,7 @@ class _$_InklingFilterState implements _InklingFilterState {
   final List<Tag> _filter;
   @override
   List<Tag> get filter {
+    if (_filter is EqualUnmodifiableListView) return _filter;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_filter);
   }
@@ -126,18 +129,17 @@ class _$_InklingFilterState implements _InklingFilterState {
         (other.runtimeType == runtimeType &&
             other is _$_InklingFilterState &&
             const DeepCollectionEquality().equals(other._filter, _filter) &&
-            const DeepCollectionEquality()
-                .equals(other.typeFilter, typeFilter));
+            (identical(other.typeFilter, typeFilter) ||
+                other.typeFilter == typeFilter));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_filter),
-      const DeepCollectionEquality().hash(typeFilter));
+      runtimeType, const DeepCollectionEquality().hash(_filter), typeFilter);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_InklingFilterStateCopyWith<_$_InklingFilterState> get copyWith =>
       __$$_InklingFilterStateCopyWithImpl<_$_InklingFilterState>(
           this, _$identity);

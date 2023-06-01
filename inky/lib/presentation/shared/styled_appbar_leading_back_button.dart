@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class StyledAppbarLeadingBackButton extends StatelessWidget {
-  const StyledAppbarLeadingBackButton({super.key});
+class StyledAppBarLeadingBackButton extends StatelessWidget {
+  const StyledAppBarLeadingBackButton({super.key});
 
   @override
   Widget build(BuildContext context) {

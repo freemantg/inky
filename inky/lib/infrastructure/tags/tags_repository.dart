@@ -22,12 +22,10 @@ class TagRepository implements TagsInterface {
     }
   }
 
-  Future<void> registerService() async => await _localService.init();
-
   @override
   Future<Either<TagFailure, Unit>> delete(Tag tag) async {
     try {
-      _localService.delete(TagDto.fromDomain(tag));
+      await _localService.delete(TagDto.fromDomain(tag));
       return right(unit);
     } catch (e) {
       return left(const TagFailure.unableToDelete());
@@ -35,14 +33,15 @@ class TagRepository implements TagsInterface {
   }
 
   @override
-  Either<TagFailure, List<Tag>> fetchTags({List<Tag>? filter}) {
-    try {
-      final query = filter?.map((tag) => TagDto.fromDomain(tag)).toList();
-      final tagDtos = _localService.fetchTags(filter: query);
-      final tags = tagDtos.map((tagDto) => tagDto.toDomain()).toList();
-      return right(tags);
-    } catch (e) {
-      return const Left(TagFailure.unexpected());
-    }
+  Stream<Either<TagFailure, List<Tag>>> streamTags(List<Tag> filter) async* {
+    final dtoFilter = filter.map((tag) => TagDto.fromDomain(tag)).toList();
+    final stream = await _localService.streamTags(filter: dtoFilter);
+    stream.map((tagDtos) {
+      try {
+        return right(tagDtos.map((e) => e.toDomain()).toList());
+      } catch (e) {
+        return left(const TagFailure.unexpected());
+      }
+    });
   }
 }

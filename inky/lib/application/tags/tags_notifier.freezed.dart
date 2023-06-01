@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tags_notifier.dart';
 
@@ -28,10 +28,10 @@ mixin _$TagsState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<Tag>? filter)? initial,
-    TResult Function(List<Tag>? filter)? loadInProgress,
-    TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
+    TResult? Function(List<Tag>? filter)? initial,
+    TResult? Function(List<Tag>? filter)? loadInProgress,
+    TResult? Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
+    TResult? Function(TagFailure failure, List<Tag>? filter)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,26 +45,26 @@ mixin _$TagsState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_LoadSuccess value) loadSuccess,
-    required TResult Function(_Failure value) loadFailure,
+    required TResult Function(Initial value) initial,
+    required TResult Function(LoadInProgress value) loadInProgress,
+    required TResult Function(LoadSuccess value) loadSuccess,
+    required TResult Function(Failure value) loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_Failure value)? loadFailure,
+    TResult? Function(Initial value)? initial,
+    TResult? Function(LoadInProgress value)? loadInProgress,
+    TResult? Function(LoadSuccess value)? loadSuccess,
+    TResult? Function(Failure value)? loadFailure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_Failure value)? loadFailure,
+    TResult Function(Initial value)? initial,
+    TResult Function(LoadInProgress value)? loadInProgress,
+    TResult Function(LoadSuccess value)? loadSuccess,
+    TResult Function(Failure value)? loadFailure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -77,55 +77,58 @@ mixin _$TagsState {
 /// @nodoc
 abstract class $TagsStateCopyWith<$Res> {
   factory $TagsStateCopyWith(TagsState value, $Res Function(TagsState) then) =
-      _$TagsStateCopyWithImpl<$Res>;
+      _$TagsStateCopyWithImpl<$Res, TagsState>;
+  @useResult
   $Res call({List<Tag>? filter});
 }
 
 /// @nodoc
-class _$TagsStateCopyWithImpl<$Res> implements $TagsStateCopyWith<$Res> {
+class _$TagsStateCopyWithImpl<$Res, $Val extends TagsState>
+    implements $TagsStateCopyWith<$Res> {
   _$TagsStateCopyWithImpl(this._value, this._then);
 
-  final TagsState _value;
   // ignore: unused_field
-  final $Res Function(TagsState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? filter = freezed,
   }) {
     return _then(_value.copyWith(
-      filter: filter == freezed
+      filter: freezed == filter
           ? _value.filter
           : filter // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
-    ));
+    ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_InitialCopyWith<$Res> implements $TagsStateCopyWith<$Res> {
-  factory _$$_InitialCopyWith(
-          _$_Initial value, $Res Function(_$_Initial) then) =
-      __$$_InitialCopyWithImpl<$Res>;
+abstract class _$$InitialCopyWith<$Res> implements $TagsStateCopyWith<$Res> {
+  factory _$$InitialCopyWith(_$Initial value, $Res Function(_$Initial) then) =
+      __$$InitialCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<Tag>? filter});
 }
 
 /// @nodoc
-class __$$_InitialCopyWithImpl<$Res> extends _$TagsStateCopyWithImpl<$Res>
-    implements _$$_InitialCopyWith<$Res> {
-  __$$_InitialCopyWithImpl(_$_Initial _value, $Res Function(_$_Initial) _then)
-      : super(_value, (v) => _then(v as _$_Initial));
+class __$$InitialCopyWithImpl<$Res>
+    extends _$TagsStateCopyWithImpl<$Res, _$Initial>
+    implements _$$InitialCopyWith<$Res> {
+  __$$InitialCopyWithImpl(_$Initial _value, $Res Function(_$Initial) _then)
+      : super(_value, _then);
 
-  @override
-  _$_Initial get _value => super._value as _$_Initial;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? filter = freezed,
   }) {
-    return _then(_$_Initial(
-      filter: filter == freezed
+    return _then(_$Initial(
+      filter: freezed == filter
           ? _value._filter
           : filter // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
@@ -135,14 +138,15 @@ class __$$_InitialCopyWithImpl<$Res> extends _$TagsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial({final List<Tag>? filter}) : _filter = filter;
+class _$Initial implements Initial {
+  const _$Initial({final List<Tag>? filter}) : _filter = filter;
 
   final List<Tag>? _filter;
   @override
   List<Tag>? get filter {
     final value = _filter;
     if (value == null) return null;
+    if (_filter is EqualUnmodifiableListView) return _filter;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -156,7 +160,7 @@ class _$_Initial implements _Initial {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Initial &&
+            other is _$Initial &&
             const DeepCollectionEquality().equals(other._filter, _filter));
   }
 
@@ -166,8 +170,9 @@ class _$_Initial implements _Initial {
 
   @JsonKey(ignore: true)
   @override
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
-      __$$_InitialCopyWithImpl<_$_Initial>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$InitialCopyWith<_$Initial> get copyWith =>
+      __$$InitialCopyWithImpl<_$Initial>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -184,10 +189,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<Tag>? filter)? initial,
-    TResult Function(List<Tag>? filter)? loadInProgress,
-    TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
+    TResult? Function(List<Tag>? filter)? initial,
+    TResult? Function(List<Tag>? filter)? loadInProgress,
+    TResult? Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
+    TResult? Function(TagFailure failure, List<Tag>? filter)? loadFailure,
   }) {
     return initial?.call(filter);
   }
@@ -210,10 +215,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_LoadSuccess value) loadSuccess,
-    required TResult Function(_Failure value) loadFailure,
+    required TResult Function(Initial value) initial,
+    required TResult Function(LoadInProgress value) loadInProgress,
+    required TResult Function(LoadSuccess value) loadSuccess,
+    required TResult Function(Failure value) loadFailure,
   }) {
     return initial(this);
   }
@@ -221,10 +226,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_Failure value)? loadFailure,
+    TResult? Function(Initial value)? initial,
+    TResult? Function(LoadInProgress value)? loadInProgress,
+    TResult? Function(LoadSuccess value)? loadSuccess,
+    TResult? Function(Failure value)? loadFailure,
   }) {
     return initial?.call(this);
   }
@@ -232,10 +237,10 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_Failure value)? loadFailure,
+    TResult Function(Initial value)? initial,
+    TResult Function(LoadInProgress value)? loadInProgress,
+    TResult Function(LoadSuccess value)? loadSuccess,
+    TResult Function(Failure value)? loadFailure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -245,44 +250,43 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements TagsState {
-  const factory _Initial({final List<Tag>? filter}) = _$_Initial;
+abstract class Initial implements TagsState {
+  const factory Initial({final List<Tag>? filter}) = _$Initial;
 
   @override
   List<Tag>? get filter;
   @override
   @JsonKey(ignore: true)
-  _$$_InitialCopyWith<_$_Initial> get copyWith =>
+  _$$InitialCopyWith<_$Initial> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_LoadInProgressCopyWith<$Res>
+abstract class _$$LoadInProgressCopyWith<$Res>
     implements $TagsStateCopyWith<$Res> {
-  factory _$$_LoadInProgressCopyWith(
-          _$_LoadInProgress value, $Res Function(_$_LoadInProgress) then) =
-      __$$_LoadInProgressCopyWithImpl<$Res>;
+  factory _$$LoadInProgressCopyWith(
+          _$LoadInProgress value, $Res Function(_$LoadInProgress) then) =
+      __$$LoadInProgressCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<Tag>? filter});
 }
 
 /// @nodoc
-class __$$_LoadInProgressCopyWithImpl<$Res>
-    extends _$TagsStateCopyWithImpl<$Res>
-    implements _$$_LoadInProgressCopyWith<$Res> {
-  __$$_LoadInProgressCopyWithImpl(
-      _$_LoadInProgress _value, $Res Function(_$_LoadInProgress) _then)
-      : super(_value, (v) => _then(v as _$_LoadInProgress));
+class __$$LoadInProgressCopyWithImpl<$Res>
+    extends _$TagsStateCopyWithImpl<$Res, _$LoadInProgress>
+    implements _$$LoadInProgressCopyWith<$Res> {
+  __$$LoadInProgressCopyWithImpl(
+      _$LoadInProgress _value, $Res Function(_$LoadInProgress) _then)
+      : super(_value, _then);
 
-  @override
-  _$_LoadInProgress get _value => super._value as _$_LoadInProgress;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? filter = freezed,
   }) {
-    return _then(_$_LoadInProgress(
-      filter: filter == freezed
+    return _then(_$LoadInProgress(
+      filter: freezed == filter
           ? _value._filter
           : filter // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
@@ -292,14 +296,15 @@ class __$$_LoadInProgressCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoadInProgress implements _LoadInProgress {
-  const _$_LoadInProgress({final List<Tag>? filter}) : _filter = filter;
+class _$LoadInProgress implements LoadInProgress {
+  const _$LoadInProgress({final List<Tag>? filter}) : _filter = filter;
 
   final List<Tag>? _filter;
   @override
   List<Tag>? get filter {
     final value = _filter;
     if (value == null) return null;
+    if (_filter is EqualUnmodifiableListView) return _filter;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -313,7 +318,7 @@ class _$_LoadInProgress implements _LoadInProgress {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoadInProgress &&
+            other is _$LoadInProgress &&
             const DeepCollectionEquality().equals(other._filter, _filter));
   }
 
@@ -323,8 +328,9 @@ class _$_LoadInProgress implements _LoadInProgress {
 
   @JsonKey(ignore: true)
   @override
-  _$$_LoadInProgressCopyWith<_$_LoadInProgress> get copyWith =>
-      __$$_LoadInProgressCopyWithImpl<_$_LoadInProgress>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$LoadInProgressCopyWith<_$LoadInProgress> get copyWith =>
+      __$$LoadInProgressCopyWithImpl<_$LoadInProgress>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -341,10 +347,10 @@ class _$_LoadInProgress implements _LoadInProgress {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<Tag>? filter)? initial,
-    TResult Function(List<Tag>? filter)? loadInProgress,
-    TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
+    TResult? Function(List<Tag>? filter)? initial,
+    TResult? Function(List<Tag>? filter)? loadInProgress,
+    TResult? Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
+    TResult? Function(TagFailure failure, List<Tag>? filter)? loadFailure,
   }) {
     return loadInProgress?.call(filter);
   }
@@ -367,10 +373,10 @@ class _$_LoadInProgress implements _LoadInProgress {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_LoadSuccess value) loadSuccess,
-    required TResult Function(_Failure value) loadFailure,
+    required TResult Function(Initial value) initial,
+    required TResult Function(LoadInProgress value) loadInProgress,
+    required TResult Function(LoadSuccess value) loadSuccess,
+    required TResult Function(Failure value) loadFailure,
   }) {
     return loadInProgress(this);
   }
@@ -378,10 +384,10 @@ class _$_LoadInProgress implements _LoadInProgress {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_Failure value)? loadFailure,
+    TResult? Function(Initial value)? initial,
+    TResult? Function(LoadInProgress value)? loadInProgress,
+    TResult? Function(LoadSuccess value)? loadSuccess,
+    TResult? Function(Failure value)? loadFailure,
   }) {
     return loadInProgress?.call(this);
   }
@@ -389,10 +395,10 @@ class _$_LoadInProgress implements _LoadInProgress {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_Failure value)? loadFailure,
+    TResult Function(Initial value)? initial,
+    TResult Function(LoadInProgress value)? loadInProgress,
+    TResult Function(LoadSuccess value)? loadSuccess,
+    TResult Function(Failure value)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -402,48 +408,48 @@ class _$_LoadInProgress implements _LoadInProgress {
   }
 }
 
-abstract class _LoadInProgress implements TagsState {
-  const factory _LoadInProgress({final List<Tag>? filter}) = _$_LoadInProgress;
+abstract class LoadInProgress implements TagsState {
+  const factory LoadInProgress({final List<Tag>? filter}) = _$LoadInProgress;
 
   @override
   List<Tag>? get filter;
   @override
   @JsonKey(ignore: true)
-  _$$_LoadInProgressCopyWith<_$_LoadInProgress> get copyWith =>
+  _$$LoadInProgressCopyWith<_$LoadInProgress> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_LoadSuccessCopyWith<$Res>
+abstract class _$$LoadSuccessCopyWith<$Res>
     implements $TagsStateCopyWith<$Res> {
-  factory _$$_LoadSuccessCopyWith(
-          _$_LoadSuccess value, $Res Function(_$_LoadSuccess) then) =
-      __$$_LoadSuccessCopyWithImpl<$Res>;
+  factory _$$LoadSuccessCopyWith(
+          _$LoadSuccess value, $Res Function(_$LoadSuccess) then) =
+      __$$LoadSuccessCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<Tag> tags, List<Tag>? filter});
 }
 
 /// @nodoc
-class __$$_LoadSuccessCopyWithImpl<$Res> extends _$TagsStateCopyWithImpl<$Res>
-    implements _$$_LoadSuccessCopyWith<$Res> {
-  __$$_LoadSuccessCopyWithImpl(
-      _$_LoadSuccess _value, $Res Function(_$_LoadSuccess) _then)
-      : super(_value, (v) => _then(v as _$_LoadSuccess));
+class __$$LoadSuccessCopyWithImpl<$Res>
+    extends _$TagsStateCopyWithImpl<$Res, _$LoadSuccess>
+    implements _$$LoadSuccessCopyWith<$Res> {
+  __$$LoadSuccessCopyWithImpl(
+      _$LoadSuccess _value, $Res Function(_$LoadSuccess) _then)
+      : super(_value, _then);
 
-  @override
-  _$_LoadSuccess get _value => super._value as _$_LoadSuccess;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tags = freezed,
+    Object? tags = null,
     Object? filter = freezed,
   }) {
-    return _then(_$_LoadSuccess(
-      tags == freezed
+    return _then(_$LoadSuccess(
+      null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<Tag>,
-      filter: filter == freezed
+      filter: freezed == filter
           ? _value._filter
           : filter // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
@@ -453,14 +459,15 @@ class __$$_LoadSuccessCopyWithImpl<$Res> extends _$TagsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LoadSuccess implements _LoadSuccess {
-  const _$_LoadSuccess(final List<Tag> tags, {final List<Tag>? filter})
+class _$LoadSuccess implements LoadSuccess {
+  const _$LoadSuccess(final List<Tag> tags, {final List<Tag>? filter})
       : _tags = tags,
         _filter = filter;
 
   final List<Tag> _tags;
   @override
   List<Tag> get tags {
+    if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
@@ -470,6 +477,7 @@ class _$_LoadSuccess implements _LoadSuccess {
   List<Tag>? get filter {
     final value = _filter;
     if (value == null) return null;
+    if (_filter is EqualUnmodifiableListView) return _filter;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -483,7 +491,7 @@ class _$_LoadSuccess implements _LoadSuccess {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoadSuccess &&
+            other is _$LoadSuccess &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
             const DeepCollectionEquality().equals(other._filter, _filter));
   }
@@ -496,8 +504,9 @@ class _$_LoadSuccess implements _LoadSuccess {
 
   @JsonKey(ignore: true)
   @override
-  _$$_LoadSuccessCopyWith<_$_LoadSuccess> get copyWith =>
-      __$$_LoadSuccessCopyWithImpl<_$_LoadSuccess>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$LoadSuccessCopyWith<_$LoadSuccess> get copyWith =>
+      __$$LoadSuccessCopyWithImpl<_$LoadSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -514,10 +523,10 @@ class _$_LoadSuccess implements _LoadSuccess {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<Tag>? filter)? initial,
-    TResult Function(List<Tag>? filter)? loadInProgress,
-    TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
+    TResult? Function(List<Tag>? filter)? initial,
+    TResult? Function(List<Tag>? filter)? loadInProgress,
+    TResult? Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
+    TResult? Function(TagFailure failure, List<Tag>? filter)? loadFailure,
   }) {
     return loadSuccess?.call(tags, filter);
   }
@@ -540,10 +549,10 @@ class _$_LoadSuccess implements _LoadSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_LoadSuccess value) loadSuccess,
-    required TResult Function(_Failure value) loadFailure,
+    required TResult Function(Initial value) initial,
+    required TResult Function(LoadInProgress value) loadInProgress,
+    required TResult Function(LoadSuccess value) loadSuccess,
+    required TResult Function(Failure value) loadFailure,
   }) {
     return loadSuccess(this);
   }
@@ -551,10 +560,10 @@ class _$_LoadSuccess implements _LoadSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_Failure value)? loadFailure,
+    TResult? Function(Initial value)? initial,
+    TResult? Function(LoadInProgress value)? loadInProgress,
+    TResult? Function(LoadSuccess value)? loadSuccess,
+    TResult? Function(Failure value)? loadFailure,
   }) {
     return loadSuccess?.call(this);
   }
@@ -562,10 +571,10 @@ class _$_LoadSuccess implements _LoadSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_Failure value)? loadFailure,
+    TResult Function(Initial value)? initial,
+    TResult Function(LoadInProgress value)? loadInProgress,
+    TResult Function(LoadSuccess value)? loadSuccess,
+    TResult Function(Failure value)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
@@ -575,50 +584,49 @@ class _$_LoadSuccess implements _LoadSuccess {
   }
 }
 
-abstract class _LoadSuccess implements TagsState {
-  const factory _LoadSuccess(final List<Tag> tags, {final List<Tag>? filter}) =
-      _$_LoadSuccess;
+abstract class LoadSuccess implements TagsState {
+  const factory LoadSuccess(final List<Tag> tags, {final List<Tag>? filter}) =
+      _$LoadSuccess;
 
   List<Tag> get tags;
   @override
   List<Tag>? get filter;
   @override
   @JsonKey(ignore: true)
-  _$$_LoadSuccessCopyWith<_$_LoadSuccess> get copyWith =>
+  _$$LoadSuccessCopyWith<_$LoadSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_FailureCopyWith<$Res> implements $TagsStateCopyWith<$Res> {
-  factory _$$_FailureCopyWith(
-          _$_Failure value, $Res Function(_$_Failure) then) =
-      __$$_FailureCopyWithImpl<$Res>;
+abstract class _$$FailureCopyWith<$Res> implements $TagsStateCopyWith<$Res> {
+  factory _$$FailureCopyWith(_$Failure value, $Res Function(_$Failure) then) =
+      __$$FailureCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({TagFailure failure, List<Tag>? filter});
 
   $TagFailureCopyWith<$Res> get failure;
 }
 
 /// @nodoc
-class __$$_FailureCopyWithImpl<$Res> extends _$TagsStateCopyWithImpl<$Res>
-    implements _$$_FailureCopyWith<$Res> {
-  __$$_FailureCopyWithImpl(_$_Failure _value, $Res Function(_$_Failure) _then)
-      : super(_value, (v) => _then(v as _$_Failure));
+class __$$FailureCopyWithImpl<$Res>
+    extends _$TagsStateCopyWithImpl<$Res, _$Failure>
+    implements _$$FailureCopyWith<$Res> {
+  __$$FailureCopyWithImpl(_$Failure _value, $Res Function(_$Failure) _then)
+      : super(_value, _then);
 
-  @override
-  _$_Failure get _value => super._value as _$_Failure;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? failure = freezed,
+    Object? failure = null,
     Object? filter = freezed,
   }) {
-    return _then(_$_Failure(
-      failure == freezed
+    return _then(_$Failure(
+      null == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as TagFailure,
-      filter: filter == freezed
+      filter: freezed == filter
           ? _value._filter
           : filter // ignore: cast_nullable_to_non_nullable
               as List<Tag>?,
@@ -626,6 +634,7 @@ class __$$_FailureCopyWithImpl<$Res> extends _$TagsStateCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TagFailureCopyWith<$Res> get failure {
     return $TagFailureCopyWith<$Res>(_value.failure, (value) {
       return _then(_value.copyWith(failure: value));
@@ -635,8 +644,8 @@ class __$$_FailureCopyWithImpl<$Res> extends _$TagsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Failure implements _Failure {
-  const _$_Failure(this.failure, {final List<Tag>? filter}) : _filter = filter;
+class _$Failure implements Failure {
+  const _$Failure(this.failure, {final List<Tag>? filter}) : _filter = filter;
 
   @override
   final TagFailure failure;
@@ -645,6 +654,7 @@ class _$_Failure implements _Failure {
   List<Tag>? get filter {
     final value = _filter;
     if (value == null) return null;
+    if (_filter is EqualUnmodifiableListView) return _filter;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -658,21 +668,20 @@ class _$_Failure implements _Failure {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Failure &&
-            const DeepCollectionEquality().equals(other.failure, failure) &&
+            other is _$Failure &&
+            (identical(other.failure, failure) || other.failure == failure) &&
             const DeepCollectionEquality().equals(other._filter, _filter));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(failure),
-      const DeepCollectionEquality().hash(_filter));
+      runtimeType, failure, const DeepCollectionEquality().hash(_filter));
 
   @JsonKey(ignore: true)
   @override
-  _$$_FailureCopyWith<_$_Failure> get copyWith =>
-      __$$_FailureCopyWithImpl<_$_Failure>(this, _$identity);
+  @pragma('vm:prefer-inline')
+  _$$FailureCopyWith<_$Failure> get copyWith =>
+      __$$FailureCopyWithImpl<_$Failure>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -689,10 +698,10 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(List<Tag>? filter)? initial,
-    TResult Function(List<Tag>? filter)? loadInProgress,
-    TResult Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
-    TResult Function(TagFailure failure, List<Tag>? filter)? loadFailure,
+    TResult? Function(List<Tag>? filter)? initial,
+    TResult? Function(List<Tag>? filter)? loadInProgress,
+    TResult? Function(List<Tag> tags, List<Tag>? filter)? loadSuccess,
+    TResult? Function(TagFailure failure, List<Tag>? filter)? loadFailure,
   }) {
     return loadFailure?.call(failure, filter);
   }
@@ -715,10 +724,10 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_LoadSuccess value) loadSuccess,
-    required TResult Function(_Failure value) loadFailure,
+    required TResult Function(Initial value) initial,
+    required TResult Function(LoadInProgress value) loadInProgress,
+    required TResult Function(LoadSuccess value) loadSuccess,
+    required TResult Function(Failure value) loadFailure,
   }) {
     return loadFailure(this);
   }
@@ -726,10 +735,10 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_Failure value)? loadFailure,
+    TResult? Function(Initial value)? initial,
+    TResult? Function(LoadInProgress value)? loadInProgress,
+    TResult? Function(LoadSuccess value)? loadSuccess,
+    TResult? Function(Failure value)? loadFailure,
   }) {
     return loadFailure?.call(this);
   }
@@ -737,10 +746,10 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_LoadSuccess value)? loadSuccess,
-    TResult Function(_Failure value)? loadFailure,
+    TResult Function(Initial value)? initial,
+    TResult Function(LoadInProgress value)? loadInProgress,
+    TResult Function(LoadSuccess value)? loadSuccess,
+    TResult Function(Failure value)? loadFailure,
     required TResult orElse(),
   }) {
     if (loadFailure != null) {
@@ -750,15 +759,15 @@ class _$_Failure implements _Failure {
   }
 }
 
-abstract class _Failure implements TagsState {
-  const factory _Failure(final TagFailure failure, {final List<Tag>? filter}) =
-      _$_Failure;
+abstract class Failure implements TagsState {
+  const factory Failure(final TagFailure failure, {final List<Tag>? filter}) =
+      _$Failure;
 
   TagFailure get failure;
   @override
   List<Tag>? get filter;
   @override
   @JsonKey(ignore: true)
-  _$$_FailureCopyWith<_$_Failure> get copyWith =>
+  _$$FailureCopyWith<_$Failure> get copyWith =>
       throw _privateConstructorUsedError;
 }

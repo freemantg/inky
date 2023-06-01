@@ -4,7 +4,7 @@ import 'tag.dart';
 import 'tag_failure.dart';
 
 abstract class TagsInterface {
-  Either<TagFailure, List<Tag>> fetchTags();
+  Stream<Either<TagFailure, List<Tag>>> streamTags(List<Tag> filter);
   Future<Either<TagFailure, Unit>> create(Tag tag);
   Future<Either<TagFailure, Unit>> delete(Tag tag);
 }

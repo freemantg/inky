@@ -47,7 +47,7 @@ class _AddInklingPageState extends ConsumerState<AddInklingPage> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: const StyledAppbarLeadingBackButton(),
+        leading: const StyledAppBarLeadingBackButton(),
         centerTitle: true,
         title: StyledTitle(
           title: isEditing

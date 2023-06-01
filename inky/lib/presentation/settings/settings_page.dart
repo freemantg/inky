@@ -12,7 +12,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const StyledAppbarLeadingBackButton(),
+        leading: const StyledAppBarLeadingBackButton(),
         title: const StyledTitle(title: 'SETTINGS'),
         centerTitle: true,
       ),

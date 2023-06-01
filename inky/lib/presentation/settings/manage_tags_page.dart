@@ -14,7 +14,7 @@ class ManageTagsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        leading: const StyledAppbarLeadingBackButton(),
+        leading: const StyledAppBarLeadingBackButton(),
         title: const StyledTitle(title: 'MANAGE TAGS'),
       ),
       body: _buildScaffoldBody(),

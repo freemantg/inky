@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'inkling_form_notifier.dart';
 
@@ -30,7 +30,8 @@ mixin _$InklingFormState {
 abstract class $InklingFormStateCopyWith<$Res> {
   factory $InklingFormStateCopyWith(
           InklingFormState value, $Res Function(InklingFormState) then) =
-      _$InklingFormStateCopyWithImpl<$Res>;
+      _$InklingFormStateCopyWithImpl<$Res, InklingFormState>;
+  @useResult
   $Res call(
       {Inkling inkling, bool isEditing, bool isSaving, bool showErrorMessage});
 
@@ -38,45 +39,48 @@ abstract class $InklingFormStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InklingFormStateCopyWithImpl<$Res>
+class _$InklingFormStateCopyWithImpl<$Res, $Val extends InklingFormState>
     implements $InklingFormStateCopyWith<$Res> {
   _$InklingFormStateCopyWithImpl(this._value, this._then);
 
-  final InklingFormState _value;
   // ignore: unused_field
-  final $Res Function(InklingFormState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? inkling = freezed,
-    Object? isEditing = freezed,
-    Object? isSaving = freezed,
-    Object? showErrorMessage = freezed,
+    Object? inkling = null,
+    Object? isEditing = null,
+    Object? isSaving = null,
+    Object? showErrorMessage = null,
   }) {
     return _then(_value.copyWith(
-      inkling: inkling == freezed
+      inkling: null == inkling
           ? _value.inkling
           : inkling // ignore: cast_nullable_to_non_nullable
               as Inkling,
-      isEditing: isEditing == freezed
+      isEditing: null == isEditing
           ? _value.isEditing
           : isEditing // ignore: cast_nullable_to_non_nullable
               as bool,
-      isSaving: isSaving == freezed
+      isSaving: null == isSaving
           ? _value.isSaving
           : isSaving // ignore: cast_nullable_to_non_nullable
               as bool,
-      showErrorMessage: showErrorMessage == freezed
+      showErrorMessage: null == showErrorMessage
           ? _value.showErrorMessage
           : showErrorMessage // ignore: cast_nullable_to_non_nullable
               as bool,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $InklingCopyWith<$Res> get inkling {
     return $InklingCopyWith<$Res>(_value.inkling, (value) {
-      return _then(_value.copyWith(inkling: value));
+      return _then(_value.copyWith(inkling: value) as $Val);
     });
   }
 }
@@ -88,6 +92,7 @@ abstract class _$$_InklingFormStateCopyWith<$Res>
           _$_InklingFormState value, $Res Function(_$_InklingFormState) then) =
       __$$_InklingFormStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {Inkling inkling, bool isEditing, bool isSaving, bool showErrorMessage});
 
@@ -97,36 +102,34 @@ abstract class _$$_InklingFormStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_InklingFormStateCopyWithImpl<$Res>
-    extends _$InklingFormStateCopyWithImpl<$Res>
+    extends _$InklingFormStateCopyWithImpl<$Res, _$_InklingFormState>
     implements _$$_InklingFormStateCopyWith<$Res> {
   __$$_InklingFormStateCopyWithImpl(
       _$_InklingFormState _value, $Res Function(_$_InklingFormState) _then)
-      : super(_value, (v) => _then(v as _$_InklingFormState));
+      : super(_value, _then);
 
-  @override
-  _$_InklingFormState get _value => super._value as _$_InklingFormState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? inkling = freezed,
-    Object? isEditing = freezed,
-    Object? isSaving = freezed,
-    Object? showErrorMessage = freezed,
+    Object? inkling = null,
+    Object? isEditing = null,
+    Object? isSaving = null,
+    Object? showErrorMessage = null,
   }) {
     return _then(_$_InklingFormState(
-      inkling: inkling == freezed
+      inkling: null == inkling
           ? _value.inkling
           : inkling // ignore: cast_nullable_to_non_nullable
               as Inkling,
-      isEditing: isEditing == freezed
+      isEditing: null == isEditing
           ? _value.isEditing
           : isEditing // ignore: cast_nullable_to_non_nullable
               as bool,
-      isSaving: isSaving == freezed
+      isSaving: null == isSaving
           ? _value.isSaving
           : isSaving // ignore: cast_nullable_to_non_nullable
               as bool,
-      showErrorMessage: showErrorMessage == freezed
+      showErrorMessage: null == showErrorMessage
           ? _value.showErrorMessage
           : showErrorMessage // ignore: cast_nullable_to_non_nullable
               as bool,
@@ -162,23 +165,22 @@ class _$_InklingFormState implements _InklingFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_InklingFormState &&
-            const DeepCollectionEquality().equals(other.inkling, inkling) &&
-            const DeepCollectionEquality().equals(other.isEditing, isEditing) &&
-            const DeepCollectionEquality().equals(other.isSaving, isSaving) &&
-            const DeepCollectionEquality()
-                .equals(other.showErrorMessage, showErrorMessage));
+            (identical(other.inkling, inkling) || other.inkling == inkling) &&
+            (identical(other.isEditing, isEditing) ||
+                other.isEditing == isEditing) &&
+            (identical(other.isSaving, isSaving) ||
+                other.isSaving == isSaving) &&
+            (identical(other.showErrorMessage, showErrorMessage) ||
+                other.showErrorMessage == showErrorMessage));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(inkling),
-      const DeepCollectionEquality().hash(isEditing),
-      const DeepCollectionEquality().hash(isSaving),
-      const DeepCollectionEquality().hash(showErrorMessage));
+  int get hashCode =>
+      Object.hash(runtimeType, inkling, isEditing, isSaving, showErrorMessage);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_InklingFormStateCopyWith<_$_InklingFormState> get copyWith =>
       __$$_InklingFormStateCopyWithImpl<_$_InklingFormState>(this, _$identity);
 }

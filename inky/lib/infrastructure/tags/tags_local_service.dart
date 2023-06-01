@@ -3,35 +3,43 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'tag_dto.dart';
 
 class TagsLocalService {
-  late Box<TagDto> _tagDtos;
+  late final Box<TagDto> _tagDtosBox;
 
-  Future<void> init() async => _tagDtos = await Hive.openBox<TagDto>('tagDtos');
-
-  List<TagDto> fetchTags({List<TagDto>? filter}) {
-    if (filter != null) {
-      return _tagDtos.values
-          .where((tagDto) => !filter.contains(tagDto))
-          .toList();
-    }
-    return _tagDtos.values.toList();
+  TagsLocalService() {
+    _initializeBox();
   }
 
-  Stream<List<TagDto>> tagStream({List<TagDto>? filter}) {
-    final stream = _tagDtos.watch().map((_) => _tagDtos.values.toList());
+  Future<void> _initializeBox() async {
+    _tagDtosBox = await Hive.openBox<TagDto>('tagDtos');
+  }
 
-    return stream;
+  Future<Stream<List<TagDto>>> streamTags({List<TagDto>? filter}) async {
+    final tagDtos = _tagDtosBox;
+    return tagDtos.watch().map((event) {
+      if (filter != null) {
+        return tagDtos.values.where((tag) => filter.contains(tag)).toList();
+      } else {
+        return tagDtos.values.toList();
+      }
+    });
   }
 
   Future<void> insert(TagDto tagDto) async {
-    if (_tagDtos.values.contains(tagDto)) {
-      return;
+    final tagDtos = _tagDtosBox;
+    if (!tagDtos.containsKey(tagDto.id) && tagDto.name.isNotEmpty) {
+      await tagDtos.put(tagDto.id, tagDto);
     }
-    _tagDtos.add(tagDto);
   }
 
   Future<void> delete(TagDto tagDto) async {
-    final tagDtoToDelete =
-        _tagDtos.values.firstWhere((element) => element == tagDto);
-    await tagDtoToDelete.delete();
+    final tagDtos = _tagDtosBox;
+    if (tagDtos.containsKey(tagDto.id)) {
+      await tagDto.delete();
+    }
+  }
+
+  Future<void> dispose() async {
+    final tagDtos = _tagDtosBox;
+    await tagDtos.close();
   }
 }

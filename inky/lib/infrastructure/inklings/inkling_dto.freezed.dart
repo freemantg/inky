@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'inkling_dto.dart';
 
@@ -13,10 +13,6 @@ T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-InklingDto _$InklingDtoFromJson(Map<String, dynamic> json) {
-  return _InklingDto.fromJson(json);
-}
 
 /// @nodoc
 mixin _$InklingDto {
@@ -32,7 +28,6 @@ mixin _$InklingDto {
   @HiveField(4)
   String get memo => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $InklingDtoCopyWith<InklingDto> get copyWith =>
       throw _privateConstructorUsedError;
@@ -42,7 +37,8 @@ mixin _$InklingDto {
 abstract class $InklingDtoCopyWith<$Res> {
   factory $InklingDtoCopyWith(
           InklingDto value, $Res Function(InklingDto) then) =
-      _$InklingDtoCopyWithImpl<$Res>;
+      _$InklingDtoCopyWithImpl<$Res, InklingDto>;
+  @useResult
   $Res call(
       {int? hiveId,
       @HiveField(0) String note,
@@ -53,48 +49,51 @@ abstract class $InklingDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InklingDtoCopyWithImpl<$Res> implements $InklingDtoCopyWith<$Res> {
+class _$InklingDtoCopyWithImpl<$Res, $Val extends InklingDto>
+    implements $InklingDtoCopyWith<$Res> {
   _$InklingDtoCopyWithImpl(this._value, this._then);
 
-  final InklingDto _value;
   // ignore: unused_field
-  final $Res Function(InklingDto) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? hiveId = freezed,
-    Object? note = freezed,
-    Object? link = freezed,
-    Object? imagePath = freezed,
-    Object? tags = freezed,
-    Object? memo = freezed,
+    Object? note = null,
+    Object? link = null,
+    Object? imagePath = null,
+    Object? tags = null,
+    Object? memo = null,
   }) {
     return _then(_value.copyWith(
-      hiveId: hiveId == freezed
+      hiveId: freezed == hiveId
           ? _value.hiveId
           : hiveId // ignore: cast_nullable_to_non_nullable
               as int?,
-      note: note == freezed
+      note: null == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
-      link: link == freezed
+      link: null == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
-      imagePath: imagePath == freezed
+      imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
-      tags: tags == freezed
+      tags: null == tags
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<TagDto>,
-      memo: memo == freezed
+      memo: null == memo
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -105,6 +104,7 @@ abstract class _$$_InklingDtoCopyWith<$Res>
           _$_InklingDto value, $Res Function(_$_InklingDto) then) =
       __$$_InklingDtoCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int? hiveId,
       @HiveField(0) String note,
@@ -115,46 +115,45 @@ abstract class _$$_InklingDtoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_InklingDtoCopyWithImpl<$Res> extends _$InklingDtoCopyWithImpl<$Res>
+class __$$_InklingDtoCopyWithImpl<$Res>
+    extends _$InklingDtoCopyWithImpl<$Res, _$_InklingDto>
     implements _$$_InklingDtoCopyWith<$Res> {
   __$$_InklingDtoCopyWithImpl(
       _$_InklingDto _value, $Res Function(_$_InklingDto) _then)
-      : super(_value, (v) => _then(v as _$_InklingDto));
+      : super(_value, _then);
 
-  @override
-  _$_InklingDto get _value => super._value as _$_InklingDto;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? hiveId = freezed,
-    Object? note = freezed,
-    Object? link = freezed,
-    Object? imagePath = freezed,
-    Object? tags = freezed,
-    Object? memo = freezed,
+    Object? note = null,
+    Object? link = null,
+    Object? imagePath = null,
+    Object? tags = null,
+    Object? memo = null,
   }) {
     return _then(_$_InklingDto(
-      hiveId: hiveId == freezed
+      hiveId: freezed == hiveId
           ? _value.hiveId
           : hiveId // ignore: cast_nullable_to_non_nullable
               as int?,
-      note: note == freezed
+      note: null == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String,
-      link: link == freezed
+      link: null == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
-      imagePath: imagePath == freezed
+      imagePath: null == imagePath
           ? _value.imagePath
           : imagePath // ignore: cast_nullable_to_non_nullable
               as String,
-      tags: tags == freezed
+      tags: null == tags
           ? _value._tags
           : tags // ignore: cast_nullable_to_non_nullable
               as List<TagDto>,
-      memo: memo == freezed
+      memo: null == memo
           ? _value.memo
           : memo // ignore: cast_nullable_to_non_nullable
               as String,
@@ -164,20 +163,17 @@ class __$$_InklingDtoCopyWithImpl<$Res> extends _$InklingDtoCopyWithImpl<$Res>
 
 /// @nodoc
 
+@HiveType(typeId: 1)
 @JsonSerializable(explicitToJson: true)
-class _$_InklingDto extends _InklingDto {
-  _$_InklingDto(
+class _$_InklingDto implements _InklingDto {
+  const _$_InklingDto(
       {this.hiveId,
       @HiveField(0) required this.note,
       @HiveField(1) required this.link,
       @HiveField(2) required this.imagePath,
       @HiveField(3) required final List<TagDto> tags,
       @HiveField(4) required this.memo})
-      : _tags = tags,
-        super._();
-
-  factory _$_InklingDto.fromJson(Map<String, dynamic> json) =>
-      _$$_InklingDtoFromJson(json);
+      : _tags = tags;
 
   @override
   final int? hiveId;
@@ -194,6 +190,7 @@ class _$_InklingDto extends _InklingDto {
   @override
   @HiveField(3)
   List<TagDto> get tags {
+    if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tags);
   }
@@ -212,50 +209,34 @@ class _$_InklingDto extends _InklingDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_InklingDto &&
-            const DeepCollectionEquality().equals(other.hiveId, hiveId) &&
-            const DeepCollectionEquality().equals(other.note, note) &&
-            const DeepCollectionEquality().equals(other.link, link) &&
-            const DeepCollectionEquality().equals(other.imagePath, imagePath) &&
+            (identical(other.hiveId, hiveId) || other.hiveId == hiveId) &&
+            (identical(other.note, note) || other.note == note) &&
+            (identical(other.link, link) || other.link == link) &&
+            (identical(other.imagePath, imagePath) ||
+                other.imagePath == imagePath) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
-            const DeepCollectionEquality().equals(other.memo, memo));
+            (identical(other.memo, memo) || other.memo == memo));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(hiveId),
-      const DeepCollectionEquality().hash(note),
-      const DeepCollectionEquality().hash(link),
-      const DeepCollectionEquality().hash(imagePath),
-      const DeepCollectionEquality().hash(_tags),
-      const DeepCollectionEquality().hash(memo));
+  int get hashCode => Object.hash(runtimeType, hiveId, note, link, imagePath,
+      const DeepCollectionEquality().hash(_tags), memo);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_InklingDtoCopyWith<_$_InklingDto> get copyWith =>
       __$$_InklingDtoCopyWithImpl<_$_InklingDto>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_InklingDtoToJson(
-      this,
-    );
-  }
 }
 
-abstract class _InklingDto extends InklingDto {
-  factory _InklingDto(
+abstract class _InklingDto implements InklingDto {
+  const factory _InklingDto(
       {final int? hiveId,
       @HiveField(0) required final String note,
       @HiveField(1) required final String link,
       @HiveField(2) required final String imagePath,
       @HiveField(3) required final List<TagDto> tags,
       @HiveField(4) required final String memo}) = _$_InklingDto;
-  _InklingDto._() : super._();
-
-  factory _InklingDto.fromJson(Map<String, dynamic> json) =
-      _$_InklingDto.fromJson;
 
   @override
   int? get hiveId;
