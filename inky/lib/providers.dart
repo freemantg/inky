@@ -15,8 +15,10 @@ final tagsLocalServiceProvider =
     Provider<TagsLocalService>((ref) => throw UnimplementedError());
 final tagRepositoryProvider =
     Provider((ref) => TagRepository(ref.watch(tagsLocalServiceProvider)));
-final tagsNotifierProvider = StateNotifierProvider<TagsNotifier, TagsState>(
-    (ref) => TagsNotifier(tagRepository: ref.watch(tagRepositoryProvider)));
+final tagsNotifierProvider =
+    StateNotifierProvider.autoDispose<TagsNotifier, TagsState>(
+  (ref) => TagsNotifier(tagRepository: ref.watch(tagRepositoryProvider)),
+);
 
 //Inkling providers
 final inklingLocalServiceProvider =
@@ -44,8 +46,8 @@ final inklingLinkNotifier = StateNotifierProvider.autoDispose<
 
 //State for holding inkling input data
 final inklingFormNotifierProvider =
-    StateNotifierProvider<InklingFormNotifier, InklingFormState>((ref) =>
-        InklingFormNotifier(ref.watch(inklingRepositoryProvider),
+    StateNotifierProvider.autoDispose<InklingFormNotifier, InklingFormState>(
+        (ref) => InklingFormNotifier(ref.watch(inklingRepositoryProvider),
             ref.watch(inklingImageRepositoryProvider)));
 
 //State for managing inkling filters

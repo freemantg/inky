@@ -16,16 +16,17 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$InklingDto {
-  int? get hiveId => throw _privateConstructorUsedError;
   @HiveField(0)
-  String get note => throw _privateConstructorUsedError;
+  String get hiveId => throw _privateConstructorUsedError;
   @HiveField(1)
-  String get link => throw _privateConstructorUsedError;
+  String get note => throw _privateConstructorUsedError;
   @HiveField(2)
-  String get imagePath => throw _privateConstructorUsedError;
+  String get link => throw _privateConstructorUsedError;
   @HiveField(3)
-  List<TagDto> get tags => throw _privateConstructorUsedError;
+  String get imagePath => throw _privateConstructorUsedError;
   @HiveField(4)
+  List<TagDto> get tags => throw _privateConstructorUsedError;
+  @HiveField(5)
   String get memo => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -40,12 +41,12 @@ abstract class $InklingDtoCopyWith<$Res> {
       _$InklingDtoCopyWithImpl<$Res, InklingDto>;
   @useResult
   $Res call(
-      {int? hiveId,
-      @HiveField(0) String note,
-      @HiveField(1) String link,
-      @HiveField(2) String imagePath,
-      @HiveField(3) List<TagDto> tags,
-      @HiveField(4) String memo});
+      {@HiveField(0) String hiveId,
+      @HiveField(1) String note,
+      @HiveField(2) String link,
+      @HiveField(3) String imagePath,
+      @HiveField(4) List<TagDto> tags,
+      @HiveField(5) String memo});
 }
 
 /// @nodoc
@@ -61,7 +62,7 @@ class _$InklingDtoCopyWithImpl<$Res, $Val extends InklingDto>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hiveId = freezed,
+    Object? hiveId = null,
     Object? note = null,
     Object? link = null,
     Object? imagePath = null,
@@ -69,10 +70,10 @@ class _$InklingDtoCopyWithImpl<$Res, $Val extends InklingDto>
     Object? memo = null,
   }) {
     return _then(_value.copyWith(
-      hiveId: freezed == hiveId
+      hiveId: null == hiveId
           ? _value.hiveId
           : hiveId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String,
       note: null == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -106,12 +107,12 @@ abstract class _$$_InklingDtoCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? hiveId,
-      @HiveField(0) String note,
-      @HiveField(1) String link,
-      @HiveField(2) String imagePath,
-      @HiveField(3) List<TagDto> tags,
-      @HiveField(4) String memo});
+      {@HiveField(0) String hiveId,
+      @HiveField(1) String note,
+      @HiveField(2) String link,
+      @HiveField(3) String imagePath,
+      @HiveField(4) List<TagDto> tags,
+      @HiveField(5) String memo});
 }
 
 /// @nodoc
@@ -125,7 +126,7 @@ class __$$_InklingDtoCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hiveId = freezed,
+    Object? hiveId = null,
     Object? note = null,
     Object? link = null,
     Object? imagePath = null,
@@ -133,10 +134,10 @@ class __$$_InklingDtoCopyWithImpl<$Res>
     Object? memo = null,
   }) {
     return _then(_$_InklingDto(
-      hiveId: freezed == hiveId
+      hiveId: null == hiveId
           ? _value.hiveId
           : hiveId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String,
       note: null == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -165,30 +166,32 @@ class __$$_InklingDtoCopyWithImpl<$Res>
 
 @HiveType(typeId: 1)
 @JsonSerializable(explicitToJson: true)
-class _$_InklingDto implements _InklingDto {
+class _$_InklingDto extends _InklingDto {
   const _$_InklingDto(
-      {this.hiveId,
-      @HiveField(0) required this.note,
-      @HiveField(1) required this.link,
-      @HiveField(2) required this.imagePath,
-      @HiveField(3) required final List<TagDto> tags,
-      @HiveField(4) required this.memo})
-      : _tags = tags;
+      {@HiveField(0) required this.hiveId,
+      @HiveField(1) required this.note,
+      @HiveField(2) required this.link,
+      @HiveField(3) required this.imagePath,
+      @HiveField(4) required final List<TagDto> tags,
+      @HiveField(5) required this.memo})
+      : _tags = tags,
+        super._();
 
   @override
-  final int? hiveId;
-  @override
   @HiveField(0)
-  final String note;
+  final String hiveId;
   @override
   @HiveField(1)
-  final String link;
+  final String note;
   @override
   @HiveField(2)
+  final String link;
+  @override
+  @HiveField(3)
   final String imagePath;
   final List<TagDto> _tags;
   @override
-  @HiveField(3)
+  @HiveField(4)
   List<TagDto> get tags {
     if (_tags is EqualUnmodifiableListView) return _tags;
     // ignore: implicit_dynamic_type
@@ -196,7 +199,7 @@ class _$_InklingDto implements _InklingDto {
   }
 
   @override
-  @HiveField(4)
+  @HiveField(5)
   final String memo;
 
   @override
@@ -229,31 +232,33 @@ class _$_InklingDto implements _InklingDto {
       __$$_InklingDtoCopyWithImpl<_$_InklingDto>(this, _$identity);
 }
 
-abstract class _InklingDto implements InklingDto {
+abstract class _InklingDto extends InklingDto {
   const factory _InklingDto(
-      {final int? hiveId,
-      @HiveField(0) required final String note,
-      @HiveField(1) required final String link,
-      @HiveField(2) required final String imagePath,
-      @HiveField(3) required final List<TagDto> tags,
-      @HiveField(4) required final String memo}) = _$_InklingDto;
+      {@HiveField(0) required final String hiveId,
+      @HiveField(1) required final String note,
+      @HiveField(2) required final String link,
+      @HiveField(3) required final String imagePath,
+      @HiveField(4) required final List<TagDto> tags,
+      @HiveField(5) required final String memo}) = _$_InklingDto;
+  const _InklingDto._() : super._();
 
   @override
-  int? get hiveId;
-  @override
   @HiveField(0)
-  String get note;
+  String get hiveId;
   @override
   @HiveField(1)
-  String get link;
+  String get note;
   @override
   @HiveField(2)
-  String get imagePath;
+  String get link;
   @override
   @HiveField(3)
-  List<TagDto> get tags;
+  String get imagePath;
   @override
   @HiveField(4)
+  List<TagDto> get tags;
+  @override
+  @HiveField(5)
   String get memo;
   @override
   @JsonKey(ignore: true)

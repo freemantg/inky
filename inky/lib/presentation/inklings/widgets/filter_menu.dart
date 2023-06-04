@@ -27,8 +27,8 @@ class FilterMenu extends StatelessWidget {
           HSpace(size: $styles.insets.md),
 
           //Tag Selector
-          Row(
-            children: const [
+          const Row(
+            children: [
               StyledMenuTitle(title: 'Tags'),
               Spacer(),
               StyledNavigationIcon(),

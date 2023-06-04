@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Inkling {
-  int? get hiveId => throw _privateConstructorUsedError;
+  String get hiveId => throw _privateConstructorUsedError;
   String get note => throw _privateConstructorUsedError;
   String get link => throw _privateConstructorUsedError;
   String get imagePath => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $InklingCopyWith<$Res> {
       _$InklingCopyWithImpl<$Res, Inkling>;
   @useResult
   $Res call(
-      {int? hiveId,
+      {String hiveId,
       String note,
       String link,
       String imagePath,
@@ -56,7 +56,7 @@ class _$InklingCopyWithImpl<$Res, $Val extends Inkling>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hiveId = freezed,
+    Object? hiveId = null,
     Object? note = null,
     Object? link = null,
     Object? imagePath = null,
@@ -65,10 +65,10 @@ class _$InklingCopyWithImpl<$Res, $Val extends Inkling>
     Object? metaData = freezed,
   }) {
     return _then(_value.copyWith(
-      hiveId: freezed == hiveId
+      hiveId: null == hiveId
           ? _value.hiveId
           : hiveId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String,
       note: null == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -105,7 +105,7 @@ abstract class _$$_InklingCopyWith<$Res> implements $InklingCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int? hiveId,
+      {String hiveId,
       String note,
       String link,
       String imagePath,
@@ -124,7 +124,7 @@ class __$$_InklingCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hiveId = freezed,
+    Object? hiveId = null,
     Object? note = null,
     Object? link = null,
     Object? imagePath = null,
@@ -133,10 +133,10 @@ class __$$_InklingCopyWithImpl<$Res>
     Object? metaData = freezed,
   }) {
     return _then(_$_Inkling(
-      hiveId: freezed == hiveId
+      hiveId: null == hiveId
           ? _value.hiveId
           : hiveId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String,
       note: null == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -169,7 +169,7 @@ class __$$_InklingCopyWithImpl<$Res>
 
 class _$_Inkling implements _Inkling {
   const _$_Inkling(
-      {this.hiveId,
+      {required this.hiveId,
       required this.note,
       required this.link,
       required this.imagePath,
@@ -179,7 +179,7 @@ class _$_Inkling implements _Inkling {
       : _tags = tags;
 
   @override
-  final int? hiveId;
+  final String hiveId;
   @override
   final String note;
   @override
@@ -233,7 +233,7 @@ class _$_Inkling implements _Inkling {
 
 abstract class _Inkling implements Inkling {
   const factory _Inkling(
-      {final int? hiveId,
+      {required final String hiveId,
       required final String note,
       required final String link,
       required final String imagePath,
@@ -242,7 +242,7 @@ abstract class _Inkling implements Inkling {
       final MetaData? metaData}) = _$_Inkling;
 
   @override
-  int? get hiveId;
+  String get hiveId;
   @override
   String get note;
   @override

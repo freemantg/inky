@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:inky/domain/tags/tag_failure.dart';
 import 'package:inky/infrastructure/tags/tags_repository.dart';
@@ -23,61 +22,57 @@ class TagsState with _$TagsState {
 
 class TagsNotifier extends StateNotifier<TagsState> {
   final TagRepository _tagRepository;
-  StreamSubscription<Either<TagFailure, List<Tag>>>? _tagStreamSubscription;
 
-  TagsNotifier({required TagRepository tagRepository})
-      : _tagRepository = tagRepository,
+  TagsNotifier({
+    required TagRepository tagRepository,
+  })  : _tagRepository = tagRepository,
         super(const TagsState.initial()) {
-    _tagStreamSubscription = _tagRepository.streamTags([]).listen(
-      (failureOrTags) {
-        failureOrTags.fold(
-          (failure) => state = TagsState.loadFailure(failure),
-          (tags) => state = TagsState.loadSuccess(tags),
+    streamTags();
+  }
+
+  void initialiseTags({List<Tag>? filter}) {
+    state = state.copyWith(filter: filter);
+    streamTags();
+  }
+
+  void streamTags() {
+    state = TagsState.loadInProgress(filter: state.filter);
+    final successOrFailure = _tagRepository.streamTags(state.filter);
+    successOrFailure.listen(
+      (event) {
+        event.fold(
+          (failure) =>
+              state = TagsState.loadFailure(failure, filter: state.filter),
+          (tags) => state = TagsState.loadSuccess(tags, filter: state.filter),
         );
       },
     );
   }
 
-  // void fetchTags({List<Tag>? filter}) async {
-  //   // state = const TagsState.loadInProgress();
-  //   final successOrFailure = await _tagRepository.fetchTags(
-  //       filter: (tag) => filter?.contains(tag) ?? false);
-  //   successOrFailure.fold(
-  //     (failure) => state = TagsState.loadFailure(failure),
-  //     (tags) => state = TagsState.loadSuccess(tags, filter: filter),
-  //   );
-  // }
-
   Future<void> createTag(String name) async {
-    await _tagRepository.create(Tag(
-      id: const Uuid().v4(),
-      name: name,
-    ));
-    // fetchTags(filter: state.filter);
+    await _tagRepository.create(
+      Tag(
+        id: const Uuid().v4(),
+        name: name,
+      ),
+    );
   }
 
   Future<void> deleteTag(Tag tag) async {
     await _tagRepository.delete(tag);
-    // fetchTags();
   }
 
   void addFilterTag(Tag tag) {
     final newFilterTags = List<Tag>.from(state.filter ?? []);
     newFilterTags.add(tag);
     state = state.copyWith(filter: newFilterTags);
-    // fetchTags(filter: newFilterTags);
+    streamTags();
   }
 
   void removeFilterTag(Tag tag) {
     final newFilterTags = List<Tag>.from(state.filter ?? []);
     newFilterTags.remove(tag);
     state = state.copyWith(filter: newFilterTags);
-    // fetchTags(filter: newFilterTags);
-  }
-
-  @override
-  void dispose() {
-    _tagStreamSubscription?.cancel();
-    super.dispose();
+    streamTags();
   }
 }

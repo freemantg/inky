@@ -22,9 +22,7 @@ class TagDto extends HiveObject with _$TagDto {
   factory TagDto.fromJson(Map<String, dynamic> json) => _$TagDtoFromJson(json);
 
   factory TagDto.fromDomain(Tag tag) => TagDto(name: tag.name, id: tag.id);
-}
 
-extension TagDtoX on TagDto {
   Tag toDomain() {
     return Tag(
       id: id,

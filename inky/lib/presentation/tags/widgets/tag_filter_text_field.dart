@@ -30,7 +30,7 @@ class TagFilterTextField extends HookConsumerWidget {
       controller: controller,
       style: $styles.text.bodySmall,
       decoration: StyledInputDecoration(
-        hintText: 'Type to filter...',
+        hintText: 'Type to create or filter...',
         prefixIcon: Icon(
           Icons.search,
           color: $styles.colors.grey04,

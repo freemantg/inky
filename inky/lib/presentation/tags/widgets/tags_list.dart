@@ -16,26 +16,25 @@ class TagList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: tags.length,
-        itemBuilder: (context, index) {
-          final tag = tags[index];
-          return Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.only(bottom: $styles.insets.xs),
-              child: Consumer(builder: (context, ref, child) {
-                return TagChip(
-                  tag: tag,
-                  onTap: () =>
-                      ref.read(tagsNotifierProvider.notifier).addFilterTag(tag),
-                );
-              }),
-            ),
-          );
-        },
-      ),
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: tags.length,
+      itemBuilder: (context, index) {
+        final tag = tags[index];
+        return Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: EdgeInsets.only(bottom: $styles.insets.xs),
+            child: Consumer(builder: (context, ref, child) {
+              return TagChip(
+                tag: tag,
+                onTap: () =>
+                    ref.read(tagsNotifierProvider.notifier).addFilterTag(tag),
+              );
+            }),
+          ),
+        );
+      },
     );
   }
 }

@@ -29,6 +29,7 @@ class InklingsNotifier extends StateNotifier<InklingsState> {
   }
 
   Future<void> watchInklings() async {
+    state = const InklingsState.loadInProgress();
     final inklingStream = _repository.watchInklings();
     inklingStream.listen(
       (successOrFailure) {

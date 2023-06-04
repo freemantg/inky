@@ -7,15 +7,17 @@ import '../../../styles/styles.dart';
 import '../../shared/widgets.dart';
 
 class NoteTextFormField extends HookConsumerWidget {
-  const NoteTextFormField({super.key});
+  const NoteTextFormField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textEditingController = useTextEditingController();
-    
-    if (ref.read(inklingFormNotifierProvider).isEditing) {
-      textEditingController.text =
-          ref.read(inklingFormNotifierProvider).inkling.note;
+
+    final inklingForm = ref.watch(inklingFormNotifierProvider);
+
+    if (inklingForm.inkling.note.isNotEmpty &&
+        textEditingController.text.isEmpty) {
+      textEditingController.text = inklingForm.inkling.note;
     }
 
     return Expanded(

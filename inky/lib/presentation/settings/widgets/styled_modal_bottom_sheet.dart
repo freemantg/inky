@@ -16,8 +16,8 @@ class StyledModalBottomSheet extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Stack(
-            children: const [
+          const Stack(
+            children: [
               Align(
                 alignment: Alignment.centerLeft,
                 child: Icon(Icons.arrow_back_ios_new),

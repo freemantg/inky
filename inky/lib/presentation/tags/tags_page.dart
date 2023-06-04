@@ -21,65 +21,71 @@ class TagsPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    Future.microtask(() => ref
+        .read(tagsNotifierProvider.notifier)
+        .initialiseTags(filter: initialTags));
+
     return Scaffold(
-      appBar: _buildAppBar(),
-      body: _buildBody(ref),
-    );
-  }
-
-  AppBar _buildAppBar() {
-    return AppBar(
-      centerTitle: true,
-      leading: const StyledAppBarLeadingBackButton(),
-      title: const StyledTitle(title: 'SELECT TAGS'),
-      actions: [
-        StyledAppBarAction(
-          isManagingInklingTags: isManagingInklingTags,
-        )
-      ],
-    );
-  }
-
-  Widget _buildBody(WidgetRef ref) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: $styles.insets.sm),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const TagFilterTextField(),
-          SizedBox(height: $styles.insets.xs),
-          _buildTagsList(ref),
+      appBar: AppBar(
+        centerTitle: true,
+        leading: const StyledAppBarLeadingBackButton(),
+        title: const StyledTitle(title: 'SELECT TAGS'),
+        actions: [
+          StyledAppBarAction(
+            isManagingInklingTags: isManagingInklingTags,
+          )
         ],
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: $styles.insets.sm),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const TagFilterTextField(),
+            SizedBox(height: $styles.insets.xs),
+            TagsDisplay(tagsNotifierProvider: tagsNotifierProvider)
+          ],
+        ),
       ),
     );
   }
+}
 
-  Widget _buildTagsList(WidgetRef ref) {
+class TagsDisplay extends HookConsumerWidget {
+  const TagsDisplay({Key? key, required this.tagsNotifierProvider})
+      : super(key: key);
+  final tagsNotifierProvider;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
     final tagsState = ref.watch(tagsNotifierProvider);
-
     return tagsState.map(
       initial: (_) => const Text('Initial'),
-      loadSuccess: (state) => _buildTagList(state),
+      loadSuccess: (state) => TagListBuilder(state: state),
       loadInProgress: (_) => const CircularProgressIndicator(),
       loadFailure: (_) => const Text('Failed to load tags'),
     );
   }
+}
 
-  Widget _buildTagList(LoadSuccess state) {
+class TagListBuilder extends StatelessWidget {
+  const TagListBuilder({Key? key, required this.state}) : super(key: key);
+  final LoadSuccess state;
+
+  @override
+  Widget build(BuildContext context) {
     final filter = state.filter;
     final tags = state.tags;
 
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (filter != null) FilterTagSelector(tags: filter),
-          const StyledMenuTitle(title: 'Tags List'),
-          SizedBox(height: $styles.insets.xs),
-          Expanded(child: TagList(tags: tags)),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (filter != null) FilterTagSelector(tags: filter),
+        const StyledMenuTitle(title: 'Tags List'),
+        SizedBox(height: $styles.insets.xs),
+        TagList(tags: tags),
+      ],
     );
   }
 }

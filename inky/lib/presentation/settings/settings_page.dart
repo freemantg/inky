@@ -32,9 +32,9 @@ class SettingsPage extends StatelessWidget {
             ),
             child: Padding(
               padding: EdgeInsets.all($styles.insets.sm),
-              child: Column(
+              child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: const [],
+                children: [],
               ),
             ),
           ),

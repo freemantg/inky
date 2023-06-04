@@ -1,4 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:rxdart/rxdart.dart';
 
 import 'tag_dto.dart';
 
@@ -7,14 +8,18 @@ class TagsLocalService {
 
   TagsLocalService(this._tagDtosBox);
 
-  Future<Stream<List<TagDto>>> streamTags({List<TagDto>? filter}) async {
+  Stream<List<TagDto>> streamTags({List<TagDto>? filter}) {
     return _tagDtosBox.watch().map((event) {
-      if (filter != null) {
-        return _tagDtosBox.values.where((tag) => filter.contains(tag)).toList();
-      } else {
-        return _tagDtosBox.values.toList();
+      var values = _tagDtosBox.values.toList();
+      if (filter != null && filter.isNotEmpty) {
+        values = values.where((tag) => !filter.contains(tag)).toList();
       }
-    });
+      return values;
+    }).startWith(
+      _tagDtosBox.values
+          .where((tag) => filter == null || !filter.contains(tag))
+          .toList(),
+    );
   }
 
   Future<void> insert(TagDto tagDto) async {

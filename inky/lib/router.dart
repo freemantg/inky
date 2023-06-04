@@ -64,10 +64,7 @@ final appRouter = GoRouter(
             ]),
       ],
     ),
-    AppRoute(
-      path: ScreenPaths.onboarding,
-      builder: (_) => const OnboardingPage(),
-    ),
+  
   ],
 );
 

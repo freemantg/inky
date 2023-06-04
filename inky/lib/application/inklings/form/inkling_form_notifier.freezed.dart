@@ -20,6 +20,7 @@ mixin _$InklingFormState {
   bool get isEditing => throw _privateConstructorUsedError;
   bool get isSaving => throw _privateConstructorUsedError;
   bool get showErrorMessage => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InklingFormStateCopyWith<InklingFormState> get copyWith =>
@@ -33,7 +34,11 @@ abstract class $InklingFormStateCopyWith<$Res> {
       _$InklingFormStateCopyWithImpl<$Res, InklingFormState>;
   @useResult
   $Res call(
-      {Inkling inkling, bool isEditing, bool isSaving, bool showErrorMessage});
+      {Inkling inkling,
+      bool isEditing,
+      bool isSaving,
+      bool showErrorMessage,
+      String? errorMessage});
 
   $InklingCopyWith<$Res> get inkling;
 }
@@ -55,6 +60,7 @@ class _$InklingFormStateCopyWithImpl<$Res, $Val extends InklingFormState>
     Object? isEditing = null,
     Object? isSaving = null,
     Object? showErrorMessage = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       inkling: null == inkling
@@ -73,6 +79,10 @@ class _$InklingFormStateCopyWithImpl<$Res, $Val extends InklingFormState>
           ? _value.showErrorMessage
           : showErrorMessage // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -94,7 +104,11 @@ abstract class _$$_InklingFormStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Inkling inkling, bool isEditing, bool isSaving, bool showErrorMessage});
+      {Inkling inkling,
+      bool isEditing,
+      bool isSaving,
+      bool showErrorMessage,
+      String? errorMessage});
 
   @override
   $InklingCopyWith<$Res> get inkling;
@@ -115,6 +129,7 @@ class __$$_InklingFormStateCopyWithImpl<$Res>
     Object? isEditing = null,
     Object? isSaving = null,
     Object? showErrorMessage = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$_InklingFormState(
       inkling: null == inkling
@@ -133,6 +148,10 @@ class __$$_InklingFormStateCopyWithImpl<$Res>
           ? _value.showErrorMessage
           : showErrorMessage // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -144,7 +163,8 @@ class _$_InklingFormState implements _InklingFormState {
       {required this.inkling,
       required this.isEditing,
       required this.isSaving,
-      required this.showErrorMessage});
+      required this.showErrorMessage,
+      this.errorMessage});
 
   @override
   final Inkling inkling;
@@ -154,10 +174,12 @@ class _$_InklingFormState implements _InklingFormState {
   final bool isSaving;
   @override
   final bool showErrorMessage;
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'InklingFormState(inkling: $inkling, isEditing: $isEditing, isSaving: $isSaving, showErrorMessage: $showErrorMessage)';
+    return 'InklingFormState(inkling: $inkling, isEditing: $isEditing, isSaving: $isSaving, showErrorMessage: $showErrorMessage, errorMessage: $errorMessage)';
   }
 
   @override
@@ -171,12 +193,14 @@ class _$_InklingFormState implements _InklingFormState {
             (identical(other.isSaving, isSaving) ||
                 other.isSaving == isSaving) &&
             (identical(other.showErrorMessage, showErrorMessage) ||
-                other.showErrorMessage == showErrorMessage));
+                other.showErrorMessage == showErrorMessage) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, inkling, isEditing, isSaving, showErrorMessage);
+  int get hashCode => Object.hash(runtimeType, inkling, isEditing, isSaving,
+      showErrorMessage, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -190,7 +214,8 @@ abstract class _InklingFormState implements InklingFormState {
       {required final Inkling inkling,
       required final bool isEditing,
       required final bool isSaving,
-      required final bool showErrorMessage}) = _$_InklingFormState;
+      required final bool showErrorMessage,
+      final String? errorMessage}) = _$_InklingFormState;
 
   @override
   Inkling get inkling;
@@ -200,6 +225,8 @@ abstract class _InklingFormState implements InklingFormState {
   bool get isSaving;
   @override
   bool get showErrorMessage;
+  @override
+  String? get errorMessage;
   @override
   @JsonKey(ignore: true)
   _$$_InklingFormStateCopyWith<_$_InklingFormState> get copyWith =>

@@ -33,10 +33,10 @@ class TagRepository implements TagsInterface {
   }
 
   @override
-  Stream<Either<TagFailure, List<Tag>>> streamTags(List<Tag> filter) async* {
-    final dtoFilter = filter.map((tag) => TagDto.fromDomain(tag)).toList();
-    final stream = await _localService.streamTags(filter: dtoFilter);
-    stream.map((tagDtos) {
+  Stream<Either<TagFailure, List<Tag>>> streamTags(List<Tag>? filter) {
+    final dtoFilter = filter?.map((tag) => TagDto.fromDomain(tag)).toList();
+    final stream = _localService.streamTags(filter: dtoFilter);
+    return stream.map((tagDtos) {
       try {
         return right(tagDtos.map((e) => e.toDomain()).toList());
       } catch (e) {

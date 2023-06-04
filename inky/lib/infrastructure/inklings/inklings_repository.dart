@@ -20,7 +20,7 @@ class InklingsRepository implements InklingsInterface {
   @override
   Future<Either<InklingFailure, Unit>> create(Inkling inkling) async {
     try {
-      await _localServices.insert(InklingDto.fromDomain(inkling));
+      await _localServices.upsert(InklingDto.fromDomain(inkling));
       return right(unit);
     } catch (e) {
       return left(const InklingFailure.unableToCreate());
@@ -40,7 +40,7 @@ class InklingsRepository implements InklingsInterface {
   @override
   Future<Either<InklingFailure, Unit>> update(Inkling inkling) async {
     try {
-      await _localServices.update(InklingDto.fromDomain(inkling));
+      await _localServices.upsert(InklingDto.fromDomain(inkling));
       return right(unit);
     } catch (e) {
       return left(const InklingFailure.unableToUpdate());

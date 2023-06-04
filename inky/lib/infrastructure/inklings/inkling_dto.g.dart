@@ -17,27 +17,30 @@ class InklingDtoAdapter extends TypeAdapter<_$_InklingDto> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return _$_InklingDto(
-      note: fields[0] as String,
-      link: fields[1] as String,
-      imagePath: fields[2] as String,
-      tags: (fields[3] as List).cast<TagDto>(),
-      memo: fields[4] as String,
+      hiveId: fields[0] as String,
+      note: fields[1] as String,
+      link: fields[2] as String,
+      imagePath: fields[3] as String,
+      tags: (fields[4] as List).cast<TagDto>(),
+      memo: fields[5] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, _$_InklingDto obj) {
     writer
-      ..writeByte(5)
+      ..writeByte(6)
       ..writeByte(0)
-      ..write(obj.note)
+      ..write(obj.hiveId)
       ..writeByte(1)
-      ..write(obj.link)
+      ..write(obj.note)
       ..writeByte(2)
-      ..write(obj.imagePath)
-      ..writeByte(4)
-      ..write(obj.memo)
+      ..write(obj.link)
       ..writeByte(3)
+      ..write(obj.imagePath)
+      ..writeByte(5)
+      ..write(obj.memo)
+      ..writeByte(4)
       ..write(obj.tags);
   }
 
@@ -58,7 +61,7 @@ class InklingDtoAdapter extends TypeAdapter<_$_InklingDto> {
 
 _$_InklingDto _$$_InklingDtoFromJson(Map<String, dynamic> json) =>
     _$_InklingDto(
-      hiveId: json['hiveId'] as int?,
+      hiveId: json['hiveId'] as String,
       note: json['note'] as String,
       link: json['link'] as String,
       imagePath: json['imagePath'] as String,

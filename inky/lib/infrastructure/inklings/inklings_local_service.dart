@@ -1,4 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../../router.dart';
 import '../tags/tag_dto.dart';
@@ -11,6 +12,8 @@ class InklingLocalServices {
 
   Stream<List<InklingDto>> streamInklings(
       {List<TagDto>? filter, InklingType? inklingType}) {
+    final initialInklings = _inklingDtoBox.values.toList();
+
     return _inklingDtoBox.watch().map((event) {
       var inklings = _inklingDtoBox.values.toList();
 
@@ -37,51 +40,15 @@ class InklingLocalServices {
             .toList();
       }
       return inklings;
-    });
+    }).startWith(initialInklings);
   }
 
-  Future<List<InklingDto>> fetchInklings({
-    List<TagDto>? filter,
-    InklingType? inklingType,
-  }) async {
-    var inklings = _inklingDtoBox.values.toList();
-
-    if (inklingType != null) {
-      inklings = inklings.where((inklingDto) {
-        switch (inklingType) {
-          case InklingType.note:
-            return inklingDto.note.isNotEmpty;
-          case InklingType.image:
-            return inklingDto.imagePath.isNotEmpty;
-          case InklingType.link:
-            return inklingDto.link.isNotEmpty;
-        }
-      }).toList();
-    }
-
-    if (filter?.isNotEmpty ?? false) {
-      inklings = inklings
-          .where((inklingDto) =>
-              inklingDto.tags.any((tagDto) => filter!.contains(tagDto)))
-          .toList();
-    }
-
-    return inklings;
-  }
-
-  Future<void> insert(InklingDto dto) async {
-    await _inklingDtoBox.add(dto);
+  Future<void> upsert(InklingDto dto) async {
+    print(dto);
+    await _inklingDtoBox.put(dto.hiveId, dto);
   }
 
   Future<void> delete(InklingDto dto) async {
-    if (dto.hiveId != null) {
-      await _inklingDtoBox.delete(dto.hiveId);
-    }
-  }
-
-  Future<void> update(InklingDto dto) async {
-    if (dto.hiveId != null) {
-      await _inklingDtoBox.put(dto.hiveId, dto);
-    }
+    await _inklingDtoBox.delete(dto.hiveId);
   }
 }

@@ -14,6 +14,7 @@ class InklingFormState with _$InklingFormState {
     required bool isEditing,
     required bool isSaving,
     required bool showErrorMessage,
+    String? errorMessage,
   }) = _InklingFormState;
 
   factory InklingFormState.initial() => InklingFormState(
@@ -33,31 +34,31 @@ class InklingFormNotifier extends StateNotifier<InklingFormState> {
   final InklingsRepository _repository;
   final InklingImageRepository _imageRepository;
 
-  void initialized({required Inkling? inkling}) {
-    if (inkling == null) return;
+  void _updateStateIfChanged(Inkling newInkling) {
+    if (newInkling != state.inkling) {
+      state = state.copyWith(inkling: newInkling);
+    }
+  }
 
-    state = state.copyWith(
-      inkling: inkling,
-      isEditing: true,
-    );
+  void initialized({required Inkling? inkling}) {
+    if (inkling != null && inkling != state.inkling) {
+      state = state.copyWith(
+        inkling: inkling,
+        isEditing: true,
+      );
+    }
   }
 
   void noteChanged({required String noteStr}) {
-    state = state.copyWith(
-      inkling: state.inkling.copyWith(note: noteStr),
-    );
+    _updateStateIfChanged(state.inkling.copyWith(note: noteStr));
   }
 
   void memoChanged({required String memoStr}) {
-    state = state.copyWith(
-      inkling: state.inkling.copyWith(memo: memoStr),
-    );
+    _updateStateIfChanged(state.inkling.copyWith(memo: memoStr));
   }
 
   void tagsChanged({required List<Tag> tags}) {
-    state = state.copyWith(
-      inkling: state.inkling.copyWith(tags: tags),
-    );
+    _updateStateIfChanged(state.inkling.copyWith(tags: tags));
   }
 
   Future<void> imagePathChanged({required bool isCameraSource}) async {
@@ -65,27 +66,20 @@ class InklingFormNotifier extends StateNotifier<InklingFormState> {
         await _imageRepository.pickImage(isCameraSource: isCameraSource);
 
     if (imagePath != null) {
-      state = state.copyWith(
-        inkling: state.inkling.copyWith(imagePath: imagePath),
-      );
+      _updateStateIfChanged(state.inkling.copyWith(imagePath: imagePath));
     }
   }
 
   void clearImagePath() {
-    state = state.copyWith(
-      inkling: state.inkling.copyWith(imagePath: ''),
-    );
+    _updateStateIfChanged(state.inkling.copyWith(imagePath: ''));
   }
 
   void linkChanged({required String linkStr}) {
-    state = state.copyWith(
-      inkling: state.inkling.copyWith(link: linkStr),
-    );
+    _updateStateIfChanged(state.inkling.copyWith(link: linkStr));
   }
 
   Future<void> saved() async {
     state = state.copyWith(isSaving: true);
-
     final failureOrSuccess = state.isEditing
         ? await _repository.update(state.inkling)
         : await _repository.create(state.inkling);
@@ -94,6 +88,7 @@ class InklingFormNotifier extends StateNotifier<InklingFormState> {
       (failure) => state.copyWith(
         showErrorMessage: true,
         isSaving: false,
+        errorMessage: failure.toString(), // give more specific error message
       ),
       (success) => state.copyWith(isSaving: false),
     );
