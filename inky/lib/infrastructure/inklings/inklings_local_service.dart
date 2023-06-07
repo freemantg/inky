@@ -44,7 +44,6 @@ class InklingLocalServices {
   }
 
   Future<void> upsert(InklingDto dto) async {
-    print(dto);
     await _inklingDtoBox.put(dto.hiveId, dto);
   }
 

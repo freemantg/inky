@@ -26,7 +26,7 @@ class AddInklingPage extends HookConsumerWidget {
           .read(inklingFormNotifierProvider.notifier)
           .initialized(inkling: inkling));
       return null;
-    });
+    }, []);
 
     //Pops current stack if form state is not longer saving
     ref.listen(inklingFormNotifierProvider, (previous, next) {
@@ -117,8 +117,8 @@ class AddInklingPage extends HookConsumerWidget {
       child: Consumer(builder: (context, ref, child) {
         return StyledElevatedButton(
           title: 'Ink It!',
-          onPressed: () =>
-              ref.read(inklingFormNotifierProvider.notifier).saved(),
+          onPressed: () async =>
+              await ref.read(inklingFormNotifierProvider.notifier).saved(),
         );
       }),
     );
