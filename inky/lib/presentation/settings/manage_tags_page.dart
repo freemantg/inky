@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:inky/providers.dart';
 
 import '../../domain/domain.dart';
+import '../../providers.dart';
 import '../../styles/styles.dart';
 import '../presentation.dart';
 

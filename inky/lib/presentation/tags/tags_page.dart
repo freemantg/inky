@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inky/application/application.dart';
 
-import 'package:inky/providers.dart';
-import 'package:inky/styles/styles.dart';
-
+import '../../application/application.dart';
 import '../../domain/tags/tag.dart';
+import '../../providers.dart';
+import '../../styles/styles.dart';
 import '../shared/widgets.dart';
 import 'widgets/widgets.dart';
 

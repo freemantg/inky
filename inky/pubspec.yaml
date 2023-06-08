@@ -27,6 +27,7 @@ dependencies:
   intl: ^0.18.1
   json_annotation: ^4.7.0
   json_serializable: ^6.4.0
+  mockito: ^5.4.1
   path_provider: ^2.0.11
   riverpod: ^2.3.6
   rxdart: ^0.27.7

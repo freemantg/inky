@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -7,6 +6,19 @@ import 'presentation/presentation.dart';
 
 /// InklingType for Inklings. Determines add route.
 enum InklingType { note, image, link }
+
+extension InklingTypeExtension on InklingType {
+  String get name {
+    switch (this) {
+      case InklingType.note:
+        return 'note';
+      case InklingType.image:
+        return 'image';
+      case InklingType.link:
+        return 'link';
+    }
+  }
+}
 
 /// Shared Paths
 class ScreenPaths {
@@ -21,33 +33,68 @@ class ScreenPaths {
   static String manageTags = 'manageTags';
 }
 
-// Routing table, matches string paths to UI Screens
+class AppRoute extends GoRoute {
+  AppRoute({
+    required String path,
+    required Widget Function(BuildContext, GoRouterState) builder,
+    List<GoRoute> routes = const [],
+    this.fadeTransition = true,
+  }) : super(
+          path: path,
+          routes: routes,
+          pageBuilder: (context, state) => fadeTransition
+              ? FadeTransitionPage(
+                  key: state.pageKey,
+                  child: Scaffold(body: builder(context, state)),
+                )
+              : MaterialPage(
+                  key: state.pageKey,
+                  child: Scaffold(body: builder(context, state)),
+                ),
+        );
+
+  final bool fadeTransition;
+}
+
+InklingType? _tryParseInklingType(String value) {
+  switch (value) {
+    case 'note':
+      return InklingType.note;
+    case 'image':
+      return InklingType.image;
+    case 'link':
+      return InklingType.link;
+    default:
+      return null;
+  }
+}
+
 final appRouter = GoRouter(
   routes: [
     AppRoute(
       path: ScreenPaths.home,
-      builder: (_) => const InklingsPage(),
+      builder: (_, __) => const InklingsPage(),
       routes: [
         AppRoute(
           path: ScreenPaths.tags,
-          builder: ((_) => TagsPage(
-                initialTags: _.extra as List<Tag>?,
+          builder: ((_, __) => TagsPage(
+                initialTags: __.extra as List<Tag>?,
                 isManagingInklingTags: false,
               )),
         ),
         AppRoute(
           path: 'addInkling/:type',
-          builder: (_) {
+          builder: (_, __) {
             return AddInklingPage(
-              inklingType: _tryParseInklingType(_.pathParameters['type']!)!,
-              inkling: _.extra as Inkling?,
+              inklingType: _tryParseInklingType(__.pathParameters['type']!)!,
+              inkling: __.extra as Inkling?,
             );
           },
           routes: [
             AppRoute(
               path: ScreenPaths.tags,
-              builder: ((_) => TagsPage(
-                    initialTags: _.extra as List<Tag>?,
+              builder: ((_, __) => TagsPage(
+                    initialTags: __.extra as List<Tag>?,
                     isManagingInklingTags: true,
                   )),
             ),
@@ -55,53 +102,34 @@ final appRouter = GoRouter(
         ),
         AppRoute(
             path: ScreenPaths.settings,
-            builder: ((_) => const SettingsPage()),
+            builder: ((_, __) => const SettingsPage()),
             routes: [
               AppRoute(
                 path: ScreenPaths.manageTags,
-                builder: ((_) => const ManageTagsPage()),
+                builder: ((_, __) => const ManageTagsPage()),
               ),
             ]),
       ],
     ),
-  
   ],
 );
 
-// Custom GoRoute sub-class to make the router custom transitions declaration easier.
-class AppRoute extends GoRoute {
-  AppRoute({
-    required String path,
-    required Widget Function(GoRouterState s) builder,
-    List<GoRoute> routes = const [],
-    this.fadeTransition = true,
-  }) : super(
-          path: path,
-          routes: routes,
-          pageBuilder: (context, state) {
-            final pageContent = Scaffold(
-              body: builder(state),
-            );
-            if (fadeTransition) {
-              return CustomTransitionPage(
-                key: state.pageKey,
-                child: pageContent,
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(
-                    opacity: animation,
-                    child: child,
-                  );
-                },
-              );
-            } else {
-              return CupertinoPage(child: pageContent);
-            }
-          },
+class FadeTransitionPage extends Page {
+  final Widget child;
+
+  const FadeTransitionPage({required this.child, LocalKey? key})
+      : super(key: key);
+
+  @override
+  Route createRoute(BuildContext context) {
+    return PageRouteBuilder(
+      settings: this,
+      pageBuilder: (_, animation, __) {
+        return FadeTransition(
+          opacity: animation,
+          child: child,
         );
-
-  final bool fadeTransition;
+      },
+    );
+  }
 }
-
-InklingType? _tryParseInklingType(String value) =>
-    InklingType.values.asNameMap()[value];

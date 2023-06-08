@@ -21,7 +21,6 @@ class MenuAction extends StatelessWidget {
       padding: EdgeInsets.all($styles.insets.xxs),
       child: GestureDetector(
         onTap: () {
-          //Pops dialog menu
           Navigator.pop(context, true);
           onTap();
         },

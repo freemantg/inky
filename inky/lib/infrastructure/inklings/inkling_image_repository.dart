@@ -1,14 +1,16 @@
 import 'package:image_picker/image_picker.dart';
 
-class InklingImageRepository {
-  final ImagePicker _imagePicker;
+import 'inkling_image_picker.dart';
 
-  InklingImageRepository({required ImagePicker imagePicker})
+class InklingImageRepository {
+  final InklingImagePicker _imagePicker;
+
+  InklingImageRepository({required InklingImagePicker imagePicker})
       : _imagePicker = imagePicker;
 
-  Future<String?> pickImage({required bool isCameraSource}) async {
+  Future<String?> pickImage({bool isCameraSource = false}) async {
     final XFile? image = await _imagePicker.pickImage(
-      source: isCameraSource ? ImageSource.camera : ImageSource.gallery,
+      isCameraSource ? ImageSource.camera : ImageSource.gallery,
     );
     if (image == null) return null;
     return image.path;

@@ -5,6 +5,7 @@ import 'package:riverpod/riverpod.dart';
 
 import 'application/application.dart';
 import 'infrastructure/infrastructure.dart';
+import 'infrastructure/inklings/inkling_image_picker.dart';
 
 //Package providers
 final httpProvider = Provider((ref) => Client());
@@ -25,8 +26,10 @@ final inklingLocalServiceProvider =
     Provider<InklingLocalServices>((ref) => throw UnimplementedError());
 final inklingRemoteService =
     Provider((ref) => InklingRemoteService(ref.watch(httpProvider)));
+final inklingImagePickerProvider =
+    Provider((ref) => InklingImagePicker(ref.watch(imagePickerProvider)));
 final inklingImageRepositoryProvider = Provider((ref) =>
-    InklingImageRepository(imagePicker: ref.watch(imagePickerProvider)));
+    InklingImageRepository(imagePicker: ref.watch(inklingImagePickerProvider)));
 final inklingRepositoryProvider = Provider(
   (ref) => InklingsRepository(
     localServices: ref.watch(inklingLocalServiceProvider),
@@ -51,6 +54,6 @@ final inklingFormNotifierProvider =
             ref.watch(inklingImageRepositoryProvider)));
 
 //State for managing inkling filters
-final inklingFilterNotifier =
+final inklingFilterNotifierProvider =
     StateNotifierProvider<InklingFilterNotifier, InklingFilterState>(
         (ref) => InklingFilterNotifier());

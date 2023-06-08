@@ -16,12 +16,12 @@ class InklingTypeButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedFilterType =
-        ref.watch(inklingFilterNotifier.select((state) => state.typeFilter));
+    final selectedFilterType = ref.watch(
+        inklingFilterNotifierProvider.select((state) => state.typeFilter));
 
     return GestureDetector(
       onTap: () => ref
-          .read(inklingFilterNotifier.notifier)
+          .read(inklingFilterNotifierProvider.notifier)
           .toggleInklingType(inklingType),
       child: Row(
         children: [

@@ -11,8 +11,8 @@ class FilterTagRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final filterTags =
-        ref.watch(inklingFilterNotifier.select((state) => state.filter));
+    final filterTags = ref
+        .watch(inklingFilterNotifierProvider.select((state) => state.filter));
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -27,7 +27,7 @@ class FilterTagRow extends ConsumerWidget {
   Widget _buildTagChipRemoveButton(WidgetRef ref, Tag tag) {
     return GestureDetector(
       onTap: () =>
-          ref.read(inklingFilterNotifier.notifier).removeFilterTag(tag),
+          ref.read(inklingFilterNotifierProvider.notifier).removeFilterTag(tag),
       child: Padding(
         padding: EdgeInsets.only(
           right: $styles.insets.xs,

@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:inky/domain/inklings/inkling.dart';
 
+import '../../domain/inklings/inkling.dart';
 import '../tags/tag_dto.dart';
 
 part 'inkling_dto.freezed.dart';

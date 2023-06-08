@@ -1,11 +1,8 @@
-import 'package:inky/domain/domain.dart';
 import 'package:dartz/dartz.dart';
-import 'package:inky/infrastructure/inklings/inklings_local_service.dart';
-import 'package:inky/infrastructure/tags/tag_dto.dart';
-import 'package:inky/router.dart';
 
-import 'inkling_dto.dart';
-import 'inklings_remote_service.dart';
+import '../../domain/domain.dart';
+import '../../router.dart';
+import '../infrastructure.dart';
 
 class InklingsRepository implements InklingsInterface {
   final InklingLocalServices _localServices;

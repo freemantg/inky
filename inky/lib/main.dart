@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:inky/infrastructure/hive/hive_database.dart';
-import 'package:inky/infrastructure/infrastructure.dart';
-import 'package:inky/providers.dart';
-import 'package:inky/router.dart';
 
+import 'infrastructure/hive/hive_database.dart';
+import 'infrastructure/infrastructure.dart';
+import 'providers.dart';
+import 'router.dart';
 import 'styles/styles.dart';
 
 void main() async {

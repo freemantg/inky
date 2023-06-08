@@ -1,12 +1,11 @@
 import 'dart:async';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:inky/domain/tags/tag_failure.dart';
-import 'package:inky/infrastructure/tags/tags_repository.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../domain/tags/tag.dart';
+import '../../domain/domain.dart';
+import '../../infrastructure/infrastructure.dart';
 
 part 'tags_notifier.freezed.dart';
 

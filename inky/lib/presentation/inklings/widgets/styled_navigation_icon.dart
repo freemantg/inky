@@ -11,8 +11,8 @@ class StyledNavigationIcon extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final filter =
-        ref.watch(inklingFilterNotifier.select((state) => state.filter));
+    final filter = ref
+        .watch(inklingFilterNotifierProvider.select((state) => state.filter));
 
     void navigateToTags() {
       final path = "${ScreenPaths.home}${ScreenPaths.tags}";
