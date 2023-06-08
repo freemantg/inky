@@ -16,11 +16,22 @@ class StyledAnimatedFAB extends HookWidget {
   Widget build(BuildContext context) {
     final isOpen = useState(false);
 
+    void toggleDialog() {
+      isOpen.value = !isOpen.value;
+      if (isOpen.value) {
+        showDialog(
+          context: context,
+          builder: (_) => const _DialogMenu(),
+        ).then((_) => isOpen.value = false);
+      }
+    }
+
     return Padding(
       padding: EdgeInsets.only(bottom: $styles.insets.xxl),
       child: FloatingActionButton.small(
         heroTag: null,
         elevation: 0,
+        onPressed: toggleDialog,
         child: AnimatedSwitcher(
           duration: const Duration(milliseconds: 300),
           transitionBuilder: (child, animation) => RotationTransition(
@@ -44,15 +55,6 @@ class StyledAnimatedFAB extends HookWidget {
                   color: $styles.colors.grey05,
                 ),
         ),
-        onPressed: () {
-          isOpen.value = !isOpen.value;
-          isOpen.value
-              ? showDialog(
-                  context: context,
-                  builder: ((context) => const _DialogMenu()),
-                ).whenComplete(() => isOpen.value = !isOpen.value)
-              : null;
-        },
       ),
     );
   }
@@ -63,6 +65,11 @@ class _DialogMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void navigateToInkling(InklingType type) {
+      final path = "${ScreenPaths.home}${ScreenPaths.addInkling(type)}";
+      context.go(path);
+    }
+
     return Align(
       alignment: Alignment.bottomRight,
       child: StyledMenuContainer(
@@ -72,22 +79,19 @@ class _DialogMenu extends StatelessWidget {
             MenuAction(
               title: 'Note',
               iconData: Icons.edit,
-              onTap: () => context.go(
-                  "${ScreenPaths.home}${ScreenPaths.addInkling(InklingType.note)}"),
+              onTap: () => navigateToInkling(InklingType.note),
             ),
             Divider(color: $styles.colors.grey02),
             MenuAction(
               title: 'Image',
               iconData: Icons.photo,
-              onTap: () => context.go(
-                  "${ScreenPaths.home}${ScreenPaths.addInkling(InklingType.image)}"),
+              onTap: () => navigateToInkling(InklingType.image),
             ),
             Divider(color: $styles.colors.grey02),
             MenuAction(
               title: 'Link',
               iconData: Icons.link,
-              onTap: () => context.go(
-                  "${ScreenPaths.home}${ScreenPaths.addInkling(InklingType.link)}"),
+              onTap: () => navigateToInkling(InklingType.link),
             ),
           ],
         ),
@@ -95,4 +99,3 @@ class _DialogMenu extends StatelessWidget {
     );
   }
 }
-

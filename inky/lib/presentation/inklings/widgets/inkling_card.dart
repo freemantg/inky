@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:inky/router.dart';
 import 'dart:math' as math;
 
 import '../../../domain/inklings/inkling.dart';
+import '../../../router.dart';
 import '../../../styles/styles.dart';
 import '../../shared/styled_titles.dart';
 import 'widgets.dart';
