@@ -21,7 +21,7 @@ mixin _$MetaDataFailure {
     required TResult Function() unableToParse,
     required TResult Function() invalidDocument,
     required TResult Function(String property) missingProperty,
-    required TResult Function(String message) unexpected,
+    required TResult Function(String? message, int? statusCode) unexpected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$MetaDataFailure {
     TResult? Function()? unableToParse,
     TResult? Function()? invalidDocument,
     TResult? Function(String property)? missingProperty,
-    TResult? Function(String message)? unexpected,
+    TResult? Function(String? message, int? statusCode)? unexpected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,32 +37,32 @@ mixin _$MetaDataFailure {
     TResult Function()? unableToParse,
     TResult Function()? invalidDocument,
     TResult Function(String property)? missingProperty,
-    TResult Function(String message)? unexpected,
+    TResult Function(String? message, int? statusCode)? unexpected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UnableToParse value) unableToParse,
-    required TResult Function(_InvalidDocument value) invalidDocument,
-    required TResult Function(_MissingProperty value) missingProperty,
-    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(UnableToParse value) unableToParse,
+    required TResult Function(InvalidDocument value) invalidDocument,
+    required TResult Function(MissingProperty value) missingProperty,
+    required TResult Function(Unexpected value) unexpected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UnableToParse value)? unableToParse,
-    TResult? Function(_InvalidDocument value)? invalidDocument,
-    TResult? Function(_MissingProperty value)? missingProperty,
-    TResult? Function(_Unexpected value)? unexpected,
+    TResult? Function(UnableToParse value)? unableToParse,
+    TResult? Function(InvalidDocument value)? invalidDocument,
+    TResult? Function(MissingProperty value)? missingProperty,
+    TResult? Function(Unexpected value)? unexpected,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UnableToParse value)? unableToParse,
-    TResult Function(_InvalidDocument value)? invalidDocument,
-    TResult Function(_MissingProperty value)? missingProperty,
-    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(UnableToParse value)? unableToParse,
+    TResult Function(InvalidDocument value)? invalidDocument,
+    TResult Function(MissingProperty value)? missingProperty,
+    TResult Function(Unexpected value)? unexpected,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -87,25 +87,25 @@ class _$MetaDataFailureCopyWithImpl<$Res, $Val extends MetaDataFailure>
 }
 
 /// @nodoc
-abstract class _$$_UnableToParseCopyWith<$Res> {
-  factory _$$_UnableToParseCopyWith(
-          _$_UnableToParse value, $Res Function(_$_UnableToParse) then) =
-      __$$_UnableToParseCopyWithImpl<$Res>;
+abstract class _$$UnableToParseCopyWith<$Res> {
+  factory _$$UnableToParseCopyWith(
+          _$UnableToParse value, $Res Function(_$UnableToParse) then) =
+      __$$UnableToParseCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_UnableToParseCopyWithImpl<$Res>
-    extends _$MetaDataFailureCopyWithImpl<$Res, _$_UnableToParse>
-    implements _$$_UnableToParseCopyWith<$Res> {
-  __$$_UnableToParseCopyWithImpl(
-      _$_UnableToParse _value, $Res Function(_$_UnableToParse) _then)
+class __$$UnableToParseCopyWithImpl<$Res>
+    extends _$MetaDataFailureCopyWithImpl<$Res, _$UnableToParse>
+    implements _$$UnableToParseCopyWith<$Res> {
+  __$$UnableToParseCopyWithImpl(
+      _$UnableToParse _value, $Res Function(_$UnableToParse) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_UnableToParse implements _UnableToParse {
-  const _$_UnableToParse();
+class _$UnableToParse implements UnableToParse {
+  const _$UnableToParse();
 
   @override
   String toString() {
@@ -115,7 +115,7 @@ class _$_UnableToParse implements _UnableToParse {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_UnableToParse);
+        (other.runtimeType == runtimeType && other is _$UnableToParse);
   }
 
   @override
@@ -127,7 +127,7 @@ class _$_UnableToParse implements _UnableToParse {
     required TResult Function() unableToParse,
     required TResult Function() invalidDocument,
     required TResult Function(String property) missingProperty,
-    required TResult Function(String message) unexpected,
+    required TResult Function(String? message, int? statusCode) unexpected,
   }) {
     return unableToParse();
   }
@@ -138,7 +138,7 @@ class _$_UnableToParse implements _UnableToParse {
     TResult? Function()? unableToParse,
     TResult? Function()? invalidDocument,
     TResult? Function(String property)? missingProperty,
-    TResult? Function(String message)? unexpected,
+    TResult? Function(String? message, int? statusCode)? unexpected,
   }) {
     return unableToParse?.call();
   }
@@ -149,7 +149,7 @@ class _$_UnableToParse implements _UnableToParse {
     TResult Function()? unableToParse,
     TResult Function()? invalidDocument,
     TResult Function(String property)? missingProperty,
-    TResult Function(String message)? unexpected,
+    TResult Function(String? message, int? statusCode)? unexpected,
     required TResult orElse(),
   }) {
     if (unableToParse != null) {
@@ -161,10 +161,10 @@ class _$_UnableToParse implements _UnableToParse {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UnableToParse value) unableToParse,
-    required TResult Function(_InvalidDocument value) invalidDocument,
-    required TResult Function(_MissingProperty value) missingProperty,
-    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(UnableToParse value) unableToParse,
+    required TResult Function(InvalidDocument value) invalidDocument,
+    required TResult Function(MissingProperty value) missingProperty,
+    required TResult Function(Unexpected value) unexpected,
   }) {
     return unableToParse(this);
   }
@@ -172,10 +172,10 @@ class _$_UnableToParse implements _UnableToParse {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UnableToParse value)? unableToParse,
-    TResult? Function(_InvalidDocument value)? invalidDocument,
-    TResult? Function(_MissingProperty value)? missingProperty,
-    TResult? Function(_Unexpected value)? unexpected,
+    TResult? Function(UnableToParse value)? unableToParse,
+    TResult? Function(InvalidDocument value)? invalidDocument,
+    TResult? Function(MissingProperty value)? missingProperty,
+    TResult? Function(Unexpected value)? unexpected,
   }) {
     return unableToParse?.call(this);
   }
@@ -183,10 +183,10 @@ class _$_UnableToParse implements _UnableToParse {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UnableToParse value)? unableToParse,
-    TResult Function(_InvalidDocument value)? invalidDocument,
-    TResult Function(_MissingProperty value)? missingProperty,
-    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(UnableToParse value)? unableToParse,
+    TResult Function(InvalidDocument value)? invalidDocument,
+    TResult Function(MissingProperty value)? missingProperty,
+    TResult Function(Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (unableToParse != null) {
@@ -196,30 +196,30 @@ class _$_UnableToParse implements _UnableToParse {
   }
 }
 
-abstract class _UnableToParse implements MetaDataFailure {
-  const factory _UnableToParse() = _$_UnableToParse;
+abstract class UnableToParse implements MetaDataFailure {
+  const factory UnableToParse() = _$UnableToParse;
 }
 
 /// @nodoc
-abstract class _$$_InvalidDocumentCopyWith<$Res> {
-  factory _$$_InvalidDocumentCopyWith(
-          _$_InvalidDocument value, $Res Function(_$_InvalidDocument) then) =
-      __$$_InvalidDocumentCopyWithImpl<$Res>;
+abstract class _$$InvalidDocumentCopyWith<$Res> {
+  factory _$$InvalidDocumentCopyWith(
+          _$InvalidDocument value, $Res Function(_$InvalidDocument) then) =
+      __$$InvalidDocumentCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_InvalidDocumentCopyWithImpl<$Res>
-    extends _$MetaDataFailureCopyWithImpl<$Res, _$_InvalidDocument>
-    implements _$$_InvalidDocumentCopyWith<$Res> {
-  __$$_InvalidDocumentCopyWithImpl(
-      _$_InvalidDocument _value, $Res Function(_$_InvalidDocument) _then)
+class __$$InvalidDocumentCopyWithImpl<$Res>
+    extends _$MetaDataFailureCopyWithImpl<$Res, _$InvalidDocument>
+    implements _$$InvalidDocumentCopyWith<$Res> {
+  __$$InvalidDocumentCopyWithImpl(
+      _$InvalidDocument _value, $Res Function(_$InvalidDocument) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_InvalidDocument implements _InvalidDocument {
-  const _$_InvalidDocument();
+class _$InvalidDocument implements InvalidDocument {
+  const _$InvalidDocument();
 
   @override
   String toString() {
@@ -229,7 +229,7 @@ class _$_InvalidDocument implements _InvalidDocument {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_InvalidDocument);
+        (other.runtimeType == runtimeType && other is _$InvalidDocument);
   }
 
   @override
@@ -241,7 +241,7 @@ class _$_InvalidDocument implements _InvalidDocument {
     required TResult Function() unableToParse,
     required TResult Function() invalidDocument,
     required TResult Function(String property) missingProperty,
-    required TResult Function(String message) unexpected,
+    required TResult Function(String? message, int? statusCode) unexpected,
   }) {
     return invalidDocument();
   }
@@ -252,7 +252,7 @@ class _$_InvalidDocument implements _InvalidDocument {
     TResult? Function()? unableToParse,
     TResult? Function()? invalidDocument,
     TResult? Function(String property)? missingProperty,
-    TResult? Function(String message)? unexpected,
+    TResult? Function(String? message, int? statusCode)? unexpected,
   }) {
     return invalidDocument?.call();
   }
@@ -263,7 +263,7 @@ class _$_InvalidDocument implements _InvalidDocument {
     TResult Function()? unableToParse,
     TResult Function()? invalidDocument,
     TResult Function(String property)? missingProperty,
-    TResult Function(String message)? unexpected,
+    TResult Function(String? message, int? statusCode)? unexpected,
     required TResult orElse(),
   }) {
     if (invalidDocument != null) {
@@ -275,10 +275,10 @@ class _$_InvalidDocument implements _InvalidDocument {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UnableToParse value) unableToParse,
-    required TResult Function(_InvalidDocument value) invalidDocument,
-    required TResult Function(_MissingProperty value) missingProperty,
-    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(UnableToParse value) unableToParse,
+    required TResult Function(InvalidDocument value) invalidDocument,
+    required TResult Function(MissingProperty value) missingProperty,
+    required TResult Function(Unexpected value) unexpected,
   }) {
     return invalidDocument(this);
   }
@@ -286,10 +286,10 @@ class _$_InvalidDocument implements _InvalidDocument {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UnableToParse value)? unableToParse,
-    TResult? Function(_InvalidDocument value)? invalidDocument,
-    TResult? Function(_MissingProperty value)? missingProperty,
-    TResult? Function(_Unexpected value)? unexpected,
+    TResult? Function(UnableToParse value)? unableToParse,
+    TResult? Function(InvalidDocument value)? invalidDocument,
+    TResult? Function(MissingProperty value)? missingProperty,
+    TResult? Function(Unexpected value)? unexpected,
   }) {
     return invalidDocument?.call(this);
   }
@@ -297,10 +297,10 @@ class _$_InvalidDocument implements _InvalidDocument {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UnableToParse value)? unableToParse,
-    TResult Function(_InvalidDocument value)? invalidDocument,
-    TResult Function(_MissingProperty value)? missingProperty,
-    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(UnableToParse value)? unableToParse,
+    TResult Function(InvalidDocument value)? invalidDocument,
+    TResult Function(MissingProperty value)? missingProperty,
+    TResult Function(Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (invalidDocument != null) {
@@ -310,25 +310,25 @@ class _$_InvalidDocument implements _InvalidDocument {
   }
 }
 
-abstract class _InvalidDocument implements MetaDataFailure {
-  const factory _InvalidDocument() = _$_InvalidDocument;
+abstract class InvalidDocument implements MetaDataFailure {
+  const factory InvalidDocument() = _$InvalidDocument;
 }
 
 /// @nodoc
-abstract class _$$_MissingPropertyCopyWith<$Res> {
-  factory _$$_MissingPropertyCopyWith(
-          _$_MissingProperty value, $Res Function(_$_MissingProperty) then) =
-      __$$_MissingPropertyCopyWithImpl<$Res>;
+abstract class _$$MissingPropertyCopyWith<$Res> {
+  factory _$$MissingPropertyCopyWith(
+          _$MissingProperty value, $Res Function(_$MissingProperty) then) =
+      __$$MissingPropertyCopyWithImpl<$Res>;
   @useResult
   $Res call({String property});
 }
 
 /// @nodoc
-class __$$_MissingPropertyCopyWithImpl<$Res>
-    extends _$MetaDataFailureCopyWithImpl<$Res, _$_MissingProperty>
-    implements _$$_MissingPropertyCopyWith<$Res> {
-  __$$_MissingPropertyCopyWithImpl(
-      _$_MissingProperty _value, $Res Function(_$_MissingProperty) _then)
+class __$$MissingPropertyCopyWithImpl<$Res>
+    extends _$MetaDataFailureCopyWithImpl<$Res, _$MissingProperty>
+    implements _$$MissingPropertyCopyWith<$Res> {
+  __$$MissingPropertyCopyWithImpl(
+      _$MissingProperty _value, $Res Function(_$MissingProperty) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -336,7 +336,7 @@ class __$$_MissingPropertyCopyWithImpl<$Res>
   $Res call({
     Object? property = null,
   }) {
-    return _then(_$_MissingProperty(
+    return _then(_$MissingProperty(
       null == property
           ? _value.property
           : property // ignore: cast_nullable_to_non_nullable
@@ -347,8 +347,8 @@ class __$$_MissingPropertyCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MissingProperty implements _MissingProperty {
-  const _$_MissingProperty(this.property);
+class _$MissingProperty implements MissingProperty {
+  const _$MissingProperty(this.property);
 
   @override
   final String property;
@@ -362,7 +362,7 @@ class _$_MissingProperty implements _MissingProperty {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MissingProperty &&
+            other is _$MissingProperty &&
             (identical(other.property, property) ||
                 other.property == property));
   }
@@ -373,8 +373,8 @@ class _$_MissingProperty implements _MissingProperty {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MissingPropertyCopyWith<_$_MissingProperty> get copyWith =>
-      __$$_MissingPropertyCopyWithImpl<_$_MissingProperty>(this, _$identity);
+  _$$MissingPropertyCopyWith<_$MissingProperty> get copyWith =>
+      __$$MissingPropertyCopyWithImpl<_$MissingProperty>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -382,7 +382,7 @@ class _$_MissingProperty implements _MissingProperty {
     required TResult Function() unableToParse,
     required TResult Function() invalidDocument,
     required TResult Function(String property) missingProperty,
-    required TResult Function(String message) unexpected,
+    required TResult Function(String? message, int? statusCode) unexpected,
   }) {
     return missingProperty(property);
   }
@@ -393,7 +393,7 @@ class _$_MissingProperty implements _MissingProperty {
     TResult? Function()? unableToParse,
     TResult? Function()? invalidDocument,
     TResult? Function(String property)? missingProperty,
-    TResult? Function(String message)? unexpected,
+    TResult? Function(String? message, int? statusCode)? unexpected,
   }) {
     return missingProperty?.call(property);
   }
@@ -404,7 +404,7 @@ class _$_MissingProperty implements _MissingProperty {
     TResult Function()? unableToParse,
     TResult Function()? invalidDocument,
     TResult Function(String property)? missingProperty,
-    TResult Function(String message)? unexpected,
+    TResult Function(String? message, int? statusCode)? unexpected,
     required TResult orElse(),
   }) {
     if (missingProperty != null) {
@@ -416,10 +416,10 @@ class _$_MissingProperty implements _MissingProperty {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UnableToParse value) unableToParse,
-    required TResult Function(_InvalidDocument value) invalidDocument,
-    required TResult Function(_MissingProperty value) missingProperty,
-    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(UnableToParse value) unableToParse,
+    required TResult Function(InvalidDocument value) invalidDocument,
+    required TResult Function(MissingProperty value) missingProperty,
+    required TResult Function(Unexpected value) unexpected,
   }) {
     return missingProperty(this);
   }
@@ -427,10 +427,10 @@ class _$_MissingProperty implements _MissingProperty {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UnableToParse value)? unableToParse,
-    TResult? Function(_InvalidDocument value)? invalidDocument,
-    TResult? Function(_MissingProperty value)? missingProperty,
-    TResult? Function(_Unexpected value)? unexpected,
+    TResult? Function(UnableToParse value)? unableToParse,
+    TResult? Function(InvalidDocument value)? invalidDocument,
+    TResult? Function(MissingProperty value)? missingProperty,
+    TResult? Function(Unexpected value)? unexpected,
   }) {
     return missingProperty?.call(this);
   }
@@ -438,10 +438,10 @@ class _$_MissingProperty implements _MissingProperty {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UnableToParse value)? unableToParse,
-    TResult Function(_InvalidDocument value)? invalidDocument,
-    TResult Function(_MissingProperty value)? missingProperty,
-    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(UnableToParse value)? unableToParse,
+    TResult Function(InvalidDocument value)? invalidDocument,
+    TResult Function(MissingProperty value)? missingProperty,
+    TResult Function(Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (missingProperty != null) {
@@ -451,75 +451,84 @@ class _$_MissingProperty implements _MissingProperty {
   }
 }
 
-abstract class _MissingProperty implements MetaDataFailure {
-  const factory _MissingProperty(final String property) = _$_MissingProperty;
+abstract class MissingProperty implements MetaDataFailure {
+  const factory MissingProperty(final String property) = _$MissingProperty;
 
   String get property;
   @JsonKey(ignore: true)
-  _$$_MissingPropertyCopyWith<_$_MissingProperty> get copyWith =>
+  _$$MissingPropertyCopyWith<_$MissingProperty> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$_UnexpectedCopyWith<$Res> {
-  factory _$$_UnexpectedCopyWith(
-          _$_Unexpected value, $Res Function(_$_Unexpected) then) =
-      __$$_UnexpectedCopyWithImpl<$Res>;
+abstract class _$$UnexpectedCopyWith<$Res> {
+  factory _$$UnexpectedCopyWith(
+          _$Unexpected value, $Res Function(_$Unexpected) then) =
+      __$$UnexpectedCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message});
+  $Res call({String? message, int? statusCode});
 }
 
 /// @nodoc
-class __$$_UnexpectedCopyWithImpl<$Res>
-    extends _$MetaDataFailureCopyWithImpl<$Res, _$_Unexpected>
-    implements _$$_UnexpectedCopyWith<$Res> {
-  __$$_UnexpectedCopyWithImpl(
-      _$_Unexpected _value, $Res Function(_$_Unexpected) _then)
+class __$$UnexpectedCopyWithImpl<$Res>
+    extends _$MetaDataFailureCopyWithImpl<$Res, _$Unexpected>
+    implements _$$UnexpectedCopyWith<$Res> {
+  __$$UnexpectedCopyWithImpl(
+      _$Unexpected _value, $Res Function(_$Unexpected) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
+    Object? message = freezed,
+    Object? statusCode = freezed,
   }) {
-    return _then(_$_Unexpected(
-      message: null == message
+    return _then(_$Unexpected(
+      message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      statusCode: freezed == statusCode
+          ? _value.statusCode
+          : statusCode // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Unexpected implements _Unexpected {
-  const _$_Unexpected({required this.message});
+class _$Unexpected implements Unexpected {
+  const _$Unexpected({this.message, this.statusCode});
 
   @override
-  final String message;
+  final String? message;
+  @override
+  final int? statusCode;
 
   @override
   String toString() {
-    return 'MetaDataFailure.unexpected(message: $message)';
+    return 'MetaDataFailure.unexpected(message: $message, statusCode: $statusCode)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Unexpected &&
-            (identical(other.message, message) || other.message == message));
+            other is _$Unexpected &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.statusCode, statusCode) ||
+                other.statusCode == statusCode));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, message, statusCode);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UnexpectedCopyWith<_$_Unexpected> get copyWith =>
-      __$$_UnexpectedCopyWithImpl<_$_Unexpected>(this, _$identity);
+  _$$UnexpectedCopyWith<_$Unexpected> get copyWith =>
+      __$$UnexpectedCopyWithImpl<_$Unexpected>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -527,9 +536,9 @@ class _$_Unexpected implements _Unexpected {
     required TResult Function() unableToParse,
     required TResult Function() invalidDocument,
     required TResult Function(String property) missingProperty,
-    required TResult Function(String message) unexpected,
+    required TResult Function(String? message, int? statusCode) unexpected,
   }) {
-    return unexpected(message);
+    return unexpected(message, statusCode);
   }
 
   @override
@@ -538,9 +547,9 @@ class _$_Unexpected implements _Unexpected {
     TResult? Function()? unableToParse,
     TResult? Function()? invalidDocument,
     TResult? Function(String property)? missingProperty,
-    TResult? Function(String message)? unexpected,
+    TResult? Function(String? message, int? statusCode)? unexpected,
   }) {
-    return unexpected?.call(message);
+    return unexpected?.call(message, statusCode);
   }
 
   @override
@@ -549,11 +558,11 @@ class _$_Unexpected implements _Unexpected {
     TResult Function()? unableToParse,
     TResult Function()? invalidDocument,
     TResult Function(String property)? missingProperty,
-    TResult Function(String message)? unexpected,
+    TResult Function(String? message, int? statusCode)? unexpected,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
-      return unexpected(message);
+      return unexpected(message, statusCode);
     }
     return orElse();
   }
@@ -561,10 +570,10 @@ class _$_Unexpected implements _Unexpected {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_UnableToParse value) unableToParse,
-    required TResult Function(_InvalidDocument value) invalidDocument,
-    required TResult Function(_MissingProperty value) missingProperty,
-    required TResult Function(_Unexpected value) unexpected,
+    required TResult Function(UnableToParse value) unableToParse,
+    required TResult Function(InvalidDocument value) invalidDocument,
+    required TResult Function(MissingProperty value) missingProperty,
+    required TResult Function(Unexpected value) unexpected,
   }) {
     return unexpected(this);
   }
@@ -572,10 +581,10 @@ class _$_Unexpected implements _Unexpected {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_UnableToParse value)? unableToParse,
-    TResult? Function(_InvalidDocument value)? invalidDocument,
-    TResult? Function(_MissingProperty value)? missingProperty,
-    TResult? Function(_Unexpected value)? unexpected,
+    TResult? Function(UnableToParse value)? unableToParse,
+    TResult? Function(InvalidDocument value)? invalidDocument,
+    TResult? Function(MissingProperty value)? missingProperty,
+    TResult? Function(Unexpected value)? unexpected,
   }) {
     return unexpected?.call(this);
   }
@@ -583,10 +592,10 @@ class _$_Unexpected implements _Unexpected {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_UnableToParse value)? unableToParse,
-    TResult Function(_InvalidDocument value)? invalidDocument,
-    TResult Function(_MissingProperty value)? missingProperty,
-    TResult Function(_Unexpected value)? unexpected,
+    TResult Function(UnableToParse value)? unableToParse,
+    TResult Function(InvalidDocument value)? invalidDocument,
+    TResult Function(MissingProperty value)? missingProperty,
+    TResult Function(Unexpected value)? unexpected,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -596,11 +605,13 @@ class _$_Unexpected implements _Unexpected {
   }
 }
 
-abstract class _Unexpected implements MetaDataFailure {
-  const factory _Unexpected({required final String message}) = _$_Unexpected;
+abstract class Unexpected implements MetaDataFailure {
+  const factory Unexpected({final String? message, final int? statusCode}) =
+      _$Unexpected;
 
-  String get message;
+  String? get message;
+  int? get statusCode;
   @JsonKey(ignore: true)
-  _$$_UnexpectedCopyWith<_$_Unexpected> get copyWith =>
+  _$$UnexpectedCopyWith<_$Unexpected> get copyWith =>
       throw _privateConstructorUsedError;
 }
