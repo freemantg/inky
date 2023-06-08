@@ -86,7 +86,7 @@ class InklingFormNotifier extends StateNotifier<InklingFormState> {
       (failure) => state.copyWith(
         showErrorMessage: true,
         isSaving: false,
-        errorMessage: failure.toString(), // give more specific error message
+        errorMessage: failure.toString(),
       ),
       (success) => state.copyWith(isSaving: false),
     );

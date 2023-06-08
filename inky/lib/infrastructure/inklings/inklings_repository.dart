@@ -61,22 +61,21 @@ class InklingsRepository implements InklingsInterface {
   }
 
   Future<List<Inkling>> _insertMetaData(List<Inkling> inklings) async {
-    final List<Inkling> inklingsWithMetaData = [];
-
-    for (final inkling in inklings) {
+    // Convert each inkling to a future that completes when the metadata is fetched.
+    var futures = inklings.map((inkling) async {
       if (inkling.link.isEmpty) {
-        inklingsWithMetaData.add(inkling);
+        return inkling;
       } else {
-        final metaData = await _remoteServices.fetchMetaData(inkling.link);
-        final inklingWithMetaData = inkling.copyWith(
-          metaData: metaData.fold(
-            (l) => null,
-            (metaData) => metaData,
-          ),
+        final metaDataOrFailure =
+            await _remoteServices.fetchMetaData(inkling.link);
+        final metaData = metaDataOrFailure.fold(
+          (failure) => null,
+          (metaData) => metaData,
         );
-        inklingsWithMetaData.add(inklingWithMetaData);
+        return inkling.copyWith(metaData: metaData);
       }
-    }
-    return inklingsWithMetaData;
+    }).toList();
+    // Wait for all futures to complete and return the results as a list.
+    return Future.wait(futures);
   }
 }

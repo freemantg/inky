@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
+import 'package:inky/domain/metadata/meta_data_failure.dart';
 import 'package:inky/infrastructure/inklings/inklings_remote_service.dart';
 import 'package:riverpod/riverpod.dart';
 
-import '../../../domain/tags/tag_failure.dart';
-import '../../../infrastructure/inklings/meta_data_parser_repository.dart';
+import '../../../infrastructure/inklings/meta_data.dart';
 
 class InklingLinkNotifier extends StateNotifier<AsyncValue<MetaData>> {
   final InklingRemoteService _remoteService;
@@ -20,7 +20,7 @@ class InklingLinkNotifier extends StateNotifier<AsyncValue<MetaData>> {
     state = AsyncData(metaData);
   }
 
-  void updateState(Either<TagFailure, MetaData?> successOrFailure) {
+  void updateState(Either<MetaDataFailure, MetaData?> successOrFailure) {
     state = successOrFailure.fold(
       (failure) => AsyncValue.error(failure, StackTrace.current),
       (metaData) {

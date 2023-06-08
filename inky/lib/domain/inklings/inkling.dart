@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../infrastructure/inklings/meta_data_parser_repository.dart';
+import '../../infrastructure/inklings/meta_data.dart';
 import '../tags/tag.dart';
 
 part 'inkling.freezed.dart';

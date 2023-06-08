@@ -41,6 +41,8 @@ abstract class $InklingCopyWith<$Res> {
       String memo,
       List<Tag> tags,
       MetaData? metaData});
+
+  $MetaDataCopyWith<$Res>? get metaData;
 }
 
 /// @nodoc
@@ -95,6 +97,18 @@ class _$InklingCopyWithImpl<$Res, $Val extends Inkling>
               as MetaData?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MetaDataCopyWith<$Res>? get metaData {
+    if (_value.metaData == null) {
+      return null;
+    }
+
+    return $MetaDataCopyWith<$Res>(_value.metaData!, (value) {
+      return _then(_value.copyWith(metaData: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -112,6 +126,9 @@ abstract class _$$_InklingCopyWith<$Res> implements $InklingCopyWith<$Res> {
       String memo,
       List<Tag> tags,
       MetaData? metaData});
+
+  @override
+  $MetaDataCopyWith<$Res>? get metaData;
 }
 
 /// @nodoc
