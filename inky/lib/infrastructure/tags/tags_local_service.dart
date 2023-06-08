@@ -30,7 +30,7 @@ class TagsLocalService {
 
   Future<void> delete(TagDto tagDto) async {
     if (_tagDtosBox.containsKey(tagDto.id)) {
-      await tagDto.delete();
+      await _tagDtosBox.delete(tagDto.id);
     }
   }
 }
