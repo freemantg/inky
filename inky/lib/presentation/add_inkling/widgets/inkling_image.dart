@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:inky/providers.dart';
 
+import '../../../providers.dart';
 import '../../../styles/styles.dart';
 import '../../shared/widgets.dart';
 
@@ -42,7 +42,7 @@ class InklingImage extends ConsumerWidget {
                     onPressed: () {
                       showDialog(
                         context: context,
-                        builder: ((context) => const _DialogMenu()),
+                        builder: ((_) => const _DialogMenu()),
                       );
                     },
                     icon: Icon(

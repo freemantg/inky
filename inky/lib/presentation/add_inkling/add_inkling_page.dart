@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:inky/presentation/presentation.dart';
-import 'package:inky/providers.dart';
 
 import '../../domain/inklings/inkling.dart';
+import '../../providers.dart';
 import '../../router.dart';
 import '../../styles/styles.dart';
+import '../shared/widgets.dart';
+import 'widgets/widgets.dart';
 
 class AddInklingPage extends HookConsumerWidget {
   const AddInklingPage({

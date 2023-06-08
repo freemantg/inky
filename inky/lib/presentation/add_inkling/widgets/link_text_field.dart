@@ -9,39 +9,32 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../../../domain/domain.dart';
 import '../../../styles/styles.dart';
 
-class LinkTextField extends StatefulHookConsumerWidget {
+class LinkTextField extends HookConsumerWidget {
   const LinkTextField({super.key, this.inkling});
 
-  @override
-  ConsumerState<LinkTextField> createState() => _LinkTextFieldState();
-
   final Inkling? inkling;
-}
-
-class _LinkTextFieldState extends ConsumerState<LinkTextField> {
-  @override
-  void initState() {
-    super.initState();
-    ref.read(inklingLinkNotifier.notifier).initialise(widget.inkling?.metaData);
-  }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textEditingController = useTextEditingController();
 
-    ref.listen(
-      inklingFormNotifierProvider,
-      (previous, next) {
-        if (previous?.inkling.link != next.inkling.link &&
-            next.inkling.link.isNotEmpty) {
-          ref
-              .read(inklingLinkNotifier.notifier)
-              .fetchMetaData(url: next.inkling.link);
-        }
-      },
-    );
+    final inklingFormState = ref.watch(inklingFormNotifierProvider);
 
     final metaDataValueState = ref.watch(inklingLinkNotifier);
+
+    useEffect(() {
+      Future.microtask(
+        () => ref
+            .read(inklingLinkNotifier.notifier)
+            .initialise(inkling?.metaData),
+      );
+      if (inklingFormState.inkling.link.isNotEmpty) {
+        ref
+            .read(inklingLinkNotifier.notifier)
+            .fetchMetaData(url: inklingFormState.inkling.link);
+      }
+      return null;
+    }, [inklingFormState]);
 
     return Container(
       decoration: BoxDecoration(
@@ -177,16 +170,20 @@ class _AddLinkButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all($styles.insets.xs),
-        decoration: BoxDecoration(
-          color: $styles.colors.grey04,
-          borderRadius: BorderRadius.horizontal(
-            right: Radius.circular($styles.corners.sm),
-          ),
+      child: _addButtonContent(),
+    );
+  }
+
+  Widget _addButtonContent() {
+    return Container(
+      padding: EdgeInsets.all($styles.insets.xs),
+      decoration: BoxDecoration(
+        color: $styles.colors.grey04,
+        borderRadius: BorderRadius.horizontal(
+          right: Radius.circular($styles.corners.sm),
         ),
-        child: const Icon(Icons.add),
       ),
+      child: const Icon(Icons.add),
     );
   }
 }

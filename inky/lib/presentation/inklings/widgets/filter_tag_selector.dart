@@ -11,15 +11,17 @@ class FilterTagRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final filterTags =
+        ref.watch(inklingFilterNotifier.select((state) => state.filter));
+
     return SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: ref
-              .watch(inklingFilterNotifier)
-              .filter
-              .map((tag) => _buildTagChipRemoveButton(ref, tag))
-              .toList(),
-        ));
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          for (final tag in filterTags) _buildTagChipRemoveButton(ref, tag)
+        ],
+      ),
+    );
   }
 
   Widget _buildTagChipRemoveButton(WidgetRef ref, Tag tag) {

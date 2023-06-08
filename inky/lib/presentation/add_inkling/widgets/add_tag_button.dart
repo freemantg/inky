@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:inky/providers.dart';
-import 'package:inky/router.dart';
 
+import '../../../domain/domain.dart';
+import '../../../providers.dart';
+import '../../../router.dart';
 import '../../../styles/styles.dart';
 
 class StyledAddTagButton extends ConsumerWidget {
@@ -17,10 +18,7 @@ class StyledAddTagButton extends ConsumerWidget {
         inklingFormNotifierProvider.select((state) => state.inkling.tags));
 
     return GestureDetector(
-      onTap: () => context.push(
-        '${ScreenPaths.home}${ScreenPaths.addInkling(InklingType.note)}/${ScreenPaths.tags}',
-        extra: formTags,
-      ),
+      onTap: () => _navigateToAddTagsScreen(context, formTags),
       child: Container(
         padding: EdgeInsets.all($styles.insets.xxs),
         decoration: BoxDecoration(
@@ -34,5 +32,11 @@ class StyledAddTagButton extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  void _navigateToAddTagsScreen(BuildContext context, List<Tag> tags) {
+    final screenPath =
+        '${ScreenPaths.home}${ScreenPaths.addInkling(InklingType.note)}/${ScreenPaths.tags}';
+    context.push(screenPath, extra: tags);
   }
 }
