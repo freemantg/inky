@@ -25,6 +25,31 @@ class TagChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final random = math.Random();
+    final randomGreyIndex = greyIndex ?? random.nextInt(2);
+    final tagColor = $styles.colors.grey[randomGreyIndex];
+
+    Widget buildText() {
+      return Text(
+        '#${tag.name}',
+        style: $styles.text.caption.copyWith(
+          color: isDense ? null : Colors.black,
+          fontSize: isDense ? 10.0 : null,
+        ),
+      );
+    }
+
+    Widget buildLeadingIcon() {
+      return Padding(
+        padding: EdgeInsets.only(left: $styles.insets.xxs),
+        child: Icon(
+          Icons.close,
+          size: 14.0,
+          color: $styles.colors.grey06,
+        ),
+      );
+    }
+
     return Container(
       margin: const EdgeInsets.only(right: 2.0),
       padding: EdgeInsets.symmetric(
@@ -32,7 +57,7 @@ class TagChip extends StatelessWidget {
         horizontal: isDense ? $styles.insets.xxs : $styles.insets.xs,
       ),
       decoration: BoxDecoration(
-        color: $styles.colors.grey[greyIndex ?? math.Random().nextInt(2)],
+        color: tagColor,
         borderRadius: BorderRadius.circular($styles.corners.sm),
       ),
       child: GestureDetector(
@@ -40,23 +65,9 @@ class TagChip extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(height: isExpanded ? 18.0 : null),
-            Text(
-              '#${tag.name}',
-              style: $styles.text.caption.copyWith(
-                color: isDense ? null : Colors.black,
-                fontSize: isDense ? 10.0 : null,
-              ),
-            ),
-            if (leadingAction)
-              Padding(
-                padding: EdgeInsets.only(left: $styles.insets.xxs),
-                child: Icon(
-                  Icons.close,
-                  size: 14.0,
-                  color: $styles.colors.grey06,
-                ),
-              )
+            if (isExpanded) const SizedBox(height: 18.0),
+            buildText(),
+            if (leadingAction) buildLeadingIcon(),
           ],
         ),
       ),

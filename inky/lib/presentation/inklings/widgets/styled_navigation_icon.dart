@@ -14,15 +14,17 @@ class StyledNavigationIcon extends ConsumerWidget {
     final filter =
         ref.watch(inklingFilterNotifier.select((state) => state.filter));
 
+    void navigateToTags() {
+      final path = "${ScreenPaths.home}${ScreenPaths.tags}";
+      context.push(path, extra: filter);
+    }
+
     return IconButton(
       color: $styles.colors.grey03,
       padding: EdgeInsets.zero,
       constraints: const BoxConstraints(),
       icon: const Icon(Icons.arrow_forward_ios_rounded),
-      onPressed: () => context.push(
-        "${ScreenPaths.home}${ScreenPaths.tags}",
-        extra: filter,
-      ),
+      onPressed: navigateToTags,
     );
   }
 }
