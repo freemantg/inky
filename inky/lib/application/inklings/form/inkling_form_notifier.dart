@@ -80,10 +80,7 @@ class InklingFormNotifier extends StateNotifier<InklingFormState> {
 
   Future<void> saved() async {
     state = state.copyWith(isSaving: true);
-    print("SAVED PRESSED STATE: ${state.inkling}");
-    final failureOrSuccess = state.isEditing
-        ? await _repository.update(state.inkling)
-        : await _repository.create(state.inkling);
+    final failureOrSuccess = await _repository.upsert(state.inkling);
 
     state = failureOrSuccess.fold(
       (failure) => state.copyWith(

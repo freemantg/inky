@@ -12,14 +12,13 @@ class TagsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer(
       builder: ((context, ref, child) {
+        final tags = ref.watch(
+            inklingFormNotifierProvider.select((state) => state.inkling.tags));
         return Wrap(
           spacing: $styles.insets.xxs,
           runSpacing: $styles.insets.xs,
           children: [
-            ...ref
-                .watch(inklingFormNotifierProvider)
-                .inkling
-                .tags
+            ...tags
                 .map((e) => TagChip(
                       tag: e,
                       isExpanded: true,

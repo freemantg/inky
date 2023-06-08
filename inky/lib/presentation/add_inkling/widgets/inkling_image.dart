@@ -12,8 +12,8 @@ class InklingImage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final inklingImagePath =
-        ref.watch(inklingFormNotifierProvider).inkling.imagePath;
+    final inklingImagePath = ref.watch(
+        inklingFormNotifierProvider.select((state) => state.inkling.imagePath));
 
     return Expanded(
       child: Container(

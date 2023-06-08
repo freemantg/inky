@@ -35,7 +35,8 @@ class AddInklingPage extends HookConsumerWidget {
       }
     });
 
-    final isEditing = ref.watch(inklingFormNotifierProvider).isEditing;
+    final isEditing = ref
+        .watch(inklingFormNotifierProvider.select((state) => state.isEditing));
 
     return Scaffold(
       appBar: AppBar(

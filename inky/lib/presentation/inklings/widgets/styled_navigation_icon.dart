@@ -11,7 +11,8 @@ class StyledNavigationIcon extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final filter = ref.watch(inklingFilterNotifier).filter;
+    final filter =
+        ref.watch(inklingFilterNotifier.select((state) => state.filter));
 
     return IconButton(
       color: $styles.colors.grey03,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -17,7 +16,8 @@ class InklingTypeButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedFilterType = ref.watch(inklingFilterNotifier).typeFilter;
+    final selectedFilterType =
+        ref.watch(inklingFilterNotifier.select((state) => state.typeFilter));
 
     return GestureDetector(
       onTap: () => ref

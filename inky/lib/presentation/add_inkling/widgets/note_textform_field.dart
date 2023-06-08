@@ -13,11 +13,11 @@ class NoteTextFormField extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final textEditingController = useTextEditingController();
 
-    final inklingForm = ref.watch(inklingFormNotifierProvider);
+    final inklingNote = ref.watch(
+        inklingFormNotifierProvider.select((state) => state.inkling.note));
 
-    if (inklingForm.inkling.note.isNotEmpty &&
-        textEditingController.text.isEmpty) {
-      textEditingController.text = inklingForm.inkling.note;
+    if (inklingNote.isNotEmpty && textEditingController.text.isEmpty) {
+      textEditingController.text = inklingNote;
     }
 
     return Expanded(

@@ -12,11 +12,11 @@ class MemoTextField extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textEditingController = useTextEditingController();
-    final inklingForm = ref.watch(inklingFormNotifierProvider);
+    final inklingMemo = ref.watch(
+        inklingFormNotifierProvider.select((state) => state.inkling.memo));
 
-    if (inklingForm.inkling.memo.isNotEmpty &&
-        textEditingController.text.isEmpty) {
-      textEditingController.text = inklingForm.inkling.memo;
+    if (inklingMemo.isNotEmpty && textEditingController.text.isEmpty) {
+      textEditingController.text = inklingMemo;
     }
 
     return TextField(

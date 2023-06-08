@@ -41,13 +41,14 @@ class _LinkTextFieldState extends ConsumerState<LinkTextField> {
       },
     );
 
-    final metaDataValue = ref.watch(inklingLinkNotifier);
+    final metaDataValueState = ref.watch(inklingLinkNotifier);
+
     return Container(
       decoration: BoxDecoration(
         color: $styles.colors.grey01,
         borderRadius: BorderRadius.circular($styles.corners.sm),
       ),
-      child: metaDataValue.maybeWhen(
+      child: metaDataValueState.maybeWhen(
         data: (metaData) => MetaDataLinkPreview(metaData: metaData),
         orElse: () => StyledLinkParseTextField(
           textEditingController: textEditingController,

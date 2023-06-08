@@ -30,7 +30,6 @@ class ManageTagsPage extends StatelessWidget {
           final tagState = ref.watch(tagsNotifierProvider);
 
           return tagState.maybeMap(
-            initial: (_) => const Text('Initial'),
             loadSuccess: (state) {
               return ListView.separated(
                 itemCount: state.tags.length,

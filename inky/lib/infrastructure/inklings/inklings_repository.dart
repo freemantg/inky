@@ -18,7 +18,7 @@ class InklingsRepository implements InklingsInterface {
         _remoteServices = remoteServices;
 
   @override
-  Future<Either<InklingFailure, Unit>> create(Inkling inkling) async {
+  Future<Either<InklingFailure, Unit>> upsert(Inkling inkling) async {
     try {
       await _localServices.upsert(InklingDto.fromDomain(inkling));
       return right(unit);
@@ -34,16 +34,6 @@ class InklingsRepository implements InklingsInterface {
       return right(unit);
     } catch (e) {
       return left(const InklingFailure.unableToDelete());
-    }
-  }
-
-  @override
-  Future<Either<InklingFailure, Unit>> update(Inkling inkling) async {
-    try {
-      await _localServices.upsert(InklingDto.fromDomain(inkling));
-      return right(unit);
-    } catch (e) {
-      return left(const InklingFailure.unableToUpdate());
     }
   }
 

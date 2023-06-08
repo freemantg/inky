@@ -13,7 +13,8 @@ class StyledAddTagButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formTags = ref.watch(inklingFormNotifierProvider).inkling.tags;
+    final formTags = ref.watch(
+        inklingFormNotifierProvider.select((state) => state.inkling.tags));
 
     return GestureDetector(
       onTap: () => context.push(
