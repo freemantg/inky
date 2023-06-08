@@ -24,15 +24,7 @@ class InklingCard extends StatelessWidget {
     //Decides the color of the Inkling card using grey scale $styles.colors.grey[]
     //Greys go up to 6 shades
     final greyIndex = math.Random().nextInt(5);
-
-    //Determines the type of inkling else returns a Note Inkling
-    final inklingType = inkling.note.isEmpty
-        ? inkling.link.isEmpty
-            ? inkling.imagePath.isEmpty
-                ? InklingType.note
-                : InklingType.image
-            : InklingType.link
-        : InklingType.note;
+    final inklingType = determineInklingType();
 
     return Container(
       decoration: BoxDecoration(
@@ -41,10 +33,7 @@ class InklingCard extends StatelessWidget {
       ),
       padding: EdgeInsets.all($styles.insets.xxs),
       child: GestureDetector(
-        onTap: () => context.go(
-          "${ScreenPaths.home}${ScreenPaths.addInkling(inklingType)}",
-          extra: inkling,
-        ),
+        onTap: () => navigateToInklingScreen(context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -55,6 +44,23 @@ class InklingCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  InklingType determineInklingType() {
+    if (inkling.imagePath.isNotEmpty) {
+      return InklingType.image;
+    } else if (inkling.link.isNotEmpty) {
+      return InklingType.link;
+    } else {
+      return InklingType.note;
+    }
+  }
+
+  void navigateToInklingScreen(BuildContext context) {
+    final inklingType = determineInklingType();
+    final screenPath =
+        '${ScreenPaths.home}${ScreenPaths.addInkling(inklingType)}';
+    context.go(screenPath, extra: inkling);
   }
 
   Widget _buildInklingCardDisplay(InklingType type, int greyIndex) {
@@ -83,13 +89,14 @@ class _MiniTagRow extends StatelessWidget {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: inkling.tags
-            .map((e) => TagChip(
-                  tag: e,
-                  isDense: true,
-                  greyIndex: greyIndex + 1,
-                ))
-            .toList(),
+        children: [
+          for (final tag in inkling.tags)
+            TagChip(
+              tag: tag,
+              isDense: true,
+              greyIndex: greyIndex + 1,
+            )
+        ],
       ),
     );
   }
