@@ -10,6 +10,7 @@ Embrace the limitless possibilities that await within your personalized inspirat
 - [🏗️ Architecture](#-architecture)
 - [🔧 Technical Stack](#-technical-stack)
 - [🚀 Getting Started](#-getting-started)
+- [🧪  Unit Testing](#-unit-testing)
 - [🤝 Contributing](#-contributing)
 - [📝 License](#-license)
 
@@ -70,6 +71,16 @@ Inky is crafted using the following technology stack:
 2. Clone the repository with `git clone https://github.com/freemantg/inky.git`.
 3. Run `flutter packages get` in the root directory to fetch the project dependencies.
 4. Finally, execute `flutter run` to run the project on your device/emulator.
+
+## 🧪 Unit Testing
+
+This project places a high priority on software quality and maintainability. As a result, extensive unit testing to ensure the software's robustness and reliability, with tests covering all major components of the application is used.
+
+The project employs the `flutter_test` package for unit and widget tests, `mockito` for creating mocks in tests, and `ProviderContainer` for thoroughly testing the StateNotifiers to ensure that the app state is managed correctly.
+
+To run the tests, simply execute the following command in the project root:
+
+`Flutter Test`
 
 ## Contributing 🤝
 
