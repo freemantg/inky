@@ -38,11 +38,11 @@ Inky follows principles from Domain-Driven Design (DDD) and Clean Architecture, 
 
 The use of Dartz `Either` type for error handling allows us to wrap computations that can potentially fail, making the system more robust and easier to debug.
 
-![1](screenshots/inky_1.png)
-![2](screenshots/inky_2.png)
-![3](screenshots/inky_3.png)
-![4](screenshots/inky_4.png)
-![5](screenshots/inky_5.png)
+![1](assets/screenshots/inky_1.png)
+![2](assets/screenshots/inky_2.png)
+![3](assets/screenshots/inky_3.png)
+![4](assets/screenshots/inky_4.png)
+![5](assets/screenshots/inky_5.png)
 
 ## 🔧 Technical Stack
 
