@@ -1,6 +1,8 @@
 # 🖋️ Inky 
 
-Inky is the ultimate companion for capturing and archiving your moments of inspiration. With Inky, you can effortlessly collect and store your creative inklings in one centralized place. Snap photos, save screenshots, jot down thoughts, and bookmark web links - all within the app. With intuitive organization features like tags, you can easily search and retrieve your inspirations whenever you need a spark of creativity. Embrace the limitless possibilities that await within your personalized inspiration archive.
+Inky is the ultimate companion for capturing and archiving your moments of inspiration. With Inky, you can effortlessly collect and store your creative inklings in one centralized place. Snap photos, save screenshots, jot down thoughts, and bookmark web links - all within the app. With intuitive organization features like tags, you can easily search and retrieve your inspirations whenever you need a spark of creativity. 
+
+Embrace the limitless possibilities that await within your personalized inspiration archive.
 
 ## Table of Contents
 
@@ -23,6 +25,12 @@ Inky brings a host of engaging features to inspire and boost your creativity:
 - **Search Feature:** Quickly find your saved inspirations using our efficient search feature.
 - **Dark Mode:** A sleek dark theme for easy-on-the-eyes inspiration hunting at night.
 
+![1](assets/screenshots/inky_1.png)
+![2](assets/screenshots/inky_2.png)
+![3](assets/screenshots/inky_3.png)
+![4](assets/screenshots/inky_4.png)
+![5](assets/screenshots/inky_5.png)
+
 ## 🏗️ Architecture
 
 Inky follows principles from Domain-Driven Design (DDD) and Clean Architecture, resulting in a layered architectural style:
@@ -37,12 +45,6 @@ Inky follows principles from Domain-Driven Design (DDD) and Clean Architecture, 
 
 
 The use of Dartz `Either` type for error handling allows us to wrap computations that can potentially fail, making the system more robust and easier to debug.
-
-![1](assets/screenshots/inky_1.png)
-![2](assets/screenshots/inky_2.png)
-![3](assets/screenshots/inky_3.png)
-![4](assets/screenshots/inky_4.png)
-![5](assets/screenshots/inky_5.png)
 
 ## 🔧 Technical Stack
 
