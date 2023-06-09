@@ -20,7 +20,6 @@ Inky brings a host of engaging features to inspire and boost your creativity:
 - **Tagging System:** Use tags to easily categorize and retrieve your inspirations.
 - **Bookmarking:** Save important web links directly within the app.
 - **Media Support:** Snap photos or save screenshots right in your inspiration archive.
-- **Cloud Sync:** Synchronize your inspiration archive across multiple devices.
 - **Search Feature:** Quickly find your saved inspirations using our efficient search feature.
 - **Dark Mode:** A sleek dark theme for easy-on-the-eyes inspiration hunting at night.
 
