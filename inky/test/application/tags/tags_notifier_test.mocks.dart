@@ -5,16 +5,13 @@
 // @dart=2.19
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:inky/application/tags/tags_notifier.dart' as _i3;
-import 'package:inky/domain/tags/tag.dart' as _i7;
-import 'package:inky/domain/tags/tag_failure.dart' as _i6;
-import 'package:inky/infrastructure/infrastructure.dart' as _i4;
+import 'package:inky/domain/tags/tag.dart' as _i6;
+import 'package:inky/domain/tags/tag_failure.dart' as _i5;
+import 'package:inky/infrastructure/tags/tags_repository.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:riverpod/riverpod.dart' as _i8;
-import 'package:state_notifier/state_notifier.dart' as _i9;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -37,209 +34,55 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-class _FakeTagsState_1 extends _i1.SmartFake implements _i3.TagsState {
-  _FakeTagsState_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [TagRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTagRepository extends _i1.Mock implements _i4.TagRepository {
+class MockTagRepository extends _i1.Mock implements _i3.TagRepository {
   MockTagRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i2.Either<_i6.TagFailure, _i2.Unit>> create(_i7.Tag? tag) =>
+  _i4.Future<_i2.Either<_i5.TagFailure, _i2.Unit>> create(_i6.Tag? tag) =>
       (super.noSuchMethod(
         Invocation.method(
           #create,
           [tag],
         ),
-        returnValue: _i5.Future<_i2.Either<_i6.TagFailure, _i2.Unit>>.value(
-            _FakeEither_0<_i6.TagFailure, _i2.Unit>(
+        returnValue: _i4.Future<_i2.Either<_i5.TagFailure, _i2.Unit>>.value(
+            _FakeEither_0<_i5.TagFailure, _i2.Unit>(
           this,
           Invocation.method(
             #create,
             [tag],
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i6.TagFailure, _i2.Unit>>);
+      ) as _i4.Future<_i2.Either<_i5.TagFailure, _i2.Unit>>);
   @override
-  _i5.Future<_i2.Either<_i6.TagFailure, _i2.Unit>> delete(_i7.Tag? tag) =>
+  _i4.Future<_i2.Either<_i5.TagFailure, _i2.Unit>> delete(_i6.Tag? tag) =>
       (super.noSuchMethod(
         Invocation.method(
           #delete,
           [tag],
         ),
-        returnValue: _i5.Future<_i2.Either<_i6.TagFailure, _i2.Unit>>.value(
-            _FakeEither_0<_i6.TagFailure, _i2.Unit>(
+        returnValue: _i4.Future<_i2.Either<_i5.TagFailure, _i2.Unit>>.value(
+            _FakeEither_0<_i5.TagFailure, _i2.Unit>(
           this,
           Invocation.method(
             #delete,
             [tag],
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i6.TagFailure, _i2.Unit>>);
+      ) as _i4.Future<_i2.Either<_i5.TagFailure, _i2.Unit>>);
   @override
-  _i5.Stream<_i2.Either<_i6.TagFailure, List<_i7.Tag>>> streamTags(
-          List<_i7.Tag>? filter) =>
+  _i4.Stream<_i2.Either<_i5.TagFailure, List<_i6.Tag>>> streamTags(
+          List<_i6.Tag>? filter) =>
       (super.noSuchMethod(
         Invocation.method(
           #streamTags,
           [filter],
         ),
         returnValue:
-            _i5.Stream<_i2.Either<_i6.TagFailure, List<_i7.Tag>>>.empty(),
-      ) as _i5.Stream<_i2.Either<_i6.TagFailure, List<_i7.Tag>>>);
-}
-
-/// A class which mocks [TagsNotifier].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockTagsNotifier extends _i1.Mock implements _i3.TagsNotifier {
-  MockTagsNotifier() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  set onError(_i8.ErrorListener? _onError) => super.noSuchMethod(
-        Invocation.setter(
-          #onError,
-          _onError,
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  bool get mounted => (super.noSuchMethod(
-        Invocation.getter(#mounted),
-        returnValue: false,
-      ) as bool);
-  @override
-  _i5.Stream<_i3.TagsState> get stream => (super.noSuchMethod(
-        Invocation.getter(#stream),
-        returnValue: _i5.Stream<_i3.TagsState>.empty(),
-      ) as _i5.Stream<_i3.TagsState>);
-  @override
-  _i3.TagsState get state => (super.noSuchMethod(
-        Invocation.getter(#state),
-        returnValue: _FakeTagsState_1(
-          this,
-          Invocation.getter(#state),
-        ),
-      ) as _i3.TagsState);
-  @override
-  set state(_i3.TagsState? value) => super.noSuchMethod(
-        Invocation.setter(
-          #state,
-          value,
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  _i3.TagsState get debugState => (super.noSuchMethod(
-        Invocation.getter(#debugState),
-        returnValue: _FakeTagsState_1(
-          this,
-          Invocation.getter(#debugState),
-        ),
-      ) as _i3.TagsState);
-  @override
-  bool get hasListeners => (super.noSuchMethod(
-        Invocation.getter(#hasListeners),
-        returnValue: false,
-      ) as bool);
-  @override
-  void initialiseTags({List<_i7.Tag>? filter}) => super.noSuchMethod(
-        Invocation.method(
-          #initialiseTags,
-          [],
-          {#filter: filter},
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void streamTags() => super.noSuchMethod(
-        Invocation.method(
-          #streamTags,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  _i5.Future<void> createTag(String? name) => (super.noSuchMethod(
-        Invocation.method(
-          #createTag,
-          [name],
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-  @override
-  _i5.Future<void> deleteTag(_i7.Tag? tag) => (super.noSuchMethod(
-        Invocation.method(
-          #deleteTag,
-          [tag],
-        ),
-        returnValue: _i5.Future<void>.value(),
-        returnValueForMissingStub: _i5.Future<void>.value(),
-      ) as _i5.Future<void>);
-  @override
-  void addFilterTag(_i7.Tag? tag) => super.noSuchMethod(
-        Invocation.method(
-          #addFilterTag,
-          [tag],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  void removeFilterTag(_i7.Tag? tag) => super.noSuchMethod(
-        Invocation.method(
-          #removeFilterTag,
-          [tag],
-        ),
-        returnValueForMissingStub: null,
-      );
-  @override
-  bool updateShouldNotify(
-    _i3.TagsState? old,
-    _i3.TagsState? current,
-  ) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #updateShouldNotify,
-          [
-            old,
-            current,
-          ],
-        ),
-        returnValue: false,
-      ) as bool);
-  @override
-  _i8.RemoveListener addListener(
-    _i9.Listener<_i3.TagsState>? listener, {
-    bool? fireImmediately = true,
-  }) =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #addListener,
-          [listener],
-          {#fireImmediately: fireImmediately},
-        ),
-        returnValue: () {},
-      ) as _i8.RemoveListener);
-  @override
-  void dispose() => super.noSuchMethod(
-        Invocation.method(
-          #dispose,
-          [],
-        ),
-        returnValueForMissingStub: null,
-      );
+            _i4.Stream<_i2.Either<_i5.TagFailure, List<_i6.Tag>>>.empty(),
+      ) as _i4.Stream<_i2.Either<_i5.TagFailure, List<_i6.Tag>>>);
 }

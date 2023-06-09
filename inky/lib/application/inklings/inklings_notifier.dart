@@ -28,21 +28,21 @@ class InklingsNotifier extends StateNotifier<InklingsState> {
     watchInklings();
   }
 
-  Future<void> watchInklings() async {
+  void watchInklings() async {
     state = const InklingsState.loadInProgress();
-    final inklingStream = _repository.watchInklings();
-    inklingStream.listen(
-      (successOrFailure) {
+    try {
+      final inklingStream = _repository.watchInklings();
+      inklingStream.listen((successOrFailure) {
         successOrFailure.fold(
           (failure) => state = InklingsState.loadFailure(failure: failure),
           (inklings) => state = InklingsState.loadSuccess(inklings: inklings),
         );
-      },
-      onError: (failure) => state = InklingsState.loadFailure(
-        failure:
-            InklingFailure.unexpected(message: "Unexpected error: $failure"),
-      ),
-    );
+      });
+    } catch (e) {
+      state = InklingsState.loadFailure(
+        failure: InklingFailure.unexpected(message: 'Unexpected error: $e'),
+      );
+    }
   }
 
   Future<void> deleteInkling(Inkling inkling) async {
