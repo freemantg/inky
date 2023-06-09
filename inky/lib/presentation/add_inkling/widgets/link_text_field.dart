@@ -20,17 +20,17 @@ class LinkTextField extends HookConsumerWidget {
 
     final inklingFormState = ref.watch(inklingFormNotifierProvider);
 
-    final metaDataValueState = ref.watch(inklingLinkNotifier);
+    final metaDataValueState = ref.watch(inklingLinkNotifierProvider);
 
     useEffect(() {
       Future.microtask(
         () => ref
-            .read(inklingLinkNotifier.notifier)
+            .read(inklingLinkNotifierProvider.notifier)
             .initialise(inkling?.metaData),
       );
       if (inklingFormState.inkling.link.isNotEmpty) {
         ref
-            .read(inklingLinkNotifier.notifier)
+            .read(inklingLinkNotifierProvider.notifier)
             .fetchMetaData(url: inklingFormState.inkling.link);
       }
       return null;
@@ -147,7 +147,7 @@ class _ClearLinkButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
       onTap: () {
-        ref.read(inklingLinkNotifier.notifier).clearMetaData();
+        ref.read(inklingLinkNotifierProvider.notifier).clearMetaData();
         ref.read(inklingFormNotifierProvider.notifier).linkChanged(linkStr: '');
       },
       child: Padding(

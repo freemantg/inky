@@ -15,7 +15,6 @@ void main() {
   group('InklingsNotifier', () {
     late MockInklingsRepository mockRepository;
     late ProviderContainer container;
-    late InklingsNotifier inklingsNotifier;
 
     setUp(() {
       mockRepository = MockInklingsRepository();
