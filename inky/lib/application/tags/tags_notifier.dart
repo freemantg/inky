@@ -50,10 +50,7 @@ class TagsNotifier extends StateNotifier<TagsState> {
 
   Future<void> createTag(String name) async {
     await _tagRepository.create(
-      Tag(
-        id: const Uuid().v4(),
-        name: name,
-      ),
+      Tag(id: const Uuid().v4(), name: name),
     );
   }
 

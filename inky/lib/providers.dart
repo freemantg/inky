@@ -17,7 +17,7 @@ final tagsLocalServiceProvider =
 final tagRepositoryProvider =
     Provider((ref) => TagRepository(ref.watch(tagsLocalServiceProvider)));
 final tagsNotifierProvider =
-    StateNotifierProvider.autoDispose<TagsNotifier, TagsState>(
+    StateNotifierProvider<TagsNotifier, TagsState>(
   (ref) => TagsNotifier(tagRepository: ref.watch(tagRepositoryProvider)),
 );
 
@@ -43,13 +43,13 @@ final inklingsNotifierProvider =
         (ref) => InklingsNotifier(ref.watch(inklingRepositoryProvider)));
 
 //State for holding MetaData during link preview during creation of link inkling
-final inklingLinkNotifier = StateNotifierProvider.autoDispose<
+final inklingLinkNotifier = StateNotifierProvider<
         InklingLinkNotifier, AsyncValue<MetaData>>(
     (ref) => InklingLinkNotifier(ref.watch(inklingRemoteService)));
 
 //State for holding inkling input data
 final inklingFormNotifierProvider =
-    StateNotifierProvider.autoDispose<InklingFormNotifier, InklingFormState>(
+    StateNotifierProvider<InklingFormNotifier, InklingFormState>(
         (ref) => InklingFormNotifier(ref.watch(inklingRepositoryProvider),
             ref.watch(inklingImageRepositoryProvider)));
 
